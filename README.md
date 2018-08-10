@@ -1,5 +1,6 @@
 # SmartI Capstone Project
 计划：
+
 客户端
 1. 通过摄像头采集1080p frame
 2. 把frame copy 480pframe，对头部进行face localization
