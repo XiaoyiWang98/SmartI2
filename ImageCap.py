@@ -69,8 +69,9 @@ class FPS:
 if __name__ == '__main__':
 	
 	# 0 for internal webcam, 1 for usb webcam
-	src = 1
-	
+	src = 0
+	close = 150
+	further = 200
 	fvs = WebcamVideosStream(src).start()
 
 	face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
@@ -107,18 +108,18 @@ if __name__ == '__main__':
 		#if no face detected
 		if GXR != 0:
 			#Face position is good
-			if GXW >= 100 and GXH >= 100 and GXW <= 140 and GXH <= 140:
-				X = math.floor(GXR + (GXW/2) - 50)
-				Y = math.floor(GYR + (GXH/2) - 50)
-				H = 100
-				W = 100
+			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
+				X = math.floor(GXR + (GXW/2) - (close/2))
+				Y = math.floor(GYR + (GXH/2) - (close/2))
+				H = close
+				W = close
 				cut = frame[Y:(Y+H), X:(X+W)]
 				cv2.imshow("cut",cut)
 			#Face is too further 
-			elif GXW < 100 or GXH < 100:
+			elif GXW < close or GXH < close:
 				print("Please move closer!")
 			#Face is too close
-			elif GXW > 140 or GYW > 140:
+			elif GXW > further or GYW > further:
 				print("Please more feather1")
 		else:
 			print("No face detected")
