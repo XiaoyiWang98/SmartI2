@@ -7,15 +7,14 @@ import sys
 from queue import Queue
 from threading import Thread
 import datetime
-
+import math
 
 class WebcamVideosStream:
-	def __init__(self,src=1):
+	def __init__(self,src):
 		cap = cv2.VideoCapture(src)
 		cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J', 'P', 'G')) #4-character code for codec (MJPG)
-		cap.set(cv2.CAP_PROP_FPS, 30) #frame rate
-		cap.set(3, 1980) #WIDTH
-		cap.set(4, 1080) #HEIGT
+		cap.set(3, 640) #WIDTH
+		cap.set(4, 480) #HEIGT
 		self.stream = cap
 		(self.grabbed, self.frame) = self.stream.read()
 		self.stopped = False
@@ -69,13 +68,17 @@ class FPS:
 
 if __name__ == '__main__':
 	
-	fvs = WebcamVideosStream().start()
+	# 0 for internal webcam, 1 for usb webcam
+	src = 1
+	
+	fvs = WebcamVideosStream(src).start()
 
 	face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
 
 	var = 1
 	while var == 1:
 
+		#make X,Y,H,W global
 		GXR = 0
 		GYR = 0
 		GXW = 0
@@ -87,18 +90,39 @@ if __name__ == '__main__':
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8),cv2.COLOR_BGR2GRAY)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-		print(len(faces))
+		#print(len(faces))
 		# Display the resulting frame
 		for (x,y,w,h) in faces:
 			print(x,y,w,h)
 			cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
 			roi_gray = gray[y:y+h, x:x+w]
 			roi_color = frame[y:y+h, x:x+w]
-			GXR = (x/1920)
-			GYR = y/1080
-			GXW = w/1920
-			GXH = h/1080
+			#assign x,y,w,h to Global Valables
+			GXR = x
+			GYR = y
+			GXW = w
+			GXH = h
+		print(GXR,GYR,GXW,GYW)
 		cv2.imshow('frame',frame)
+		#if no face detected
+		if GXR != 0:
+			#Face position is good
+			if GXW >= 100 and GXH >= 100 and GXW <= 140 and GXH <= 140:
+				X = math.floor(GXR + (GXW/2) - 50)
+				Y = math.floor(GYR + (GXH/2) - 50)
+				H = 100
+				W = 100
+				cut = frame[Y:(Y+H), X:(X+W)]
+				cv2.imshow("cut",cut)
+			#Face is too further 
+			elif GXW < 100 or GXH < 100:
+				print("Please move closer!")
+			#Face is too close
+			elif GXW > 140 or GYW > 140:
+				print("Please more feather1")
+		else:
+			print("No face detected")
+
 		if cv2.waitKey(1) & 0xFF == ord('q'): # 16.666ms = 1/60hz
 			break
 	
