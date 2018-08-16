@@ -64,20 +64,15 @@ class FPS:
 		# compute the (approximate) frames per second
 		return self._numFrames / self.elapsed()
 
-if __name__ == '__main__':
-	
-	# 0 for internal webcam, 1 for usb webcam
-	src = 0
-	close = 150
-	further = 300
-	fvs = WebcamVideosStream(src).start()
+class frameGet:
+	def __init__(self):
+		GXR = 0
+		GYR = 0
+		GXW = 0
+		GYW = 0
 
-	face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
-
-	var = 1
-	while var == 1:
-
-		#make X,Y,H,W global
+	def Getframe(self, fvs, face_cascade, close, further):
+		# make X,Y,H,W global
 		GXR = 0
 		GYR = 0
 		GXW = 0
@@ -85,45 +80,66 @@ if __name__ == '__main__':
 
 		# Capture frame-by-frame
 		frame = fvs.read()
-
+		cut = 0
 		# Our operations on the frame come here
-		gray = cv2.cvtColor(frame.astype(np.uint8),cv2.COLOR_BGR2GRAY)
+		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-		#print(len(faces))
+		# print(len(faces))
 		# Display the resulting frame
-		for (x,y,w,h) in faces:
-			print(x,y,w,h)
-			cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-			roi_gray = gray[y:y+h, x:x+w]
-			roi_color = frame[y:y+h, x:x+w]
-			#assign x,y,w,h to Global Valables
+		for (x, y, w, h) in faces:
+			print(x, y, w, h)
+			cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+			roi_gray = gray[y:y + h, x:x + w]
+			roi_color = frame[y:y + h, x:x + w]
+			# assign x,y,w,h to Global Valables
 			GXR = x
 			GYR = y
 			GXW = w
 			GXH = h
-		print(GXR,GYR,GXW,GYW)
-		cv2.imshow('frame',frame)
-		#if no face detected
+		print(GXR, GYR, GXW, GYW)
+		cv2.imshow('frame', frame)
+		# if no face detected
 		if GXR != 0:
-			#Face position is good
+			# Face position is good
 			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
-				X = math.floor(GXR + (GXW/2) - (close/2))
-				Y = math.floor(GYR + (GXH/2) - (close/2))
+				X = math.floor(GXR + (GXW / 2) - (close / 2))
+				Y = math.floor(GYR + (GXH / 2) - (close / 2))
 				H = close
 				W = close
-				cut = frame[Y:(Y+H), X:(X+W)]
-				cv2.imshow("cut",cut)
-			#Face is too further 
+				cut = frame[Y:(Y + H), X:(X + W)]
+				cv2.imshow("cut", cut)
+			# Face is too further
 			elif GXW < close or GXH < close:
 				print("Please move closer!")
-			#Face is too close
+			# Face is too close
 			elif GXW > further or GYW > further:
-				print("Please more feather1")
+				print("Please more further!")
 		else:
-			print("No face detected")
+			print("No face detected, please move further")
+		return frame, cut
 
-		if cv2.waitKey(1) & 0xFF == ord('q'): # 16.666ms = 1/60hz
-			break
+
+if __name__ == '__main__':
 	
+	# 0 for internal webcam, 1 for usb webcam
+	device = 1
+	if device == 0:
+		src = 0
+		close = 100
+		further = 300
+	elif device == 1:
+		src = 1
+		close = 100
+		further = 200
+	fvs = WebcamVideosStream(src).start()
+
+	face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
+
+	var = 1
+	while var == 1:
+		frame, head = frameGet().Getframe(fvs, face_cascade, close, further)
+
+		if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
+			break
 	cv2.destroyAllWindows()
 	fvs.stop()
