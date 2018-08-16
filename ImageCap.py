@@ -138,6 +138,7 @@ class frameRun:
 		fvs = WebcamVideosStream(src).start()
 
 		#for arrows
+		middle = cv2.imread("Arrows/mid.jpg")
 		up = cv2.imread("Arrows/up.png")
 		down = cv2.imread("Arrows/down.jpg")
 		left = cv2.imread("Arrows/left.png")
@@ -158,18 +159,20 @@ class frameRun:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
 					cv2.imwrite("samples/"+str(Gi)+".jpg", head)
 					Gi += 1
-					i = Gi%5
+					i = Gi%6
 				elif cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 					break
 			if i == 0:
-				cv2.imshow("Arrows",up)
+				cv2.imshow("Arrows",middle)
 			elif i == 1:
-				cv2.imshow("Arrows",down)
+				cv2.imshow("Arrows",up)
 			elif i == 2:
-				cv2.imshow("Arrows",left)
+				cv2.imshow("Arrows",down)
 			elif i == 3:
-				cv2.imshow("Arrows",right)
+				cv2.imshow("Arrows",left)
 			elif i == 4:
+				cv2.imshow("Arrows",right)
+			elif i == 5:
 				cv2.imshow("Arrows",click)
 
 
