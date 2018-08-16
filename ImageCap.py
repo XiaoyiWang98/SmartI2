@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
-import tensorflow as tf
 import time
-from imutils.video import FPS
 import sys
 from queue import Queue
 from threading import Thread
@@ -42,26 +40,26 @@ class FPS:
 		self._start = None
 		self._end = None
 		self._numFrames = 0
- 
+
 	def start(self):
 		# start the timer
 		self._start = datetime.datetime.now()
 		return self
- 
+
 	def stop(self):
 		# stop the timer
 		self._end = datetime.datetime.now()
- 
+
 	def update(self):
 		# increment the total number of frames examined during the
 		# start and end intervals
 		self._numFrames += 1
- 
+
 	def elapsed(self):
 		# return the total number of seconds between the start and
 		# end interval
 		return (self._end - self._start).total_seconds()
- 
+
 	def fps(self):
 		# compute the (approximate) frames per second
 		return self._numFrames / self.elapsed()
@@ -71,7 +69,7 @@ if __name__ == '__main__':
 	# 0 for internal webcam, 1 for usb webcam
 	src = 0
 	close = 150
-	further = 200
+	further = 300
 	fvs = WebcamVideosStream(src).start()
 
 	face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
