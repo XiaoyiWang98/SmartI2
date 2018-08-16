@@ -121,7 +121,7 @@ class frameGet:
 				print("Please more further!")
 		else:
 			print("No face detected, please move further")
-		return frame, cut
+		return frame, cut, GXR
 
 
 class frameRun:
@@ -137,14 +137,42 @@ class frameRun:
 			further = 200
 		fvs = WebcamVideosStream(src).start()
 
+		#for arrows
+		up = cv2.imread("Arrows/up.png")
+		down = cv2.imread("Arrows/down.jpg")
+		left = cv2.imread("Arrows/left.png")
+		right = cv2.imread("Arrows/Right.jpg")
+		click = cv2.imread("Arrows/click.png")
+		cv2.namedWindow("Arrows")
+
+
 		face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
 
 		var = 1
+		i = 0
+		Gi = 0
 		while var == 1:
-			frame, head = frameGet().Getframe(fvs, face_cascade, close, further)
+			frame, head, GXR = frameGet().Getframe(fvs, face_cascade, close, further)
 
-			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
-				break
+			if GXR != 0:
+				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
+					cv2.imwrite("samples/"+str(Gi)+".jpg", head)
+					Gi += 1
+					i = Gi%5
+				elif cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
+					break
+			if i == 0:
+				cv2.imshow("Arrows",up)
+			elif i == 1:
+				cv2.imshow("Arrows",down)
+			elif i == 2:
+				cv2.imshow("Arrows",left)
+			elif i == 3:
+				cv2.imshow("Arrows",right)
+			elif i == 4:
+				cv2.imshow("Arrows",click)
+
+
 
 		cv2.destroyAllWindows()
 		fvs.stop()
