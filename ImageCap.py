@@ -1,3 +1,8 @@
+#Sample Collection Back-end
+#Xiaoyi(Sean) Wang
+#2018-8-16
+
+
 import cv2
 import numpy as np
 import time
@@ -119,27 +124,29 @@ class frameGet:
 		return frame, cut
 
 
-if __name__ == '__main__':
-	
-	# 0 for internal webcam, 1 for usb webcam
-	device = 1
-	if device == 0:
-		src = 0
-		close = 100
-		further = 300
-	elif device == 1:
-		src = 1
-		close = 100
-		further = 200
-	fvs = WebcamVideosStream(src).start()
+class frameRun:
+	def __init__(self, device):
+		# 0 for internal webcam, 1 for usb webcam
+		if device == 0:
+			src = 0
+			close = 100
+			further = 300
+		elif device == 1:
+			src = 1
+			close = 100
+			further = 200
+		fvs = WebcamVideosStream(src).start()
 
-	face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
+		face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
 
-	var = 1
-	while var == 1:
-		frame, head = frameGet().Getframe(fvs, face_cascade, close, further)
+		var = 1
+		while var == 1:
+			frame, head = frameGet().Getframe(fvs, face_cascade, close, further)
 
-		if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
-			break
-	cv2.destroyAllWindows()
-	fvs.stop()
+			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
+				break
+
+		cv2.destroyAllWindows()
+		fvs.stop()
+#f __name__ == '__main__':
+	#frameRun()

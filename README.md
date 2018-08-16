@@ -9,3 +9,5 @@
 5. 识别眼球的位置用DL结果进行classification，确定屏幕上光标移动方向
 
 
+运行：
+Python3 StartUI.py
