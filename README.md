@@ -8,7 +8,7 @@
 4. 用脸部frame 训练眼球识别，计划使用CNN，x为脸部frame，y为[middle, up, down, left, right, click], 向哪边看鼠标就往哪里跑，正常看屏幕鼠标就不动，click是眨眼<br>
 5. 识别眼球的位置用DL结果进行classification，确定屏幕上光标移动方向<br>
 
-
+# 面部样本采集程序 （通过StartUI.py进入）
 运行：<br>
 样本采集（面部）<br>
 Python3 StartUI.py<br>
