@@ -26,3 +26,9 @@ y = 3 :left<br>
 y = 4 :right<br>
 y = 5 :click (close the eye)<br>
 
+
+Virtual Environment:<br>
+链接: https://pan.baidu.com/s/1Hm6NEaVet1W8Ate6LS5zFw 密码: ajw6 <br>
+cd 到环境包里的targetDirectory/bin，然后source activate <br>
+
+
