@@ -1,7 +1,5 @@
 # SmartI Capstone Project
 计划：
-
-客户端<br>
 1. 通过摄像头采集480p frame （Completed)<br>
 2. 对头部进行face localization (Completed)<br>
 3. 通过localization的结果采集截取100* 100的脸部frame (Completed)<br>
@@ -24,11 +22,13 @@ y = 1 :up<br>
 y = 2 :down<br>
 y = 3 :left<br>
 y = 4 :right<br>
-y = 5 :click (close the eye)<br>
-
+y = 5 :click (close your eyes)<br>
 
 Virtual Environment:<br>
 链接: https://pan.baidu.com/s/1Hm6NEaVet1W8Ate6LS5zFw 密码: ajw6 <br>
 cd 到环境包里的targetDirectory/bin，然后source activate <br>
 
+# Image Classification
+x 为图像，y为one-hot binary array [middle,up,down,left,right,click] <br>
+计划使用CNN <br>
 
