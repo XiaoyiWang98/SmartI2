@@ -9,11 +9,11 @@ Plan:<br>
   5. Identify the position of eyeballs: using deep learning for result classification, determine the direction of cursor movement on the screen<br>
 
 # Facial Sample Collection (StartUI.py):
-  1. Run the program<br>
-  2. Sample collection (face)<br>
-  3. Python3 StartUI.py<br>
-  4. Choose the camera<br>
-  5. Start to collect the samples: 1) move the eyeballs according to the arrow direction; 2) when the eyeballs are in place, press 'd' to capture the next picture, press 'q' to exit<br>
+Run the program:<br>
+  1. Sample collection (face)<br>
+  2. Python3 StartUI.py<br>
+  3. Choose the camera<br>
+  4. Start to collect the samples: 1) move the eyeballs according to the arrow direction; 2) when the eyeballs are in place, press 'd' to capture the next picture, press 'q' to exit<br>
 
 Information of Sample:<br>
   x - image<br>
