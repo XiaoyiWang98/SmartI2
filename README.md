@@ -1,4 +1,41 @@
-# SmartI Capstone Project
+## SmartI Capstone Project
+
+Plan:
+  1. 480p frame acquisition via camera (Completed)
+  2. Perform face localization for the head (Completed)
+  3. From the results of face loacalization, capture the face frames of size 100 * 100 (Completed)
+  4. Train eyeball recognition using the face frames. Plan to use the CNN algorithm.
+     x - face frame; y - [middle, up, down, left, right, click] (The cursor follows the user's eyes. "Click" means blink)
+  5. Identify the position of eyeballs: using deep learning for result classification, determine the direction of cursor movement on the screen
+
+# Facial Sample Collection (StartUI.py):
+  1. Run the program
+  2. Sample collection (face)
+  3. Python3 StartUI.py
+  4. Choose the camera
+  5. Start to collect the samples: 1) move the eyeballs according to the arrow direction; 2) when the eyeballs are in place, press 'd' to capture the next picture, press 'q' to exit
+
+Information of Sample:
+  x - image
+  y = filename mod 6
+  for example, if the filename is 7.jpg, y is 1
+  y = 0 :middle
+  y = 1 :up
+  y = 2 :down
+  y = 3 :left
+  y = 4 :right
+  y = 5 :click (blink)
+
+Virtual Environment:
+  URL: https://pan.baidu.com/s/1Hm6NEaVet1W8Ate6LS5zFw Password: ajw6
+  cd to "targetDirectory/bin" in the environment package，then "source activate"
+
+# Image Classification
+  x: image; y: one-hot binary array [middle,up,down,left,right,click]
+  Plan to use CNN
+
+==============================================================================================================================
+
 计划：
 1. 通过摄像头采集480p frame （Completed)<br>
 2. 对头部进行face localization (Completed)<br>
@@ -22,7 +59,7 @@ y = 1 :up<br>
 y = 2 :down<br>
 y = 3 :left<br>
 y = 4 :right<br>
-y = 5 :click (close your eyes)<br>
+y = 5 :click (blink)<br>
 
 Virtual Environment:<br>
 链接: https://pan.baidu.com/s/1Hm6NEaVet1W8Ate6LS5zFw 密码: ajw6 <br>
