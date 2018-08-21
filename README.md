@@ -27,10 +27,11 @@ Information of Sample:<br>
   y = 5 :click (blink)<br>
 
 Virtual Environment:<br>
+  https://drive.google.com/file/d/1i3Nm69A6-eGy0TalZKg684q5KA4QiwPw/view?usp=sharing
   URL: https://pan.baidu.com/s/1Hm6NEaVet1W8Ate6LS5zFw Password: ajw6<br>
-  cd to "targetDirectory/bin" in the environment package，then "source activate"<br>
+  cd to "targetDirectory/bin" in the environment package，then input command: source activate<br>
 
-# Image Classification
+# Image Classification 
   x: image; y: one-hot binary array [middle,up,down,left,right,click]<br>
   Plan to use CNN<br>
 
