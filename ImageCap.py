@@ -5,9 +5,6 @@
 
 import cv2
 import numpy as np
-import time
-import sys
-from queue import Queue
 from threading import Thread
 import datetime
 import math
@@ -31,7 +28,7 @@ class WebcamVideosStream:
 			if self.stopped:
 				return
 			(self.grabbed,self.frame) = self.stream.read()
-	
+
 	def read(self):
 		return self.frame
 
@@ -137,7 +134,7 @@ class frameRun:
 			further = 200
 		fvs = WebcamVideosStream(src).start()
 
-		#for arrows
+		#for arrows (instruction)
 		middle = cv2.imread("Arrows/mid.jpg")
 		up = cv2.imread("Arrows/up.png")
 		down = cv2.imread("Arrows/down.jpg")
@@ -147,7 +144,7 @@ class frameRun:
 		cv2.namedWindow("Arrows")
 
 
-		face_cascade = cv2.CascadeClassifier('/usr/local/Cellar/opencv/3.4.0_1/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
+		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
 		var = 1
 		i = 0
@@ -160,8 +157,7 @@ class frameRun:
 					cv2.imwrite("samples/"+str(Gi)+".jpg", head)
 					Gi += 1
 					i = Gi%6
-				elif cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
-					break
+
 			if i == 0:
 				cv2.imshow("Arrows",middle)
 			elif i == 1:
@@ -175,9 +171,12 @@ class frameRun:
 			elif i == 5:
 				cv2.imshow("Arrows",click)
 
-
+			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
+				break
 
 		cv2.destroyAllWindows()
 		fvs.stop()
-#f __name__ == '__main__':
-	#frameRun()
+
+#Uncommand to direct start image capture process
+#if __name__ == '__main__':
+	#frameRun(0)
