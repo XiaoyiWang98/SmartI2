@@ -148,13 +148,36 @@ class frameRun:
 
 		var = 1
 		i = 0
+		middlei = 1
+		upi = 1
+		downi = 1
+		lefti = 1
+		righti = 1
+		clicki = 1
 		Gi = 0
 		while var == 1:
 			frame, head, GXR = frameGet().Getframe(fvs, face_cascade, close, further)
 
 			if GXR != 0:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
-					cv2.imwrite("samples/"+str(Gi)+".jpg", head)
+					if i == 0:
+						cv2.imwrite("samples/middle/middle"+str(middlei)+".jpg", head)
+						middlei += 1
+					elif i == 1:
+						cv2.imwrite("samples/up/up"+str(upi)+".jpg", head)
+						upi += 1
+					elif i == 2:
+						cv2.imwrite("samples/down/down"+str(downi)+".jpg", head)
+						downi += 1
+					elif i == 3:
+						cv2.imwrite("samples/left/left"+str(lefti)+".jpg", head)
+						lefti += 1
+					elif i == 4:
+						cv2.imwrite("samples/right/right"+str(righti)+".jpg", head)
+						righti += 1
+					elif i == 5:
+						cv2.imwrite("samples/click/click"+str(clicki)+".jpg", head)
+						clicki += 1
 					Gi += 1
 					i = Gi%6
 
