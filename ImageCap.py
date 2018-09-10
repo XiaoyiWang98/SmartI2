@@ -160,26 +160,46 @@ class frameRun:
 
 			if GXR != 0:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
-					if i == 0:
-						cv2.imwrite("samples/middle/middle"+str(middlei)+".jpg", head)
-						middlei += 1
-					elif i == 1:
-						cv2.imwrite("samples/up/up"+str(upi)+".jpg", head)
-						upi += 1
-					elif i == 2:
-						cv2.imwrite("samples/down/down"+str(downi)+".jpg", head)
-						downi += 1
-					elif i == 3:
-						cv2.imwrite("samples/left/left"+str(lefti)+".jpg", head)
-						lefti += 1
-					elif i == 4:
-						cv2.imwrite("samples/right/right"+str(righti)+".jpg", head)
-						righti += 1
-					elif i == 5:
-						cv2.imwrite("samples/click/click"+str(clicki)+".jpg", head)
-						clicki += 1
-					Gi += 1
-					i = Gi%6
+					if Gi <= 1000:
+						if i == 0:
+							cv2.imwrite("samples/train/middle/middle"+str(middlei)+".jpg", head)
+							middlei += 1
+						elif i == 1:
+							cv2.imwrite("samples/train/up/up"+str(upi)+".jpg", head)
+							upi += 1
+						elif i == 2:
+							cv2.imwrite("samples/train/down/down"+str(downi)+".jpg", head)
+							downi += 1
+						elif i == 3:
+							cv2.imwrite("samples/train/left/left"+str(lefti)+".jpg", head)
+							lefti += 1
+						elif i == 4:
+							cv2.imwrite("samples/train/right/right"+str(righti)+".jpg", head)
+							righti += 1
+						elif i == 5:
+							cv2.imwrite("samples/train/ click/click"+str(clicki)+".jpg", head)
+							clicki += 1
+					elif Gi > 1000 & Gi <= 1300:
+						if i == 0:
+							cv2.imwrite("samples/middle/middle"+str(middlei)+".jpg", head)
+							middlei += 1
+						elif i == 1:
+							cv2.imwrite("samples/up/up"+str(upi)+".jpg", head)
+							upi += 1
+						elif i == 2:
+							cv2.imwrite("samples/down/down"+str(downi)+".jpg", head)
+							downi += 1
+						elif i == 3:
+							cv2.imwrite("samples/left/left"+str(lefti)+".jpg", head)
+							lefti += 1
+						elif i == 4:
+							cv2.imwrite("samples/right/right"+str(righti)+".jpg", head)
+							righti += 1
+						elif i == 5:
+							cv2.imwrite("samples/click/click"+str(clicki)+".jpg", head)
+							clicki += 1
+				Gi += 1
+				i = Gi%6
 
 			if i == 0:
 				cv2.imshow("Arrows",middle)

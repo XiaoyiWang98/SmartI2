@@ -54,22 +54,22 @@ if DEV:
 else:
   epochs = 20
 
-train_data_path = './data/train'
-validation_data_path = './data/validation'
+train_data_path = './Samples/train'
+validation_data_path = './Samples/validation'
 
 """
 Parameters
 """
 img_width, img_height = 100, 100
 batch_size = 32
-samples_per_epoch = 1000
+samples_per_epoch = 100 #100 to start
 validation_steps = 300
 nb_filters1 = 32
 nb_filters2 = 64
 conv1_size = 3
 conv2_size = 2
 pool_size = 2
-classes_num = 3
+classes_num = 6
 lr = 0.0004
 
 model = Sequential()
