@@ -158,20 +158,23 @@ class frameRun:
 		clicki = 1
 		Gi = 0
 
-		with open('index.csv',"r") as f:
+		#0,1,1,1,1,1,1,0
+		with open('index.csv', "r") as f:
+			print("Index Loaded")
 			f_csv = csv.reader(f)
-			headers = next(f_csv)
-			for row in f_csv:
-				i = int(row[0])
-				middlei = int(row[1])
-				upi = int(row[2])
-				downi = int(row[3])
-				lefti = int(row[4])
-				righti = int(row[5])
-				clicki = int(row[6])
-				Gi = int(row[7])
-				print(headers)
-				print(row)
+			row = next(f_csv)
+			#print(headers)
+			#for row in f_csv:
+			print(row)
+			i = int(row[0])
+			middlei = int(row[1])
+			upi = int(row[2])
+			downi = int(row[3])
+			lefti = int(row[4])
+			righti = int(row[5])
+			clicki = int(row[6])
+			Gi = int(row[7])
+
 
 		while var == 1:
 			frame, head, GXR = frameGet().Getframe(fvs, face_cascade, close, further)
@@ -195,26 +198,26 @@ class frameRun:
 							cv2.imwrite("samples/train/right/right"+str(righti)+".jpg", head)
 							righti += 1
 						elif i == 5:
-							cv2.imwrite("samples/train/ click/click"+str(clicki)+".jpg", head)
+							cv2.imwrite("samples/train/click/click"+str(clicki)+".jpg", head)
 							clicki += 1
 					elif Gi > 1000 & Gi <= 1300:
 						if i == 0:
-							cv2.imwrite("samples/middle/middle"+str(middlei)+".jpg", head)
+							cv2.imwrite("samples/Validation/middle/middle"+str(middlei)+".jpg", head)
 							middlei += 1
 						elif i == 1:
-							cv2.imwrite("samples/up/up"+str(upi)+".jpg", head)
+							cv2.imwrite("samples/Validation/up/up"+str(upi)+".jpg", head)
 							upi += 1
 						elif i == 2:
-							cv2.imwrite("samples/down/down"+str(downi)+".jpg", head)
+							cv2.imwrite("samples/Validation/down/down"+str(downi)+".jpg", head)
 							downi += 1
 						elif i == 3:
-							cv2.imwrite("samples/left/left"+str(lefti)+".jpg", head)
+							cv2.imwrite("samples/Validation/left/left"+str(lefti)+".jpg", head)
 							lefti += 1
 						elif i == 4:
-							cv2.imwrite("samples/right/right"+str(righti)+".jpg", head)
+							cv2.imwrite("samples/Validation/right/right"+str(righti)+".jpg", head)
 							righti += 1
 						elif i == 5:
-							cv2.imwrite("samples/click/click"+str(clicki)+".jpg", head)
+							cv2.imwrite("samples/Validation/click/click"+str(clicki)+".jpg", head)
 							clicki += 1
 					Gi += 1
 					i = Gi%6
@@ -245,5 +248,5 @@ class frameRun:
 		fvs.stop()
 
 #Uncommand to direct start image capture process
-#if __name__ == '__main__':
-	#frameRun(0)
+if __name__ == '__main__':
+	frameRun(0)
