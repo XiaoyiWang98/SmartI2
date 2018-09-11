@@ -8,6 +8,7 @@ import numpy as np
 from threading import Thread
 import datetime
 import math
+import csv
 
 class WebcamVideosStream:
 	def __init__(self,src):
@@ -147,6 +148,7 @@ class frameRun:
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
 		var = 1
+
 		i = 0
 		middlei = 1
 		upi = 1
@@ -155,6 +157,22 @@ class frameRun:
 		righti = 1
 		clicki = 1
 		Gi = 0
+
+		with open('index.csv',"r") as f:
+			f_csv = csv.reader(f)
+			headers = next(f_csv)
+			for row in f_csv:
+				i = int(row[0])
+				middlei = int(row[1])
+				upi = int(row[2])
+				downi = int(row[3])
+				lefti = int(row[4])
+				righti = int(row[5])
+				clicki = int(row[6])
+				Gi = int(row[7])
+				print(headers)
+				print(row)
+
 		while var == 1:
 			frame, head, GXR = frameGet().Getframe(fvs, face_cascade, close, further)
 
@@ -198,8 +216,8 @@ class frameRun:
 						elif i == 5:
 							cv2.imwrite("samples/click/click"+str(clicki)+".jpg", head)
 							clicki += 1
-				Gi += 1
-				i = Gi%6
+					Gi += 1
+					i = Gi%6
 
 			if i == 0:
 				cv2.imshow("Arrows",middle)
@@ -215,7 +233,13 @@ class frameRun:
 				cv2.imshow("Arrows",click)
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
+				rows = [(i, middlei, upi, downi, lefti, righti, clicki, Gi)]
+				print(rows)
+				with open('index.csv',"w") as f:
+					f_csv = csv.writer(f)
+					f_csv.writerows(rows)
 				break
+
 
 		cv2.destroyAllWindows()
 		fvs.stop()
