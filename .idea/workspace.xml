@@ -5,6 +5,28 @@
       <change beforePath="$PROJECT_DIR$/.idea/SmartI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SmartI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/ImageCap.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageCap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/up/up1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/up/up2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/up/up3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.csv" beforeDir="false" afterPath="$PROJECT_DIR$/index.csv" afterDir="false" />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,46 +39,51 @@
     <session id="-568913983">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.0" value="3" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.7" value="3" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="md" value="2" />
-          <entry key="py" value="2" />
+          <entry key="csv" value="1" />
+          <entry key="md" value="4" />
+          <entry key="py" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Markdown" value="2" />
-          <entry key="Python" value="2" />
+          <entry key="Markdown" value="4" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="csv" value="23" />
           <entry key="md" value="336" />
-          <entry key="py" value="2854" />
+          <entry key="py" value="3433" />
           <entry key="txt" value="102" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="336" />
-          <entry key="PLAIN_TEXT" value="102" />
-          <entry key="Python" value="2854" />
+          <entry key="PLAIN_TEXT" value="125" />
+          <entry key="Python" value="3433" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="ImageCap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ImageCap.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -64,6 +91,70 @@
               <caret line="145" selection-start-line="145" selection-end-line="145" />
               <folding>
                 <element signature="e#60#70#0" expanded="true" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ImageCap.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-583">
+              <caret line="169" column="28" selection-start-line="169" selection-start-column="28" selection-end-line="169" selection-end-column="28" />
+              <folding>
+                <element signature="e#60#70#0" expanded="true" />
+                <marker date="1536638556880" expanded="true" signature="211:212" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/READMECNN.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="375">
+                <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/predict-multiclass.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train-multiclass.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#541#551#0" expanded="true" />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
               </folding>
             </state>
           </provider>
@@ -72,6 +163,7 @@
       <file leaf-file-name="StartUI.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StartUI.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="615">
               <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
             </state>
@@ -92,6 +184,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="735">
               <caret line="57" selection-start-line="57" selection-end-line="57" />
+=======
+            <state relative-caret-position="368">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+              <folding>
+                <marker date="1536625151136" expanded="true" signature="699:701" ph="..." />
+              </folding>
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
             </state>
           </provider>
         </entry>
@@ -112,15 +211,25 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/StartUI.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/train-multiclass.py" />
+        <option value="$PROJECT_DIR$/StartUI.py" />
         <option value="$PROJECT_DIR$/ImageCap.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/aaa.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
+=======
+        <option value="$PROJECT_DIR$/index.csv" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="716" />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -160,7 +269,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.StartUI">
+  <component name="RunManager" selected="Python.ImageCap">
     <configuration name="ImageCap" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SmartI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -215,16 +324,46 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="train-multiclass" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SmartI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train-multiclass.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.ImageCap" />
       <item itemvalue="Python.StartUI" />
+<<<<<<< HEAD
       <item itemvalue="Python.aaa" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.StartUI" />
         <item itemvalue="Python.aaa" />
+=======
+      <item itemvalue="Python.train-multiclass" />
+    </list>
+    <recent_temporary>
+      <list>
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
         <item itemvalue="Python.ImageCap" />
+        <item itemvalue="Python.StartUI" />
+        <item itemvalue="Python.train-multiclass" />
       </list>
     </recent_temporary>
   </component>
@@ -271,6 +410,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
@@ -285,6 +425,25 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+=======
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14878398" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18835191" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3283767" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32961586" />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -305,16 +464,26 @@
     <option name="LAST_COMMIT_MESSAGE" value="Adjected for mac webcam" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ImageCap.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2115">
           <caret line="145" selection-start-line="145" selection-end-line="145" />
           <folding>
             <element signature="e#60#70#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/predict-multiclass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/pywrap_tensorflow_internal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1695">
@@ -326,11 +495,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
           <caret line="57" selection-start-line="57" selection-end-line="57" />
+=======
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="375">
+            <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          </first_editor>
+          <second_editor />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/READMECNN.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train-multiclass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#541#551#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StartUI.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="495">
           <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
         </state>
@@ -342,6 +538,12 @@
           <caret line="145" selection-start-line="145" selection-end-line="145" />
           <folding>
             <element signature="e#60#70#0" expanded="true" />
+=======
+        <state relative-caret-position="368">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <marker date="1536625151136" expanded="true" signature="699:701" ph="..." />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
           </folding>
         </state>
       </provider>
@@ -369,6 +571,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ImageCap.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2175">
           <caret line="145" selection-start-line="145" selection-end-line="145" />
           <folding>
@@ -390,10 +593,18 @@
           <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
           <folding>
             <element signature="e#60#70#0" expanded="true" />
+=======
+        <state relative-caret-position="-583">
+          <caret line="169" column="28" selection-start-line="169" selection-start-column="28" selection-end-line="169" selection-end-column="28" />
+          <folding>
+            <element signature="e#60#70#0" expanded="true" />
+            <marker date="1536638556880" expanded="true" signature="211:212" ph="..." />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/StartUI.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -438,6 +649,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+=======
+    <entry file="file://$PROJECT_DIR$/index.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+>>>>>>> 9d6328b4a03959e3a2df577e0bf4e49cc63874a6
         </state>
       </provider>
     </entry>
