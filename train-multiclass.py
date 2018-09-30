@@ -4,30 +4,9 @@ e.g. 3-classes classification Pizza, Poodle, Rose
 
   ./data/
     train/
-      pizza/
-        pizza1.jpg
-        pizza2.jpg
-        ...
-      poodle/
-        poodle1.jpg
-        poodle2.jpg
-        ...
-      rose/
-        rose1.jpg
-        rose2.jpg
-        ...
-    validation/
-      pizza/
-        pizza1.jpg
-        pizza2.jpg
-        ...
-      poodle/
-        poodle1.jpg
-        poodle2.jpg
-        ...
-      rose/
-        rose1.jpg
-        rose2.jpg
+      up/
+        up1.jpg
+        up2.jpg
         ...
 """
 
@@ -41,6 +20,8 @@ from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras import callbacks
 import tensorflow as tf
 #tf.python.control_flow_ops = tf
+
+
 
 DEV = False
 argvs = sys.argv
