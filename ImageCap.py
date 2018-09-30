@@ -74,12 +74,12 @@ class frameGet:
 		GXW = 0
 		GYW = 0
 
-	def Getframe(self, fvs, face_cascade, close, further):
+	def Getframe(self, fvs, face_cascade, close, further,eye_cascade):
 		# make X,Y,H,W global
 		GXR = 0
 		GYR = 0
 		GXW = 0
-		GYW = 0
+		GXH = 0
 
 		# Capture frame-by-frame
 		frame = fvs.read()
@@ -87,19 +87,32 @@ class frameGet:
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+		# for (x, y, w, h) in faces:
+		# 	cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+		# 	roi_gray = gray[y:y + h, x:x + w]
+		# 	roi_color = img[y:y + h, x:x + w]
+		# 	eyes = eye_cascade.detectMultiScale(roi_gray)
+		# 	for (ex, ey, ew, eh) in eyes:
+		# 		cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 		# print(len(faces))
 		# Display the resulting frame
+		ex = 0
+		ey = 0
+		eh = 0
+		ew = 0
 		for (x, y, w, h) in faces:
-			print(x, y, w, h)
 			cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 			roi_gray = gray[y:y + h, x:x + w]
 			roi_color = frame[y:y + h, x:x + w]
-			# assign x,y,w,h to Global Valables
-			GXR = x
-			GYR = y
-			GXW = w
-			GXH = h
-		print(GXR, GYR, GXW, GYW)
+			eyes = eye_cascade.detectMultiScale(roi_gray)
+			for (ex, ey, ew, eh) in eyes:
+				cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+			#assign x,y,w,h to Global Valables
+				GXR = ex+x
+				GYR = ey+y
+				GXW = ew
+				GXH = eh
+		print(GXR, GYR, GXW, GXH)
 		cv2.imshow('frame', frame)
 		# if no face detected
 		if GXR != 0:
@@ -111,11 +124,12 @@ class frameGet:
 				W = close
 				cut = frame[Y:(Y + H), X:(X + W)]
 				cv2.imshow("cut", cut)
+				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
 			# Face is too further
 			elif GXW < close or GXH < close:
 				print("Please move closer!")
 			# Face is too close
-			elif GXW > further or GYW > further:
+			elif GXW > further or GXW > further:
 				print("Please more further!")
 		else:
 			print("No face detected, please move further")
@@ -127,12 +141,12 @@ class frameRun:
 		# 0 for internal webcam, 1 for usb webcam
 		if device == 0:
 			src = 0
-			close = 100
-			further = 300
+			close = 30
+			further = 40
 		elif device == 1:
 			src = 1
-			close = 100
-			further = 200
+			close = 30
+			further = 40
 		fvs = WebcamVideosStream(src).start()
 
 		#for arrows (instruction)
@@ -146,7 +160,7 @@ class frameRun:
 
 
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
-
+		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		var = 1
 
 		i = 0
@@ -177,7 +191,7 @@ class frameRun:
 
 
 		while var == 1:
-			frame, head, GXR = frameGet().Getframe(fvs, face_cascade, close, further)
+			frame, head, GXR = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			if GXR != 0:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
