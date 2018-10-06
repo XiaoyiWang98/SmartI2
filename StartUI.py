@@ -4,6 +4,8 @@
 
 import tkinter as tk
 import ImageCap as IC
+import train_multiclass as train
+
 window = tk.Tk()
 window.title('my window')
 window.geometry('250x250')
@@ -25,7 +27,7 @@ r1.pack()
 print(var1)
 
 on_hit = False
-def TrainingButton():
+def SampleCollectionButton():
 	global on_hit
 	if on_hit == False:
 		on_hit = True
@@ -35,8 +37,11 @@ def TrainingButton():
 		var.set('Sample collecting')
 		IC.frameRun(var1.get())
 
+def TrainingButton():
+    train.train_model()
 
-b = tk.Button(window, text='Sample Collection', width=15,height=2,command=TrainingButton)
+
+b = tk.Button(window, text='Sample Collection', width=15,height=2,command=SampleCollectionButton)
 b.pack()
 
 b1 = tk.Button(window, text='Sample Training', width=15,height=2,command=TrainingButton)
