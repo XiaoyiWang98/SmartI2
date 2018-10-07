@@ -2,30 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e611fa61-7666-4dc1-923c-da4267eb18c3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/SmartI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SmartI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/click/click1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/click/click2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StartUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/StartUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.csv" beforeDir="false" afterPath="$PROJECT_DIR$/index.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-multiclass.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/train-multiclass.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf-log/events.out.tfevents.1538859176.Siqis-MacBook.local" beforeDir="false" afterPath="$PROJECT_DIR$/tf-log/events.out.tfevents.1538859176.Siqis-MacBook.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_multiclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_multiclass.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,8 +17,8 @@
       <file leaf-file-name="StartUI.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StartUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+            <state relative-caret-position="255">
+              <caret line="17" column="34" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="34" />
               <folding>
                 <element signature="e#35#55#0" expanded="true" />
               </folding>
@@ -51,8 +29,8 @@
       <file leaf-file-name="train_multiclass.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_multiclass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2260">
-              <caret line="113" column="24" lean-forward="true" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
+            <state relative-caret-position="537">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
               <folding>
                 <element signature="e#201#211#0" expanded="true" />
               </folding>
@@ -63,7 +41,8 @@
       <file leaf-file-name="ImageCap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ImageCap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3997">
+            <state relative-caret-position="289">
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
               <folding>
                 <element signature="e#60#70#0" expanded="true" />
               </folding>
@@ -127,7 +106,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.StartUI">
+  <component name="RunManager" selected="Python.train_multiclass">
     <configuration name="StartUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SmartI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,8 +149,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.StartUI" />
         <item itemvalue="Python.train_multiclass" />
+        <item itemvalue="Python.StartUI" />
       </list>
     </recent_temporary>
   </component>
@@ -190,12 +169,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14930555" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2370283" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2370283" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -244,15 +222,6 @@
         <state relative-caret-position="-533" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ImageCap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3997">
-          <folding>
-            <element signature="e#60#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train-multiclass.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -263,10 +232,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ImageCap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding>
+            <element signature="e#60#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/train_multiclass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2260">
-          <caret line="113" column="24" lean-forward="true" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
+        <state relative-caret-position="537">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
           <folding>
             <element signature="e#201#211#0" expanded="true" />
           </folding>
@@ -275,8 +254,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StartUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+        <state relative-caret-position="255">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="34" />
           <folding>
             <element signature="e#35#55#0" expanded="true" />
           </folding>

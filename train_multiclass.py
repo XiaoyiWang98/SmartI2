@@ -21,6 +21,7 @@ from keras import callbacks
 import tensorflow as tf
 #tf.python.control_flow_ops = tf
 
+
 def train_model():
     DEV = False
     argvs = sys.argv
@@ -113,3 +114,7 @@ def train_model():
     model.save('/models/model.h5')
     model.save_weights('/models/weights.h5')
 
+
+
+if __name__=="__main__":
+    train_model()
