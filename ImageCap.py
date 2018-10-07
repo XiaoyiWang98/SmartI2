@@ -100,14 +100,22 @@ class frameGet:
 		ey = 0
 		eh = 0
 		ew = 0
+		ref_x = 0
+		FXR = 0
 		for (x, y, w, h) in faces:
-			cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+			#cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 			roi_gray = gray[y:y + h, x:x + w]
 			roi_color = frame[y:y + h, x:x + w]
 			eyes = eye_cascade.detectMultiScale(roi_gray)
+			FXR = x
 			for (ex, ey, ew, eh) in eyes:
-				cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+
+				rx = int((ex+0.5*ew)-0.5*close)
+				ry = int((ey+0.5*eh)-0.5*close)
+				rw = rh = close
+				cv2.rectangle(roi_color, (rx, ry), (rx + rw, ry + rh), (0, 255, 0), 2)
 			#assign x,y,w,h to Global Valables
+				ref_x = ex;
 				GXR = ex+x
 				GYR = ey+y
 				GXW = ew
@@ -115,7 +123,7 @@ class frameGet:
 		print(GXR, GYR, GXW, GXH)
 		cv2.imshow('frame', frame)
 		# if no face detected
-		if GXR != 0:
+		if FXR != 0 and GXR != ref_x:
 			# Face position is good
 			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
 				X = math.floor(GXR + (GXW / 2) - (close / 2))
@@ -198,6 +206,10 @@ class frameRun:
 					if Gi <= 1000:
 						if i == 0:
 							cv2.imwrite("samples/train/middle/middle"+str(middlei)+".jpg", head)
+							print("aaaaaaaaa")
+							a = 1
+							while a==1:
+								print("a")
 							middlei += 1
 						elif i == 1:
 							cv2.imwrite("samples/train/up/up"+str(upi)+".jpg", head)
