@@ -4,7 +4,9 @@
 
 import tkinter as tk
 import ImageCap as IC
-import train_multiclass as train
+import train_model
+from train_model import train_model
+from validate_model import validate_model
 
 window = tk.Tk()
 window.title('my window')
@@ -38,7 +40,10 @@ def SampleCollectionButton():
 		IC.frameRun(var1.get())
 
 def TrainingButton():
-    train.train_model()
+    train_model()
+
+def TestButton():
+    validate_model()
 
 
 b = tk.Button(window, text='Sample Collection', width=15,height=2,command=SampleCollectionButton)
@@ -47,10 +52,10 @@ b.pack()
 b1 = tk.Button(window, text='Sample Training', width=15,height=2,command=TrainingButton)
 b1.pack()
 
-b2 = tk.Button(window, text='Testing', width=15,height=2,command=TrainingButton)
+b2 = tk.Button(window, text='Testing', width=15,height=2,command=TestButton)
 b2.pack()
 
-b3 = tk.Button(window, text='Run', width=15,height=2,command=TrainingButton)
+b3 = tk.Button(window, text='Run', width=15,height=2,command=SampleCollectionButton)
 b3.pack()
 
 
