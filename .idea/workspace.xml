@@ -2,45 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1899d744-8a93-4331-9d13-cfd84b789e93" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/SmartI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SmartI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/down/down1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/down/down2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/down/down3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/down/down4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/down/down5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/down/down5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/left/left1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/left/left2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/left/left3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/left/left4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/left/left5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/left/left5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/middle/middle7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/right/right1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/right/right2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/right/right3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/right/right4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/right/right5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/right/right6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/right/right6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/train/up/up7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/train/up/up9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.csv" beforeDir="false" afterPath="$PROJECT_DIR$/index.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/click/up1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/click/up2.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validate_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/validate_model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,8 +28,8 @@
       <file leaf-file-name="train_model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="68" column="29" selection-start-line="68" selection-start-column="29" selection-end-line="68" selection-end-column="29" />
+            <state relative-caret-position="272">
+              <caret line="65" column="33" lean-forward="true" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
               <folding>
                 <element signature="e#84#95#0" expanded="true" />
               </folding>
@@ -75,8 +40,8 @@
       <file leaf-file-name="validate_model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/validate_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+            <state relative-caret-position="76">
+              <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
               <folding>
                 <element signature="e#88#146#0" expanded="true" />
               </folding>
@@ -263,12 +228,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15902779" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2523585" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.6450472" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -399,8 +363,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/train_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="68" column="29" selection-start-line="68" selection-start-column="29" selection-end-line="68" selection-end-column="29" />
+        <state relative-caret-position="272">
+          <caret line="65" column="33" lean-forward="true" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
           <folding>
             <element signature="e#84#95#0" expanded="true" />
           </folding>
@@ -409,8 +373,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/validate_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        <state relative-caret-position="76">
+          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
           <folding>
             <element signature="e#88#146#0" expanded="true" />
           </folding>

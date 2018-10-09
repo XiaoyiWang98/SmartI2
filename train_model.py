@@ -66,14 +66,14 @@ def computMiu(train_data):
 # compute the shared vector theta (pixel noise standard deviation)
 def computeTheta(train_data, miu_list):
     sum = 0
-    test_images_per_class = 2 # this will be changed! should be at least 100 test images in each folder
+    train_images_per_class = 2 # this will be changed! should be at least 100 train images in each folder
     num_of_attribute = len(train_data[0][0])
     for k in range(0, 6):
-        for j in range (0, test_images_per_class):
+        for j in range (0, train_images_per_class):
             for i in range(0, num_of_attribute):
                 sum = sum + (train_data[k][j][i] - miu_list[k][i])**2
-    theta = math.sqrt(sum/num_of_attribute/test_images_per_class)
-
+    theta = math.sqrt(sum/num_of_attribute/train_images_per_class)
+    return theta
 
 
 miu_list, theta = train_model()
