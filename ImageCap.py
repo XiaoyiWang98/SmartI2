@@ -113,13 +113,16 @@ class frameGet:
 				rx = int((ex+0.5*ew)-0.5*close)
 				ry = int((ey+0.5*eh)-0.5*close)
 				rw = rh = close
-				cv2.rectangle(roi_color, (rx, ry), (rx + rw, ry + rh), (0, 255, 0), 2)
+				#cv2.rectangle(roi_color, (rx, ry), (rx + rw, ry + rh), (0, 255, 0), 2)
 			#assign x,y,w,h to Global Valables
-				ref_x = ex;
+				ref_x = ex
 				GXR = ex+x
 				GYR = ey+y
 				GXW = ew
 				GXH = eh
+				cv2.rectangle(roi_color, (GXR, GYR), (GXR + GXW, GYR + GXH), (0, 255, 0), 2)
+				break
+
 		cv2.imshow('frame', frame)
 		# if no face detected
 		Y = 0;
