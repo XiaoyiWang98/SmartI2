@@ -1,13 +1,12 @@
 # train the model using conditional Gaussian Classifiers
-# note: class label for up, down, left, right, middle， click are 0,1,2,3,4,5 respectively
-
 
 # Siqi Dai
 # Oct 8, 2018
 
 import glob
 import cv2
-import numpy as np
+import math
+
 
 def train_model():
     train_path = './Samples/train/'
@@ -20,29 +19,20 @@ def train_model():
     imgset_train_middle = glob.glob(train_path + 'middle/' + '*.jpg')
     imgset_train_click = glob.glob(train_path + 'click/' + '*.jpg')
 
-    imgset_valid_up = glob.glob(validation_path + 'up/' + '*.jpg')
-    imgset_valid_down = glob.glob(validation_path + 'down/' + '*.jpg')
-    imgset_valid_left = glob.glob(validation_path + 'left/' + '*.jpg')
-    imgset_valid_right = glob.glob(validation_path + 'right/' + '*.jpg')
-    imgset_valid_middle = glob.glob(validation_path + 'middle/' + '*.jpg')
-    imgset_valid_click = glob.glob(validation_path + 'click/' + '*.jpg')
-
     # access the pixel values and the total number of images in the respective folders
-    [pixel_train_up, len_train_up], [pixel_valid_up, len_test_up] = accessImgPixelVal(imgset_train_up), accessImgPixelVal(imgset_valid_up)
-    [pixel_train_down, len_train_down], [pixel_valid_down, len_test_down] = accessImgPixelVal(imgset_train_down), accessImgPixelVal(imgset_valid_down)
-    [pixel_train_left, len_train_left], [pixel_valid_left, len_test_left] = accessImgPixelVal(imgset_train_left), accessImgPixelVal(imgset_valid_left)
-    [pixel_train_right, len_train_right], [pixel_valid_right, len_test_right] = accessImgPixelVal(imgset_train_right), accessImgPixelVal(imgset_valid_right)
-    [pixel_train_middle, len_train_middle], [pixel_valid_middle, len_test_middle] = accessImgPixelVal(imgset_train_middle), accessImgPixelVal(imgset_valid_middle)
-    [pixel_train_click, len_train_click], [pixel_valid_click, len_test_click] = accessImgPixelVal(imgset_train_click), accessImgPixelVal(imgset_valid_click)
+    pixel_train_up = accessImgPixelVal(imgset_train_up)
+    pixel_train_down = accessImgPixelVal(imgset_train_down)
+    pixel_train_left = accessImgPixelVal(imgset_train_left)
+    pixel_train_right = accessImgPixelVal(imgset_train_right)
+    pixel_train_middle = accessImgPixelVal(imgset_train_middle)
+    pixel_train_click = accessImgPixelVal(imgset_train_click)
 
     train_data = [pixel_train_up, pixel_train_down, pixel_train_left, pixel_train_right, pixel_train_middle, pixel_train_click]
+    miu_list = computMiu(train_data)
+    theta = computeTheta(train_data, miu_list) # shared vector theta (pixel noise standard deviation)
 
-    print(train_data[0][0])
-    print('=====')
-    print(pixel_train_up[0])
-    print('------------\n')
-    print(pixel_train_up[0][1])
-    computMiu(pixel_train_up, len_train_up)
+    return miu_list, theta
+
 
 def accessImgPixelVal(imgset):
     list = []
@@ -54,20 +44,37 @@ def accessImgPixelVal(imgset):
             for j in range(0,col):
                 pixel_vals.append(img[i, j][0]) # only focus on red channel here
         list.append(pixel_vals)
-    return list, len(imgset)
+    return list
+
 
 # compute the vector miu
 def computMiu(train_data):
-    miu = []
+    miu_list = []
+    for k in range(0,6): # six classes
+        num_of_attribute = len(train_data[k][0])
+        num_imgs = len(train_data[k])
+        miu = []
+        for i in range(0, num_of_attribute):
+            x_kji = 0;
+            for j in range(num_imgs):
+                x_kji = x_kji + train_data[k][j][i]
+            miu.append(x_kji / num_imgs)
+        miu_list.append(miu)
+    return miu_list
+
+
+# compute the shared vector theta (pixel noise standard deviation)
+def computeTheta(train_data, miu_list):
+    sum = 0
+    test_images_per_class = 2 # this will be changed! should be at least 100 test images in each folder
     num_of_attribute = len(train_data[0][0])
-    for i in range(0, num_of_attribute):
-        x_kji = 0;
-        for j in range(num_train_imgs):
-            x_kji = x_kji + pix_train_data[j][i]
+    for k in range(0, 6):
+        for j in range (0, test_images_per_class):
+            for i in range(0, num_of_attribute):
+                sum = sum + (train_data[k][j][i] - miu_list[k][i])**2
+    theta = math.sqrt(sum/num_of_attribute/test_images_per_class)
 
 
 
-
-if __name__ == "__main__":
-    train_model()
+miu_list, theta = train_model()
 
