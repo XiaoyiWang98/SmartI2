@@ -42,9 +42,10 @@ def validate():
                 for i in range(0, num_of_attribute):
                     expo = expo + int(validation_data[k][j][i] - miu_list[m][i])**2
                 expo = (-1/(2*(int(theta)**2))) * expo
-                prob[m] = math.pow(int(2*math.pi*int(theta)**2), int(-num_of_attribute/2)) * math.exp(int(expo)) / 6
+                prob[m] = math.pow(2*math.pi*theta**2, -num_of_attribute/200) * math.exp(expo) / 6
+
             max_idx = prob.index(max(prob))  # max_idx is the prediction result
-            print('  ',className(max_idx))
+            print('  ', className(max_idx))
             if(max_idx != k):
                 error_case = error_case + 1
         prediction_result[k] = error_case
@@ -53,18 +54,18 @@ def validate():
 
 
 def className(m):
-    if (m == 0):
+    if m == 0:
         return 'up'
-    elif (m == 1):
+    elif m == 1:
         return 'down'
-    elif (m == 1):
-        return'left'
-    elif (m == 1):
-        return'right'
-    elif (m == 1):
-        return'middle'
+    elif m == 2:
+        return 'left'
+    elif m == 3:
+        return 'right'
+    elif m == 4:
+        return 'middle'
     else:
-        return'click'
+        return 'click'
 
 
 if __name__ == "__main__":
