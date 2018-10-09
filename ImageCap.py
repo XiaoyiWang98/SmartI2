@@ -120,9 +120,10 @@ class frameGet:
 				GYR = ey+y
 				GXW = ew
 				GXH = eh
-		print(GXR, GYR, GXW, GXH)
 		cv2.imshow('frame', frame)
 		# if no face detected
+		Y = 0;
+		H = 0;
 		if FXR != 0 and GXR != ref_x:
 			# Face position is good
 			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
@@ -134,14 +135,15 @@ class frameGet:
 				cv2.imshow("cut", cut)
 				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
 			# Face is too further
-			elif GXW < close or GXH < close:
-				print("Please move closer!")
+			#elif GXW < close or GXH < close:
+				#print("Please move closer!")
 			# Face is too close
-			elif GXW > further or GXW > further:
-				print("Please more further!")
-		else:
-			print("No face detected, please move further")
-		return frame, cut, GXR
+			#elif GXW > further or GXW > further:
+				#print("Please more further!")
+		#else:
+			#print("No face detected, please move further")
+
+		return frame, cut, GXR, Y, H
 
 
 class frameRun:
@@ -197,34 +199,40 @@ class frameRun:
 			clicki = int(row[6])
 			Gi = int(row[7])
 
-
+		cv2.namedWindow("head")
 		while var == 1:
-			frame, head, GXR = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
+			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
-			if GXR != 0:
+			if GXR != 0 and Y != 0 and H != 0:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
 					if Gi <= 1000:
 						if i == 0:
 							cv2.imwrite("samples/train/middle/middle"+str(middlei)+".jpg", head)
-							print("aaaaaaaaa")
-							a = 1
-							while a==1:
-								print("a")
+							print(Y,H)
+							cv2.imshow('head', head)
 							middlei += 1
 						elif i == 1:
 							cv2.imwrite("samples/train/up/up"+str(upi)+".jpg", head)
+							print(Y,H)
+							cv2.imshow('head', head)
 							upi += 1
 						elif i == 2:
 							cv2.imwrite("samples/train/down/down"+str(downi)+".jpg", head)
+							print(Y,H)
+							cv2.imshow('head', head)
 							downi += 1
 						elif i == 3:
 							cv2.imwrite("samples/train/left/left"+str(lefti)+".jpg", head)
+							print(Y,H)
+							cv2.imshow('head', head)
 							lefti += 1
 						elif i == 4:
 							cv2.imwrite("samples/train/right/right"+str(righti)+".jpg", head)
+							print(Y,H)
+							cv2.imshow('head', head)
 							righti += 1
 						elif i == 5:
-							cv2.imwrite("samples/train/click/click"+str(clicki)+".jpg", head)
+							# cv2.imwrite("samples/train/click/click"+str(clicki)+".jpg", head)
 							clicki += 1
 					elif Gi > 1000 & Gi <= 1300:
 						if i == 0:
@@ -246,7 +254,7 @@ class frameRun:
 							cv2.imwrite("samples/Validation/click/click"+str(clicki)+".jpg", head)
 							clicki += 1
 					Gi += 1
-					i = Gi%6
+					i = Gi%5 #change back to 6 later
 
 			if i == 0:
 				cv2.imshow("Arrows",middle)
