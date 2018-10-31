@@ -185,13 +185,12 @@ class frameRun:
 		clicki = 1
 		Gi = 0
 
+		#Read index
 		#0,1,1,1,1,1,1,0
 		with open('index.csv', "r") as f:
 			print("Index Loaded")
 			f_csv = csv.reader(f)
 			row = next(f_csv)
-			#print(headers)
-			#for row in f_csv:
 			print(row)
 			i = int(row[0])
 			middlei = int(row[1])
