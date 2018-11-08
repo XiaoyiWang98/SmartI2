@@ -9,9 +9,11 @@ from threading import Thread
 import datetime
 import math
 import csv
+import os
+import time
 
 
-class Setin:
+class general:
 	def __init__(self):
 		i, middlei, upi, downi, lefti, righti, clicki, Gi = self.getlocalIndex()
 		print(i, middlei, upi, downi, lefti, righti, clicki, Gi)
@@ -32,5 +34,47 @@ class Setin:
 		return i,middlei,upi,downi,lefti,righti,clicki,Gi
 
 
+#Show all datafolder's in the sample folder with the folder name of timestamp.
+#Users can choose which one to be output.
+#Save the folders users want to output in the setout folder.
+
+class GenerateDataSet:
+	def __init__(self):
+		return
+
+	def mkdir(self):
+
+		DataName = str(int(time.time()))
+
+		path = "./CurrentData/" + DataName
+		folder = os.path.exists(path)
+
+		rows = [(DataName,)]
+		print(rows)
+		with open('./CurrentData/Dataset.csv', 'a') as f:
+			f_csv = csv.writer(f)
+			f_csv.writerows(rows)
+
+		if not folder:
+			os.makedirs(path)
+			pathTV = ['/train', '/validation']
+			pathdir = ['/middle', '/up', '/down', '/left', '/right']
+			for i in range(len(pathTV)):
+				for j in range(len(pathdir)):
+					pathi = path+pathTV[i]+pathdir[j]
+					os.makedirs(pathi)
+			print("---  new folder...  ---")
+			print("---  OK  ---")
+
+		else:
+			print("---  There is this folder!  ---")
+
+		with open(path+'/index.csv','w') as f:
+			f.write('0, 0, 0, 0, 0, 0, 0, 0,')
+
+		return path
+
+
 if __name__ == '__main__':
-	Setin()
+	path = GenerateDataSet().mkdir()
+	print(path)
