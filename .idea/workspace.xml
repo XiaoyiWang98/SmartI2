@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1899d744-8a93-4331-9d13-cfd84b789e93" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/CurrentData/1541649640/index.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CurrentData/Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CurrentData/Dataset.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ImageCap.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageCap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IndexMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/IndexMachine.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,27 +17,29 @@
     <session id="-568913983">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="20" />
+          <entry key="csv" value="23" />
           <entry key="jpg" value="13" />
           <entry key="md" value="1" />
-          <entry key="py" value="7" />
+          <entry key="py" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSV" value="20" />
+          <entry key="CSV" value="23" />
           <entry key="Image" value="13" />
           <entry key="Markdown" value="1" />
-          <entry key="Python" value="7" />
+          <entry key="Python" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -54,7 +57,44 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IndexMachine.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="500">
+              <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ImageCap.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="148" selection-start-line="148" selection-end-line="148" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CurrentData/Dataset.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="10" selection-start-column="10" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CurrentData/1541711225/index.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -75,9 +115,9 @@
         <option value="$PROJECT_DIR$/train_model.py" />
         <option value="$PROJECT_DIR$/validate_model.py" />
         <option value="$PROJECT_DIR$/IndexMachineFS.md" />
+        <option value="$PROJECT_DIR$/CurrentData/Dataset.csv" />
         <option value="$PROJECT_DIR$/IndexMachine.py" />
         <option value="$PROJECT_DIR$/ImageCap.py" />
-        <option value="$PROJECT_DIR$/CurrentData/Dataset.csv" />
       </list>
     </option>
   </component>
@@ -106,95 +146,7 @@
               <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
               <item name="SmartI" type="462c0819:PsiDirectoryNode" />
               <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541651754" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541651754" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541651754" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-              <item name="middle" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653097" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653097" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-              <item name="down" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-              <item name="left" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-              <item name="middle" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-              <item name="right" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-              <item name="up" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="CurrentData" type="462c0819:PsiDirectoryNode" />
-              <item name="1541653193" type="462c0819:PsiDirectoryNode" />
-              <item name="validation" type="462c0819:PsiDirectoryNode" />
+              <item name="1541711113" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -356,13 +308,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13312034" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13525027" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.23302938" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23302938" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39976415" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -390,13 +343,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/predict_model.py" />
-    <entry file="file://$PROJECT_DIR$/train_multiclass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/validate_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -408,9 +354,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-          <folding>
-            <element signature="e#35#55#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -444,63 +387,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="e#84#95#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648276index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648307index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648552/index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648692/index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648019index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648826/index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648666/index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648846/index.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" lean-forward="true" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648900/index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541648913/index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541649039/index.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650256/train/down/down2.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650256/index.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648276index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648307index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648552/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648692/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648019index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648826/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648666/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648846/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648900/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541648913/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541649039/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650256/train/down/down2.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650256/index.csv" />
     <entry file="file://$PROJECT_DIR$/index.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -508,44 +407,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/middle/middle2.jpg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/middle/middle2.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/middle/middle1.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/middle/middle0.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/left/left1.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/left/left0.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/down/down0.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541651754/train/middle/middle0.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541651754/index.csv" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/middle/middle2.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/right/right0.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/right/right1.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/up/up1.jpg" />
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/up/up0.jpg" />
+    <entry file="file://$PROJECT_DIR$/train_multiclass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/middle/middle1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/middle/middle0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/left/left1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/left/left0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541650512/train/down/down0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541651754/train/middle/middle0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541651754/index.csv">
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541711113/index.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/middle/middle2.jpg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/train_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="61" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
+          <folding>
+            <element signature="e#84#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/right/right0.jpg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/IndexMachine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/right/right1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/up/up1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CurrentData/1541653193/train/up/up0.jpg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/ImageCap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CurrentData/Dataset.csv">
       <provider selected="true" editor-type-id="text-editor">
@@ -554,28 +461,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IndexMachine.py">
+    <entry file="file://$PROJECT_DIR$/CurrentData/1541711225/index.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="e#62#72#0" expanded="true" />
-            <marker date="1541649748723" expanded="true" signature="198:200" ph="..." />
-            <marker date="1541649748723" expanded="true" signature="957:1699" ph="..." />
-            <marker date="1541649748723" expanded="true" signature="975:979" ph="..." />
-            <marker date="1541649748723" expanded="true" signature="1696:1699" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ImageCap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2385">
-          <caret line="159" column="46" selection-start-line="159" selection-start-column="46" selection-end-line="159" selection-end-column="46" />
-          <folding>
-            <element signature="e#60#70#0" expanded="true" />
-            <marker date="1541653190521" expanded="true" signature="821:824" ph="..." />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>

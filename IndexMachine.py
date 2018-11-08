@@ -57,12 +57,10 @@ class GenerateDataSet:
 
 		if not folder:
 			os.makedirs(path)
-			pathTV = ['/train', '/validation']
 			pathdir = ['/middle', '/up', '/down', '/left', '/right']
-			for i in range(len(pathTV)):
-				for j in range(len(pathdir)):
-					pathi = path+pathTV[i]+pathdir[j]
-					os.makedirs(pathi)
+			for j in range(len(pathdir)):
+				pathi = path+pathdir[j]
+				os.makedirs(pathi)
 			print("---  new folder...  ---")
 			print("---  OK  ---")
 

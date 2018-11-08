@@ -139,17 +139,13 @@ class frameRun:
 		#i,middlei,upi,downi,lefti,righti,clicki,Gi
 
 		action = ['/middle','/up','/down','/left','/right','/click']
-		TV = ['/train','Validation']
 
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			if GXR != 0 and Y != 0 and H != 0:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
-					if index[7] <= 1000:
-						pathi = path + '/train' + action[index[0]]+ action[index[0]]
-					elif index[7] > 1000 & index[7] <= 1300:
-						pathi = path + '/validation' + action[index[0]]+ action[index[0]]
+					pathi = path + action[index[0]]+ action[index[0]]
 
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
 
