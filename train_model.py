@@ -47,8 +47,8 @@ def accessImgPixelVal(imgset):
             img = cv2.imread(im)
             row, col = img.shape[0], img.shape[1]
             pixel_vals = []
-            for i in range(0,row):
-                for j in range(0,col):
+            for i in range(row):
+                for j in range(col):
                     pixel_vals.append(img[i, j][0]) # only focus on red channel here
             list.append(pixel_vals)
     return list
@@ -73,7 +73,7 @@ def computMiu(train_data):
 # compute the shared vector theta (pixel noise standard deviation)
 def computeTheta(train_data, miu_list):
     sum = 0
-    train_images_per_class = 20 # this will be changed! should be at least 100 train images in each folder
+    train_images_per_class = 17 # this will be changed! should be at least 100 train images in each folder
     num_of_attribute = len(train_data[0][0])
     for k in range(0, 6):
         for j in range (0, train_images_per_class):

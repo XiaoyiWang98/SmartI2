@@ -71,8 +71,8 @@ def className(m):
         return 'middle'
     else:
         return 'click'
-
-
+#
+#
 # if __name__ == "__main__":
-#     validate_model()
-
+#      validate_model()
+#
