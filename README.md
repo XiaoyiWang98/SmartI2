@@ -1,5 +1,14 @@
-## SmartI Capstone Project
+## Todo List
+#Sean Wang
+1. Testing Webcam
+2. Get rid 
 
+
+
+
+
+
+## SmartI Capstone Project
 Plan:<br>
   1. 480p frame acquisition via camera (Completed)<br>
   2. Perform face localization for the head (Completed)<br>
@@ -34,4 +43,5 @@ Virtual Environment:<br>
 # Image Classification 
   x: image; y: one-hot binary array [middle,up,down,left,right,click]<br>
   Plan to use CNN<br>
+
 
