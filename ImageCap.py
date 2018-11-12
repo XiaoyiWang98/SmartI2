@@ -9,6 +9,7 @@ from threading import Thread
 import datetime
 import math
 import csv
+from IndexMachine import GenerateDataSet
 
 class WebcamVideosStream:
 	def __init__(self,src):
@@ -36,43 +37,7 @@ class WebcamVideosStream:
 	def stop(self):
 		self.stopped = True
 
-class FPS:
-	def __init__(self):
-		# store the start time, end time, and total number of frames
-		# that were examined between the start and end intervals
-		self._start = None
-		self._end = None
-		self._numFrames = 0
-
-	def start(self):
-		# start the timer
-		self._start = datetime.datetime.now()
-		return self
-
-	def stop(self):
-		# stop the timer
-		self._end = datetime.datetime.now()
-
-	def update(self):
-		# increment the total number of frames examined during the
-		# start and end intervals
-		self._numFrames += 1
-
-	def elapsed(self):
-		# return the total number of seconds between the start and
-		# end interval
-		return (self._end - self._start).total_seconds()
-
-	def fps(self):
-		# compute the (approximate) frames per second
-		return self._numFrames / self.elapsed()
-
 class frameGet:
-	def __init__(self):
-		GXR = 0
-		GYR = 0
-		GXW = 0
-		GYW = 0
 
 	def Getframe(self, fvs, face_cascade, close, further,eye_cascade):
 		# make X,Y,H,W global
@@ -96,10 +61,6 @@ class frameGet:
 		# 		cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 		# print(len(faces))
 		# Display the resulting frame
-		ex = 0
-		ey = 0
-		eh = 0
-		ew = 0
 		ref_x = 0
 		FXR = 0
 		for (x, y, w, h) in faces:
@@ -137,14 +98,6 @@ class frameGet:
 				cut = frame[Y:(Y + H), X:(X + W)]
 				cv2.imshow("cut", cut)
 				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
-			# Face is too further
-			#elif GXW < close or GXH < close:
-				#print("Please move closer!")
-			# Face is too close
-			#elif GXW > further or GXW > further:
-				#print("Please more further!")
-		#else:
-			#print("No face detected, please move further")
 
 		return frame, cut, GXR, Y, H
 
@@ -176,106 +129,46 @@ class frameRun:
 		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		var = 1
 
-		i = 0
-		middlei = 1
-		upi = 1
-		downi = 1
-		lefti = 1
-		righti = 1
-		clicki = 1
-		Gi = 0
-
-		#0,1,1,1,1,1,1,0
-		with open('index.csv', "r") as f:
-			print("Index Loaded")
-			f_csv = csv.reader(f)
-			row = next(f_csv)
-			#print(headers)
-			#for row in f_csv:
-			print(row)
-			i = int(row[0])
-			middlei = int(row[1])
-			upi = int(row[2])
-			downi = int(row[3])
-			lefti = int(row[4])
-			righti = int(row[5])
-			clicki = int(row[6])
-			Gi = int(row[7])
+		#Read index
 
 		cv2.namedWindow("head")
+
+		path = GenerateDataSet().mkdir()
+
+		index = [0,0,0,0,0,0,0,0]
+		#i,middlei,upi,downi,lefti,righti,clicki,Gi
+
+		action = ['/middle','/up','/down','/left','/right','/click']
+
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			if GXR != 0 and Y != 0 and H != 0:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
-					if Gi <= 1000:
-						if i == 0:
-							cv2.imwrite("samples/train/middle/middle"+str(middlei)+".jpg", head)
-							print(Y,H)
-							cv2.imshow('head', head)
-							middlei += 1
-						elif i == 1:
-							cv2.imwrite("samples/train/up/up"+str(upi)+".jpg", head)
-							print(Y,H)
-							cv2.imshow('head', head)
-							upi += 1
-						elif i == 2:
-							cv2.imwrite("samples/train/down/down"+str(downi)+".jpg", head)
-							print(Y,H)
-							cv2.imshow('head', head)
-							downi += 1
-						elif i == 3:
-							cv2.imwrite("samples/train/left/left"+str(lefti)+".jpg", head)
-							print(Y,H)
-							cv2.imshow('head', head)
-							lefti += 1
-						elif i == 4:
-							cv2.imwrite("samples/train/right/right"+str(righti)+".jpg", head)
-							print(Y,H)
-							cv2.imshow('head', head)
-							righti += 1
-						elif i == 5:
-							# cv2.imwrite("samples/train/click/click"+str(clicki)+".jpg", head)
-							clicki += 1
-					elif Gi > 1000 & Gi <= 1300:
-						if i == 0:
-							cv2.imwrite("samples/Validation/middle/middle"+str(middlei)+".jpg", head)
-							middlei += 1
-						elif i == 1:
-							cv2.imwrite("samples/Validation/up/up"+str(upi)+".jpg", head)
-							upi += 1
-						elif i == 2:
-							cv2.imwrite("samples/Validation/down/down"+str(downi)+".jpg", head)
-							downi += 1
-						elif i == 3:
-							cv2.imwrite("samples/Validation/left/left"+str(lefti)+".jpg", head)
-							lefti += 1
-						elif i == 4:
-							cv2.imwrite("samples/Validation/right/right"+str(righti)+".jpg", head)
-							righti += 1
-						elif i == 5:
-							cv2.imwrite("samples/Validation/click/click"+str(clicki)+".jpg", head)
-							clicki += 1
-					Gi += 1
-					i = Gi%5 #change back to 6 later
+					pathi = path + action[index[0]]+ action[index[0]]
 
-			if i == 0:
+					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
+
+					index[7] += 1
+					index[0] = index[7]%5 #change back to 6 later
+
+			if index[0] == 0:
 				cv2.imshow("Arrows",middle)
-			elif i == 1:
+			elif index[0] == 1:
 				cv2.imshow("Arrows",up)
-			elif i == 2:
+			elif index[0] == 2:
 				cv2.imshow("Arrows",down)
-			elif i == 3:
+			elif index[0] == 3:
 				cv2.imshow("Arrows",left)
-			elif i == 4:
+			elif index[0] == 4:
 				cv2.imshow("Arrows",right)
-			elif i == 5:
+			elif index[0] == 5:
 				cv2.imshow("Arrows",click)
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
-				rows = [(i, middlei, upi, downi, lefti, righti, clicki, Gi)]
+				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
 				print(rows)
-				with open('index.csv',"w") as f:
+				with open(path+'/index.csv',"w") as f:
 					f_csv = csv.writer(f)
 					f_csv.writerows(rows)
 				break
@@ -283,6 +176,14 @@ class frameRun:
 
 		cv2.destroyAllWindows()
 		fvs.stop()
+
+
+	def ImgSandP(self,pathj,index,head,Y,H):
+		cv2.imwrite(pathj + str(index) + ".jpg", head)
+		print(Y, H)
+		cv2.imshow('head', head)
+		index += 1
+		return index
 
 #Uncommand to direct start image capture process
 if __name__ == '__main__':
