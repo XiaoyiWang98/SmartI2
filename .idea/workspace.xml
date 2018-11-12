@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6a48edb3-4365-47c7-a26b-5bd10455c075" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/Validation/left/left12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/Validation/left/left16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/Validation/left/left17.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/Validation/middle/middle16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/Validation/middle/middle17.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/Validation/middle/middle5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/click/up16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down31.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down32.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down33.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down34.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down35.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/down/down36.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left31.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left32.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left33.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left34.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left35.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left36.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/left/left7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle32.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle33.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle34.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle35.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle36.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/middle/middle37.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right31.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right32.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right33.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right34.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right35.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/right/right36.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/up/up1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/train/up/up2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_model.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="index.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.csv">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="IndexMachineFS.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IndexMachineFS.md">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="IndexMachine.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IndexMachine.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="ImageCap.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ImageCap.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="StartUI.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StartUI.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_multiclass.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train_multiclass.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-421" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_model.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/train_model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="49" column="27" lean-forward="true" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/train_model.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="StartUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SmartI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/StartUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.StartUI" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a48edb3-4365-47c7-a26b-5bd10455c075" name="Default" comment="" />
+      <created>1541986633044</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1541986633044</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13958333" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.06721698" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IndexMachineFS.md">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IndexMachine.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageCap.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_multiclass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-421" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StartUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="49" column="27" lean-forward="true" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
