@@ -40,10 +40,10 @@ def SampleCollectionButton():
 		IC.frameRun(var1.get())
 
 def TrainingButton():
-    train_model()
+    train_model(80)
 
 def TestButton():
-    validate_model()
+    validate_model(80)
 
 
 b = tk.Button(window, text='Sample Collection', width=15,height=2,command=SampleCollectionButton)

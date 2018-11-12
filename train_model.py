@@ -6,43 +6,33 @@
 import glob
 import cv2
 import math
+import csv
 
+def train_model(percent): # percent = % of training data in the dataset
+    train_set, valid_set = imageSets(percent)
+    # access the pixel values and the total number of images in the respective folders
+    train_data = []
+    flag = 1
+    for train in train_set:
+        pixels = accessImgPixelVal(train)
+        train_data.append(pixels)
+        if len(train) == 0:
+            flag = 0
 
-def train_model():
-    train_path = './Samples/train/'
-    validation_path = './Samples/validation/'
-
-    imgset_train_up = glob.glob(train_path + 'up/' + '*.jpg')
-    imgset_train_down = glob.glob(train_path + 'down/' + '*.jpg')
-    imgset_train_left = glob.glob(train_path + 'left/' + '*.jpg')
-    imgset_train_right = glob.glob(train_path + 'right/' + '*.jpg')
-    imgset_train_middle = glob.glob(train_path + 'middle/' + '*.jpg')
-    imgset_train_click = glob.glob(train_path + 'click/' + '*.jpg')
-
-    if len(imgset_train_up)!= 0 and len(imgset_train_down)!= 0 and len(imgset_train_left)!= 0 and len(imgset_train_right)!= 0 and len(imgset_train_middle)!= 0 and len(imgset_train_click)!= 0:
-        # access the pixel values and the total number of images in the respective folders
-        pixel_train_up = accessImgPixelVal(imgset_train_up)
-        pixel_train_down = accessImgPixelVal(imgset_train_down)
-        pixel_train_left = accessImgPixelVal(imgset_train_left)
-        pixel_train_right = accessImgPixelVal(imgset_train_right)
-        pixel_train_middle = accessImgPixelVal(imgset_train_middle)
-        pixel_train_click = accessImgPixelVal(imgset_train_click)
-
-        train_data = [pixel_train_up, pixel_train_down, pixel_train_left, pixel_train_right, pixel_train_middle, pixel_train_click]
+    if flag == 1:
         miu_list = computMiu(train_data)
-        theta = computeTheta(train_data, miu_list) # shared vector theta (pixel noise standard deviation)
+        theta = computeTheta(train_data, miu_list)  # shared vector theta (pixel noise standard deviation)
         print('Prediction model was successfully built! Press the "testing" button.')
-
     else:
         miu_list = []
         theta = 0
 
-    return miu_list, theta
+    return miu_list, theta, valid_set
 
 
 def accessImgPixelVal(imgset):
     list = []
-    if(len(imgset) != 0):
+    if len(imgset) != 0:
         for im in imgset:
             img = cv2.imread(im)
             row, col = img.shape[0], img.shape[1]
@@ -73,12 +63,59 @@ def computMiu(train_data):
 # compute the shared vector theta (pixel noise standard deviation)
 def computeTheta(train_data, miu_list):
     sum = 0
-    train_images_per_class = 17 # this will be changed! should be at least 100 train images in each folder
     num_of_attribute = len(train_data[0][0])
     for k in range(0, 6):
-        for j in range (0, train_images_per_class):
+        for j in range (0, len(train_data[k])):
             for i in range(0, num_of_attribute):
                 sum = sum + (train_data[k][j][i] - miu_list[k][i])**2
-    theta = math.sqrt(sum/num_of_attribute/train_images_per_class)
+    theta = math.sqrt(sum/num_of_attribute/len(train_data[k]))
     return theta
+
+
+def split(list, percent):  # split a list into two sub-lists
+    sublist1, sublist2 = [], []
+    length = int(len(list) * percent / 100)
+    for i in range(length):
+        sublist1.append(list[i])
+    for i in range(length, len(list)):
+        sublist2.append(list[i])
+    return sublist1, sublist2
+
+
+def imageSets(percent):  # find train and validation image sets
+    # read csv
+    data_path = './CurrentData/'
+    file = open(data_path + 'Dataset.csv')
+    contents = file.readlines()
+    folders = []
+    for i in range(len(contents)):
+        if contents[i] != "\n":
+            folders.append(contents[i].rstrip("\n"))
+
+    up, down, left, right, middle, click = [], [], [], [], [], []
+    for file in folders:
+        img_path = data_path + file + '/'
+        for f in glob.glob(img_path + 'up/' + '*.jpg'):
+            up.append(f)
+        for f in glob.glob(img_path + 'down/' + '*.jpg'):
+            down.append(f)
+        for f in glob.glob(img_path + 'left' + '*.jpg'):
+            left.append(f)
+        for f in glob.glob(img_path + 'right/' + '*.jpg'):
+            right.append(f)
+        for f in glob.glob(img_path + 'middle/' + '*.jpg'):
+            middle.append(f)
+        for f in glob.glob(img_path + 'click/' + '*.jpg'):
+            click.append(f)
+
+    train_up, valid_up = split(up, percent)
+    train_down, valid_down = split(up, percent)
+    train_left, valid_left = split(up, percent)
+    train_right, valid_right = split(up, percent)
+    train_middle, valid_middle = split(up, percent)
+    train_click, valid_click = split(up, percent)
+
+    train_set = [train_up, train_down, train_left, train_right, train_middle, train_click]
+    valid_set = [valid_up, valid_down, valid_left, valid_right, valid_middle, valid_click]
+    return train_set, valid_set
 
