@@ -39,7 +39,7 @@ def validate_model(percent):
 
                 max_idx = prob.index(max(prob))  # max_idx is the prediction result
                 print('  ', className(max_idx))
-                if (max_idx != k):
+                if max_idx != k:
                     error_case = error_case + 1
             prediction_result[k] = error_case
             print('===================')

@@ -9,23 +9,27 @@ import math
 import csv
 
 def train_model(percent): # percent = % of training data in the dataset
-    train_set, valid_set = imageSets(percent)
+    train_set, valid_set = getImageSets(percent)
     # access the pixel values and the total number of images in the respective folders
     train_data = []
     flag = 1
+    i = 0
     for train in train_set:
+        i= i+1
         pixels = accessImgPixelVal(train)
         train_data.append(pixels)
         if len(train) == 0:
             flag = 0
+            print(i)
 
-    if flag == 1:
+    if flag == 1:  # there are images in all training classes
         miu_list = computMiu(train_data)
         theta = computeTheta(train_data, miu_list)  # shared vector theta (pixel noise standard deviation)
         print('Prediction model was successfully built! Press the "testing" button.')
     else:
         miu_list = []
         theta = 0
+        print('There missing training data for at least one class.')
 
     return miu_list, theta, valid_set
 
@@ -82,7 +86,7 @@ def split(list, percent):  # split a list into two sub-lists
     return sublist1, sublist2
 
 
-def imageSets(percent):  # find train and validation image sets
+def getImageSets(percent):  # get train and validation image sets
     # read csv
     data_path = './CurrentData/'
     file = open(data_path + 'Dataset.csv')
@@ -99,7 +103,7 @@ def imageSets(percent):  # find train and validation image sets
             up.append(f)
         for f in glob.glob(img_path + 'down/' + '*.jpg'):
             down.append(f)
-        for f in glob.glob(img_path + 'left' + '*.jpg'):
+        for f in glob.glob(img_path + 'left/' + '*.jpg'):
             left.append(f)
         for f in glob.glob(img_path + 'right/' + '*.jpg'):
             right.append(f)
@@ -109,13 +113,14 @@ def imageSets(percent):  # find train and validation image sets
             click.append(f)
 
     train_up, valid_up = split(up, percent)
-    train_down, valid_down = split(up, percent)
-    train_left, valid_left = split(up, percent)
-    train_right, valid_right = split(up, percent)
-    train_middle, valid_middle = split(up, percent)
-    train_click, valid_click = split(up, percent)
+    train_down, valid_down = split(down, percent)
+    train_left, valid_left = split(left, percent)
+    train_right, valid_right = split(right, percent)
+    train_middle, valid_middle = split(middle, percent)
+    train_click, valid_click = split(click, percent)
 
     train_set = [train_up, train_down, train_left, train_right, train_middle, train_click]
     valid_set = [valid_up, valid_down, valid_left, valid_right, valid_middle, valid_click]
+
     return train_set, valid_set
 
