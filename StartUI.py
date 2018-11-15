@@ -40,10 +40,10 @@ def SampleCollectionButton():
 		IC.frameRun(var1.get())
 
 def TrainingButton():
-    train_model(70) # parameter = (# training data) / (# all data) * (100 %)
+    train_model(80) # parameter = (# training data) / (# all data) * (100 %)
 
 def TestButton():
-    validate_model(70) # parameter = (# training data) / (# all data) * (100 %)
+    validate_model(80) # parameter = (# training data) / (# all data) * (100 %)
 
 
 b = tk.Button(window, text='Sample Collection', width=15,height=2,command=SampleCollectionButton)

@@ -15,7 +15,7 @@ def train_model(percent): # percent = % of training data in the dataset
     flag = 1
     i = 0
     for train in train_set:
-        i= i+1
+        i = i+1
         pixels = accessImgPixelVal(train)
         train_data.append(pixels)
         if len(train) == 0:
@@ -118,6 +118,11 @@ def getImageSets(percent):  # get train and validation image sets
     train_right, valid_right = split(right, percent)
     train_middle, valid_middle = split(middle, percent)
     train_click, valid_click = split(click, percent)
+
+    print('Number of Training Data: \nup: ', len(train_up), '; down: ',len(train_down), '; left: ',len(train_left),
+          '; right: ', len(train_right), '; middle: ', len(train_middle), '; click: ', len(train_click), '\n')
+    print('Number of Test Data: \nup: ', len(valid_up), '; down: ', len(valid_down), '; left: ', len(valid_left),
+          '; right: ', len(valid_right), '; middle: ', len(valid_middle), '; click: ', len(valid_click), '\n')
 
     train_set = [train_up, train_down, train_left, train_right, train_middle, train_click]
     valid_set = [valid_up, valid_down, valid_left, valid_right, valid_middle, valid_click]
