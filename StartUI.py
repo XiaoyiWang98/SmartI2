@@ -25,25 +25,26 @@ r1.pack()
 r1 = tk.Radiobutton(window,text='USB Camera', variable=var1,value=1)
 r1.pack()
 
+percent = 80  # percent = % of training data in the dataset
 
 print(var1)
 
 on_hit = False
 def SampleCollectionButton():
-	global on_hit
-	if on_hit == False:
-		on_hit = True
-		var.set('click to start, press q to stop')
-	else:
-		on_hit = False
-		var.set('Sample collecting')
-		IC.frameRun(var1.get())
+  global on_hit
+  if on_hit == False:
+    on_hit = True
+    var.set('click to start, press q to stop')
+  else:
+    on_hit = False
+    var.set('Sample collecting')
+    IC.frameRun(var1.get())
 
 def TrainingButton():
-    train_model(80) # parameter = (# training data) / (# all data) * (100 %)
+  train_model(percent, 1) # parameter = (# training data) / (# all data) * (100 %)
 
 def TestButton():
-    validate_model(80) # parameter = (# training data) / (# all data) * (100 %)
+  validate_model(percent, 0) # parameter = (# training data) / (# all data) * (100 %)
 
 
 b = tk.Button(window, text='Sample Collection', width=15,height=2,command=SampleCollectionButton)
