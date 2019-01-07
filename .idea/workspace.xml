@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9e6d52db-1a7f-430f-b8ee-d5a66dd3fde7" name="Default" comment="" />
+    <list default="true" id="9e6d52db-1a7f-430f-b8ee-d5a66dd3fde7" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/MouthDetector/MouthDetection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SmartI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SmartI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_eyepair_big.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_eyepair_big.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_eyepair_small.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_eyepair_small.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_leftear.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_leftear.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_lefteye.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_lefteye.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_lefteye_alt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_lefteye_alt.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_mouth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_mouth.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_nose.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_nose.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_rightear.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_rightear.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_righteye.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_righteye.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_righteye_alt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_righteye_alt.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cascades/haarcascade_mcs_upperbody.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/cascades/haarcascade_mcs_upperbody.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,11 +25,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StartUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+            <state relative-caret-position="225">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+              <folding>
+                <element signature="e#35#55#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -22,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="11" column="78" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="78" />
+            <state relative-caret-position="390">
+              <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
               <folding>
                 <element signature="e#84#95#0" expanded="true" />
               </folding>
@@ -35,12 +53,31 @@
         <entry file="file://$PROJECT_DIR$/validate_model.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="705">
-              <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+              <caret line="49" column="7" selection-start-line="49" selection-start-column="7" selection-end-line="49" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MouthDetector/MouthDetection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="69" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -58,6 +95,7 @@
         <option value="$PROJECT_DIR$/validate_model.py" />
         <option value="$PROJECT_DIR$/StartUI.py" />
         <option value="$PROJECT_DIR$/train_model.py" />
+        <option value="$PROJECT_DIR$/MouthDetector/MouthDetection.py" />
       </list>
     </option>
   </component>
@@ -81,7 +119,13 @@
             <path>
               <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
               <item name="SmartI" type="462c0819:PsiDirectoryNode" />
-              <item name="haarcascades" type="462c0819:PsiDirectoryNode" />
+              <item name="MouthDetector" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartI" type="462c0819:PsiDirectoryNode" />
+              <item name="MouthDetector" type="462c0819:PsiDirectoryNode" />
+              <item name="cascades" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -92,6 +136,11 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/MouthDetector" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -105,7 +154,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.StartUI">
+  <component name="RunManager" selected="Python.MouthDetection">
+    <configuration name="MouthDetection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SmartI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MouthDetector" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MouthDetector/MouthDetection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="StartUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SmartI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,9 +221,11 @@
     <list>
       <item itemvalue="Python.StartUI" />
       <item itemvalue="Python.train_model" />
+      <item itemvalue="Python.MouthDetection" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.MouthDetection" />
         <item itemvalue="Python.StartUI" />
         <item itemvalue="Python.train_model" />
       </list>
@@ -174,13 +246,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-30" width="1920" height="1110" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20980495" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3443396" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34352702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -195,31 +268,49 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/StartUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_multiclass.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1193" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/validate_model.py">
+    <entry file="file://$PROJECT_DIR$/StartUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+        <state relative-caret-position="225">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <element signature="e#35#55#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="78" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="78" />
+        <state relative-caret-position="390">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
           <folding>
             <element signature="e#84#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageCap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1350" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validate_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="49" column="7" selection-start-line="49" selection-start-column="7" selection-end-line="49" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MouthDetector/MouthDetection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="69" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
