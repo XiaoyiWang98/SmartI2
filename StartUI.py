@@ -4,13 +4,16 @@
 
 import tkinter as tk
 import ImageCap as IC
+import sys
+sys.path.insert(0, 'MouthDetector')
+import MouthDetection2 as MD
 import train_model
 from train_model import train_model
 from validate_model import validate_model
 
 window = tk.Tk()
 window.title('my window')
-window.geometry('250x250')
+window.geometry('300x400')
 
 var = tk.StringVar()
 var.set('SmartI')
@@ -40,6 +43,16 @@ def SampleCollectionButton():
     var.set('Sample collecting')
     IC.frameRun(var1.get())
 
+def SampleCollectionButton2():
+  global on_hit
+  if on_hit == False:
+    on_hit = True
+    var.set('click to start, press q to stop')
+  else:
+    on_hit = False
+    var.set('Sample collecting')
+    MD.frameRun2(var1.get())
+
 def TrainingButton():
   train_model(percent, 1) # parameter = (# training data) / (# all data) * (100 %)
 
@@ -47,16 +60,19 @@ def TestButton():
   validate_model(percent, 0) # parameter = (# training data) / (# all data) * (100 %)
 
 
-b = tk.Button(window, text='Sample Collection', width=15,height=2,command=SampleCollectionButton)
+b = tk.Button(window, text='Eye Sample Collection', width=30,height=2,command=SampleCollectionButton)
 b.pack()
 
-b1 = tk.Button(window, text='Sample Training', width=15,height=2,command=TrainingButton)
+b4 = tk.Button(window, text='Mouth Sample Collection', width=30,height=2,command=SampleCollectionButton2)
+b4.pack()
+
+b1 = tk.Button(window, text='Sample Training', width=30,height=2,command=TrainingButton)
 b1.pack()
 
-b2 = tk.Button(window, text='Testing', width=15,height=2,command=TestButton)
+b2 = tk.Button(window, text='Testing', width=30,height=2,command=TestButton)
 b2.pack()
 
-b3 = tk.Button(window, text='Run', width=15,height=2,command=SampleCollectionButton)
+b3 = tk.Button(window, text='Run', width=30,height=2,command=SampleCollectionButton)
 b3.pack()
 
 
