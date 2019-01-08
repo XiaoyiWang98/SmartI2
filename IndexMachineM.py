@@ -46,12 +46,12 @@ class GenerateDataSet2:
 
 		DataName = str(int(time.time()))
 
-		path = "./CurrentData/" + DataName
+		path = "MouthDetector/CurrentData/" + DataName
 		folder = os.path.exists(path)
 
 		rows = [(DataName,)]
 		print(rows)
-		with open('./CurrentData/Dataset.csv', 'a') as f:
+		with open('MouthDetector/CurrentData/Dataset.csv', 'a') as f:
 			f_csv = csv.writer(f)
 			f_csv.writerows(rows)
 

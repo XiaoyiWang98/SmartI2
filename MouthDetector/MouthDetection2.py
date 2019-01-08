@@ -11,7 +11,7 @@ import math
 import csv
 from IndexMachineM import GenerateDataSet2
 
-class WebcamVideosStream:
+class WebcamVideosStream2:
 	def __init__(self,src):
 		cap = cv2.VideoCapture(src)
 		cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J', 'P', 'G')) #4-character code for codec (MJPG)
@@ -37,7 +37,7 @@ class WebcamVideosStream:
 	def stop(self):
 		self.stopped = True
 
-class frameGet:
+class frameGet2:
 
 	def Getframe(self, fvs, face_cascade, close, further,eye_cascade):
 		# make X,Y,H,W global
@@ -78,7 +78,7 @@ class frameGet:
 		return frame, cut, GXR, Y, H
 
 
-class frameRun:
+class frameRun2:
 	def __init__(self, device):
 		# 0 for internal webcam, 1 for usb webcam
 		if device == 0:
@@ -89,16 +89,16 @@ class frameRun:
 			src = 1
 			close = 50
 			further = 50
-		fvs = WebcamVideosStream(src).start()
+		fvs = WebcamVideosStream2(src).start()
 
 		#for arrows (instruction)
-		click = cv2.imread("../Arrows/click.png")
-		Nothing = cv2.imread("../Arrows/Nothing.png")
-		RClick = cv2.imread("../Arrows/Rclick.png")
+		click = cv2.imread("Arrows/click.png")
+		Nothing = cv2.imread("Arrows/Nothing.png")
+		RClick = cv2.imread("Arrows/Rclick.png")
 		cv2.namedWindow("Arrows")
 
-		face_cascade = cv2.CascadeClassifier('cascades/haarcascade_mcs_mouth.xml')
-		eye_cascade = cv2.CascadeClassifier('cascades/haarcascade_mcs_mouth.xml')
+		face_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
+		eye_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
 		var = 1
 
 		#Read index
@@ -113,7 +113,7 @@ class frameRun:
 		action = ['/click','/Nothing','/Right Click']
 
 		while var == 1:
-			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
+			frame, head, GXR, Y, H = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			if GXR != 0 and Y != 0 and H != 0:
 				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
@@ -153,4 +153,4 @@ class frameRun:
 
 #Uncommand to direct start image capture process
 if __name__ == '__main__':
-	frameRun(0)
+	frameRun2(0)
