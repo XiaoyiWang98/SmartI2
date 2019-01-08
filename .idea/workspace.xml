@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9e6d52db-1a7f-430f-b8ee-d5a66dd3fde7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CurrentData/1546974177/index.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CurrentData/1546974255/index.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CurrentData/1546974974/index.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CurrentData/1546975882/index.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CurrentData/Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CurrentData/Dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IndexMachineM.py" beforeDir="false" afterPath="$PROJECT_DIR$/IndexMachineM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MouthDetector/CurrentData/Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/CurrentData/Dataset.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MouthDetector/MouthDetection2.py" beforeDir="false" afterPath="$PROJECT_DIR$/MouthDetector/MouthDetection2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StartUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/StartUI.py" afterDir="false" />
     </list>
@@ -17,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MouthDetector/MouthDetection2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-270">
-              <caret line="99" column="60" selection-start-line="99" selection-start-column="60" selection-end-line="99" selection-end-column="60" />
+            <state relative-caret-position="-510">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
               <folding>
                 <element signature="e#60#70#0" expanded="true" />
               </folding>
@@ -65,11 +67,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StartUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="405">
+              <caret line="27" column="68" lean-forward="true" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
               <folding>
                 <element signature="e#35#55#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CurrentData/Dataset.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" rowLines="3" />
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -100,10 +114,11 @@
         <option value="$PROJECT_DIR$/train_model.py" />
         <option value="$PROJECT_DIR$/MouthDetector/MouthDetection.py" />
         <option value="$PROJECT_DIR$/MouthDetector/IndexMachineM.py" />
-        <option value="$PROJECT_DIR$/StartUI.py" />
-        <option value="$PROJECT_DIR$/MouthDetector/MouthDetection2.py" />
         <option value="$PROJECT_DIR$/IndexMachineM.py" />
         <option value="$PROJECT_DIR$/MouthDetector/CurrentData/Dataset.csv" />
+        <option value="$PROJECT_DIR$/MouthDetector/MouthDetection2.py" />
+        <option value="$PROJECT_DIR$/StartUI.py" />
+        <option value="$PROJECT_DIR$/CurrentData/Dataset.csv" />
       </list>
     </option>
   </component>
@@ -403,16 +418,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StartUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="e#35#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ImageCap.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
@@ -432,11 +437,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MouthDetector/MouthDetection2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="99" column="60" selection-start-line="99" selection-start-column="60" selection-end-line="99" selection-end-column="60" />
+        <state relative-caret-position="-510">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding>
             <element signature="e#60#70#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StartUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="68" lean-forward="true" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
+          <folding>
+            <element signature="e#35#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CurrentData/Dataset.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
         </state>
       </provider>
     </entry>

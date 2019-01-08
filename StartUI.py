@@ -13,7 +13,7 @@ from validate_model import validate_model
 
 window = tk.Tk()
 window.title('my window')
-window.geometry('250x400')
+window.geometry('300x400')
 
 var = tk.StringVar()
 var.set('SmartI')

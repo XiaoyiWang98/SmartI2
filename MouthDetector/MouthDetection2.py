@@ -2,7 +2,6 @@
 #Xiaoyi(Sean) Wang
 #2018-8-16
 
-
 import cv2
 import numpy as np
 from threading import Thread
