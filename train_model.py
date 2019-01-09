@@ -34,6 +34,13 @@ def train_model(percent, info):  # percent = % of training data in the dataset
     if info == 1:
       print('There missing training data for at least one class.\n')
 
+  # save the model parameters in a csv file
+  with open('model_param.csv', "w") as write_f:
+    writer = csv.writer(write_f)
+    writer.writerow([theta])
+    writer.writerows(miu_list)
+  write_f.close()
+
   return miu_list, theta, valid_set
 
 
@@ -41,9 +48,8 @@ def accessImgPixelVal(imgset):
   list = []
   if len(imgset) != 0:
     for im in imgset:
-      img = cv2.imread(im,0)
+      img = cv2.imread(im, 0)
       img = cv2.equalizeHist(img)  # histogram equalization
-      #img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
       row, col = img.shape[0], img.shape[1]
       pixel_vals = []
       for i in range(row):
