@@ -55,7 +55,6 @@ def validate_model(percent, info):
           prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / 6
         max_idx = prob.index(max(prob))  # max_idx is the prediction result
         print('  ', className(max_idx))
-        print(max(prob))
         if max_idx != k:
           error_case = error_case + 1
       prediction_result[k] = error_case
