@@ -109,7 +109,7 @@ class frameRun2:
 		index = [0,0,0,0,0,0,0,0]
 		#i,middlei,upi,downi,lefti,righti,clicki,Gi
 
-		action = ['/click','/Nothing','/Right Click']
+		action = ['/click','/Nothing','/ForceNoOp']
 
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
