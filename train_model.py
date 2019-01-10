@@ -104,16 +104,16 @@ def split(list, percent):  # split a list into two sub-lists
 
 
 def getImageSets(percent, info, num_of_classes):  # get train and validation image sets
-  # read csv
-  data_path = './CurrentData/'
-  file = open(data_path + 'Dataset.csv')
-  contents = file.readlines()
-  folders = []
-  for i in range(len(contents)):
-    if contents[i] != "\n":
-      folders.append(contents[i].rstrip("\n"))
-
   if num_of_classes == 4:  # for eyes images
+    # read csv
+    data_path = './CurrentData/'
+    file = open(data_path + 'Dataset.csv')
+    contents = file.readlines()
+    folders = []
+    for i in range(len(contents)):
+      if contents[i] != "\n":
+        folders.append(contents[i].rstrip("\n"))
+
     up, down, left, right = [], [], [], []
     for file in folders:
       img_path = data_path + file + '/'
@@ -142,12 +142,21 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     valid_set = [valid_up, valid_down, valid_left, valid_right]
 
   else:  # for mouth images
+    # read csv
+    data_path = './MouthDetector/CurrentData/'
+    file = open(data_path + 'Dataset.csv')
+    contents = file.readlines()
+    folders = []
+    for i in range(len(contents)):
+      if contents[i] != "\n":
+        folders.append(contents[i].rstrip("\n"))
+
     mouth_open, mouth_normal, mouth_line = [], [], []
     for file in folders:
       img_path = data_path + file + '/'
-      for f in glob.glob(img_path + 'mouth_open/' + '*.jpg'):
+      for f in glob.glob(img_path + 'click/' + '*.jpg'):
         mouth_open.append(f)  # left click
-      for f in glob.glob(img_path + 'mouth_normal/' + '*.jpg'):
+      for f in glob.glob(img_path + 'Nothing/' + '*.jpg'):
         mouth_normal.append(f)
       for f in glob.glob(img_path + 'mouth_line/' + '*.jpg'):
         mouth_line.append(f)  # right click
