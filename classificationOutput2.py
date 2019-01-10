@@ -12,9 +12,9 @@ import cv2
 class classify:
   def classifyInit(self):
     miu_list, theta = [], 0
-    if os.path.isfile('model_param.csv'):
+    if os.path.isfile('model_param_eyes.csv'):
       i = True
-      with open('model_param.csv', "r") as f:
+      with open('model_param_eyes.csv', "r") as f:
         f_csv = csv.reader(f)
         for row in f_csv:
           if i:
@@ -23,7 +23,7 @@ class classify:
           else:
             miu_list.append(row)
       f.close()
-    return miu_list,theta
+    return miu_list, theta
 
   # this function will return an index, where:
   # 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> middle; 5 -> click
@@ -45,7 +45,8 @@ class classify:
       expo = (-1 / (2 * (int(theta) ** 2))) * expo
       prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / 6
 
-    if max(prob) < math.exp(-90):
+    threshold = math.exp(-90)
+    if max(prob) < threshold:
       max_idx = 4  # if max(prob) < some threshold, output "middle"
     else:
       max_idx = prob.index(max(prob))  # max_idx is the prediction result
@@ -57,6 +58,6 @@ class classify:
 
 if __name__ == "__main__":
   miu_list,theta = classify.classifyInit(0)
-  print(theta)
+  # print(theta)
   img = cv2.imread("down1.jpg", 0)
-  max_idx = classify.classifySingleImage2(0,img,miu_list,theta)
+  max_idx = classify.classifySingleImage2(0, img, miu_list, theta)

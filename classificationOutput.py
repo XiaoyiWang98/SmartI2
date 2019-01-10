@@ -16,9 +16,9 @@ import cv2
 def classifySingleImage(img_path):
   # get the model parameters: theta and miu_list
   miu_list, theta = [], 0
-  if os.path.isfile('model_param.csv'):
+  if os.path.isfile('model_param_eyes.csv'):
     i = True
-    with open('model_param.csv', "r") as f:
+    with open('model_param_eyes.csv', "r") as f:
       f_csv = csv.reader(f)
       for row in f_csv:
         if i:

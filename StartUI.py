@@ -54,10 +54,12 @@ def SampleCollectionButton2():
     MD.frameRun2(var1.get())
 
 def TrainingButton():
-  train_model(percent, 1) # parameter = (# training data) / (# all data) * (100 %)
+  train_model(percent, 1, 4)  # for eyes
+  # train_model(percent, 1, 3)  # for mouth
 
 def TestButton():
-  validate_model(percent, 0) # parameter = (# training data) / (# all data) * (100 %)
+  validate_model(percent, 0, 4)  # for eyes
+  # validate_model(percent, 0, 3)  # for mouth
 
 
 b = tk.Button(window, text='Eye Sample Collection', width=30,height=2,command=SampleCollectionButton)
