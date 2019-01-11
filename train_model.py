@@ -9,45 +9,38 @@ import math
 import csv
 
 
-def train_model(percent, info, num_of_classes):  # percent = % of training data in the dataset
+def train_model(percent, info, num_of_classes):
+  # percent = % of training data in the dataset;
+  # info: 1 -> print data info; 0 -> not print data info;
+  # num_of_classes (total number of classes for an object): 4 -> eye; 2 -> mouth
+
   train_set, valid_set = getImageSets(percent, info, num_of_classes)
 
-  # access the pixel values and the total number of images in the respective folders
+  # access pixel values of the images in the respective folders
   train_data = []
   flag = 1
-  i = 0
   for train in train_set:
-    i = i + 1
     pixels = accessImgPixelVal(train)
     train_data.append(pixels)
     if len(train) == 0:
       flag = 0
 
-  if flag == 1:  # there are images in all training classes
-    miu_list = computeMiu(train_data, num_of_classes)
+  if flag == 1:  # there are training images for all classes
+    miu_list = computeMiu(train_data, num_of_classes)  # miu
     theta = computeTheta(train_data, miu_list, num_of_classes)  # shared vector theta (pixel noise standard deviation)
     if info == 1:
       print('Prediction model was successfully built! Press the "Testing" button.\n')
-  else:
+
+    # save the model parameters in a csv file
+    fn = 'model_param_eyes.csv' if num_of_classes == 4 else 'model_param_mouth.csv'
+    writeModelParamInCSV(fn, theta, miu_list)
+
+  else:  # missing training images for at least one class
     miu_list, theta = [], 0
     if info == 1:
       print('Missing training data for at least one class.\n')
 
-  # save the model parameters in a csv file
-  if num_of_classes == 4:  # for eyes
-    with open('model_param_eyes.csv', "w") as write_f:
-      writer = csv.writer(write_f)
-      writer.writerow([theta])
-      writer.writerows(miu_list)
-    write_f.close()
-  else:  # for mouth
-    with open('model_param_mouth.csv', "w") as write_f:
-      writer = csv.writer(write_f)
-      writer.writerow([theta])
-      writer.writerows(miu_list)
-    write_f.close()
-
-  return miu_list, theta, valid_set
+  return miu_list, theta
 
 
 def accessImgPixelVal(imgset):
@@ -104,16 +97,16 @@ def split(list, percent):  # split a list into two sub-lists
 
 
 def getImageSets(percent, info, num_of_classes):  # get train and validation image sets
-  if num_of_classes == 4:  # for eyes images
-    # read csv
-    data_path = './CurrentData/'
-    file = open(data_path + 'Dataset.csv')
-    contents = file.readlines()
-    folders = []
-    for i in range(len(contents)):
-      if contents[i] != "\n":
-        folders.append(contents[i].rstrip("\n"))
+  data_path = './CurrentData/' if num_of_classes == 4 else './MouthDetector/CurrentData/'
+  # read csv
+  file = open(data_path + 'Dataset.csv')
+  contents = file.readlines()
+  folders = []
+  for i in range(len(contents)):
+    if contents[i] != "\n":
+      folders.append(contents[i].rstrip("\n"))
 
+  if num_of_classes == 4:  # for eye images
     up, down, left, right = [], [], [], []
     for file in folders:
       img_path = data_path + file + '/'
@@ -132,48 +125,42 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
 
     if info == 1:  # print information
       print('Total Number of Data: \n   up: ', len(up), '; down: ', len(down), '; left: ', len(left), '; right: ',
-            len(right), '\n')
+            len(right))
       print('Number of Training Data: \n   up: ', len(train_up), '; down: ', len(train_down), '; left: ',
-            len(train_left), '; right: ', len(train_right), '\n')
+            len(train_left), '; right: ', len(train_right))
       print('Number of Test Data: \n   up: ', len(valid_up), '; down: ', len(valid_down), '; left: ', len(valid_left),
-            '; right: ', len(valid_right), '\n')
+            '; right: ', len(valid_right))
 
     train_set = [train_up, train_down, train_left, train_right]
     valid_set = [valid_up, valid_down, valid_left, valid_right]
 
   else:  # for mouth images
-    # read csv
-    data_path = './MouthDetector/CurrentData/'
-    file = open(data_path + 'Dataset.csv')
-    contents = file.readlines()
-    folders = []
-    for i in range(len(contents)):
-      if contents[i] != "\n":
-        folders.append(contents[i].rstrip("\n"))
-
-    mouth_open, mouth_normal, mouth_line = [], [], []
+    mouth_open, mouth_line = [], []
     for file in folders:
       img_path = data_path + file + '/'
       for f in glob.glob(img_path + 'click/' + '*.jpg'):
         mouth_open.append(f)  # left click
-      for f in glob.glob(img_path + 'Nothing/' + '*.jpg'):
-        mouth_normal.append(f)
-      for f in glob.glob(img_path + 'mouth_line/' + '*.jpg'):
-        mouth_line.append(f)  # right click
+      for f in glob.glob(img_path + 'ForceNoOp/' + '*.jpg'):
+        mouth_line.append(f)  # force_no_op
     train_mouth_open, valid_mouth_open = split(mouth_open, percent)
-    train_mouth_normal, valid_mouth_normal = split(mouth_normal, percent)
     train_mouth_line, valid_mouth_line = split(mouth_line, percent)
 
     if info == 1:  # print information
-      print('Total Number of Data: \n   mouth_open: ', len(mouth_open), '; mouth_normal_state: ', len(mouth_normal),
-            '; mouth_line: ', len(mouth_line), '\n')
-      print('Number of Training Data: \n   mouth_open: ', len(train_mouth_open), '; mouth_normal_state: ',
-            len(train_mouth_normal), '; mouth_line: ', len(train_mouth_line), '\n')
-      print('Number of Test Data: \n   mouth_open: ', len(valid_mouth_open), '; mouth_normal_state: ',
-            len(valid_mouth_normal), '; mouth_line: ', len(valid_mouth_line), '\n')
+      print('Total Number of Data: \n   mouth_open: ', len(mouth_open), '; mouth_force_no_op: ', len(mouth_line))
+      print('Number of Training Data: \n   mouth_open: ', len(train_mouth_open), '; mouth_force_no_op: ',
+            len(train_mouth_line))
+      print('Number of Test Data: \n   mouth_open: ', len(valid_mouth_open), '; mouth_force_no_op: ',
+            len(valid_mouth_line))
 
-    train_set = [train_mouth_open, train_mouth_normal, train_mouth_line]
-    valid_set = [valid_mouth_open, valid_mouth_normal, valid_mouth_line]
+    train_set = [train_mouth_open, train_mouth_line]
+    valid_set = [valid_mouth_open, valid_mouth_line]
 
   return train_set, valid_set
 
+
+def writeModelParamInCSV(fn, theta, miu_list):
+  with open(fn, "w") as write_f:
+    writer = csv.writer(write_f)
+    writer.writerow([theta])
+    writer.writerows(miu_list)
+  write_f.close()

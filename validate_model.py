@@ -41,16 +41,13 @@ def validate_model(percent, info, num_of_classes):
 
   if flag == 1:
     num_of_attribute = len(validation_data[0][0])
-    if num_of_classes == 4:  # for eyes
-      prediction_result, accuracy = [0, 0, 0, 0], [0, 0, 0, 0]
-    else:  # for mouth
-      prediction_result, accuracy = [0, 0, 0], [0, 0, 0]
+    prediction_result, accuracy = [0] * num_of_classes, [0] * num_of_classes
 
     for k in range(0, num_of_classes):
-      print('validation file "', className(k), '": ')
+      print('validation file "', className(k, num_of_classes), '": ')
       error_case = 0  # count the number of incorrectly predicted cases
       for j in range(len(validation_data[k])):
-        prob = [1, 1, 1, 1] if num_of_classes == 4 else [1, 1, 1]  # probabilities of predicting different classes
+        prob = [1] * num_of_classes
         for m in range(num_of_classes):  # for all possible classes
           expo = 0
           for i in range(0, num_of_attribute):
@@ -58,7 +55,7 @@ def validate_model(percent, info, num_of_classes):
           expo = (-1 / (2 * (int(theta) ** 2))) * expo
           prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / num_of_classes
         max_idx = prob.index(max(prob))  # max_idx is the prediction result
-        print('  ', className(max_idx))
+        print('  ', className(max_idx, num_of_classes))
         if max_idx != k:
           error_case = error_case + 1
       prediction_result[k] = error_case
@@ -72,27 +69,25 @@ def validate_model(percent, info, num_of_classes):
       print('Number of error cases for up, down, left, right:\n   ', prediction_result, '\n')
       print('Prediction accuracy for up, down, left, right (%):\n   ', formated_accuracy, '\n')
     else:  # for mouth
-      print('Number of error cases for mouth_open, mouth_normal_state, mouth_line:\n   ', prediction_result, '\n')
-      print('Prediction accuracy for mouth_open, mouth_normal_state, mouth_line (%):\n   ', formated_accuracy, '\n')
+      print('Number of error cases for mouth_open, mouth_force_no_op:\n   ', prediction_result, '\n')
+      print('Prediction accuracy for mouth_open, mouth_force_no_op (%):\n   ', formated_accuracy, '\n')
 
   else:
     print('There are no test images for at least one class!\n')
 
 
-def className(m):
-  if m == 0:
-    return 'up'
-  elif m == 1:
-    return 'down'
-  elif m == 2:
-    return 'left'
-  elif m == 3:
-    return 'right'
-  elif m == 4:
-    return 'mouth_open'
-  elif m == 5:
-    return 'mouth_normal'
-  elif m == 6:
-    return 'mouth_line'
-  else:
-    return 'noOp'  # no operation, same as "middle"
+def className(m, num_of_classes):  # print class names
+  if num_of_classes == 4:  # for eyes
+    if m == 0:
+      return 'up'
+    elif m == 1:
+      return 'down'
+    elif m == 2:
+      return 'left'
+    else:
+      return 'right'
+  else:  # for mouth
+    if m == 0:
+      return 'mouth_open (click)'
+    else:
+      return 'mouth_forceNoOp'

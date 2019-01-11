@@ -55,11 +55,11 @@ def SampleCollectionButton2():
 
 def TrainingButton():
   train_model(percent, 1, 4)  # for eyes
-  # train_model(percent, 1, 3)  # for mouth
+  #train_model(percent, 1, 2)  # for mouth
 
 def TestButton():
   validate_model(percent, 0, 4)  # for eyes
-  # validate_model(percent, 0, 3)  # for mouth
+  #validate_model(percent, 0, 2)  # for mouth
 
 
 b = tk.Button(window, text='Eye Sample Collection', width=30,height=2,command=SampleCollectionButton)
