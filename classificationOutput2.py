@@ -49,13 +49,13 @@ class classify:
       prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / num_of_classes
 
     if num_of_classes == 4:  # for eyes
-        if max(prob) < math.exp(-200):
+        if max(prob) < math.exp(-300):
             idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
         else:
             idx = prob.index(max(prob))
     else:  # for mouth
         #print(max(prob), math.exp(-200))
-        if max(prob) < -2 * math.exp(-200):  # this threshold: to be decided later
+        if max(prob) < -2 * math.exp(-300):  # this threshold: to be decided later
             idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
         else:
             idx = prob.index(max(prob)) + 5
