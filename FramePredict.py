@@ -129,7 +129,7 @@ class framePredict:
 
 		cv2.namedWindow("head")
 
-		miu_list, theta = classify.classifyInit(0)
+		miu_list, theta = classify.classifyInit(0,4)
 		print(miu_list)
 
 
@@ -138,7 +138,7 @@ class framePredict:
 
 			if GXR != 0 and Y != 0 and H != 0:
 				head = cv2.cvtColor(head.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-				actions = classify.classifySingleImage2(0, head, miu_list, theta)
+				actions = classify.classifySingleImage2(0, head, miu_list, theta, 4)
 				self.ImgSandP2(head)
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> middle; 5 -> click
