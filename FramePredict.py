@@ -9,6 +9,7 @@ from threading import Thread
 import datetime
 import math
 from classificationOutput2 import classify
+import pyautogui
 from validate_model import className
 import csv
 from IndexMachine import GenerateDataSet
@@ -144,12 +145,16 @@ class framePredict:
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> middle; 5 -> click
 			if actions == 0:
 				cv2.imshow("Arrows",up)
+				pyautogui.moveRel(0, -10, duration=0.025)
 			elif actions == 1:
 				cv2.imshow("Arrows",down)
+				pyautogui.moveRel(0, 10, duration=0.025)
 			elif actions == 2:
 				cv2.imshow("Arrows",left)
+				pyautogui.moveRel(-10, 0, duration=0.025)
 			elif actions == 3:
 				cv2.imshow("Arrows",right)
+				pyautogui.moveRel(10, 0, duration=0.025)
 			elif actions == 4:
 				cv2.imshow("Arrows",middle)
 			elif actions == 5:

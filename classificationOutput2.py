@@ -49,7 +49,7 @@ class classify:
       prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / num_of_classes
 
     if num_of_classes == 4:  # for eyes
-        if max(prob) < math.exp(-300):
+        if max(prob) < math.exp(-200):
             idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
         else:
             idx = prob.index(max(prob))
