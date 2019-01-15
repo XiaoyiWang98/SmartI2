@@ -38,7 +38,7 @@ class WebcamVideosStream:
 
 class frameGet:
 
-	def Getframe(self, fvs, close, further, eye_cascade,mouth_cascade):
+	def Getframe(self, fvs, close, further, eye_cascade,mouth_cascade, closeM, furtherM):
 		# make X,Y,H,W global
 		GXR = 0
 		GYR = 0
@@ -83,7 +83,6 @@ class frameGet:
 		Y = 0;
 		H = 0;
 		Flag = 0
-		print(GXR,MXR)
 		if GXR != 0 and MXR != 0:
 			# Face position is good
 			#if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
@@ -94,10 +93,10 @@ class frameGet:
 			eyecut = frame[Y:(Y + H), X:(X + W)]
 			cv2.imshow("Eycut", eyecut)
 
-			MX = math.floor(MXR + (MXW / 2) - (close / 2))
-			MY = math.floor(MYR + (MXH / 2) - (3 * close / 5))
-			MH = close
-			MW = close
+			MX = math.floor(MXR + (MXW / 2) - (closeM / 2))
+			MY = math.floor(MYR + (MXH / 2) - (3 * closeM / 5))
+			MH = closeM
+			MW = closeM
 			Mouthcut = frame[MY:(MY + MH), MX:(MX + MW)]
 
 			cv2.imshow("Mouthcut", Mouthcut)
@@ -117,10 +116,14 @@ class framePredict:
 			src = 0
 			close = 30
 			further = 40
+			closeM = 50
+			furtherM = 50
 		elif device == 1:
 			src = 1
 			close = 30
 			further = 40
+			closeM = 50
+			furtherM = 50
 		fvs = WebcamVideosStream(src).start()
 
 		#for arrows (instruction)
@@ -148,8 +151,7 @@ class framePredict:
 
 
 		while var == 1:
-			frame, eye, mouth, Flag = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade)
-			print(Flag)
+			frame, eye, mouth, Flag = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade, closeM, furtherM)
 			if Flag == 1:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				mouth = cv2.cvtColor(mouth.astype(np.uint8), cv2.COLOR_BGR2GRAY)
@@ -159,21 +161,26 @@ class framePredict:
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
-			if actionsM == 5:
-				cv2.imshow("Arrows", click)
-			elif actionsM == 6:
-				cv2.imshow("Arrows", FNoOp)
+			# if actionsM == 5:
+			# 	cv2.imshow("Arrows", click)
+			# elif actionsM == 6:
+			# 	cv2.imshow("Arrows", FNoOp)
+			# else:
+			if actionsE == 0:
+				cv2.imshow("Arrows",up)
+				pyautogui.moveRel(0, -10, duration=0.025)
+			elif actionsE == 1:
+				cv2.imshow("Arrows",down)
+				pyautogui.moveRel(0, 10, duration=0.025)
+			elif actionsE == 2:
+				cv2.imshow("Arrows",left)
+				pyautogui.moveRel(-10, 0, duration=0.025)
+			elif actionsE == 3:
+				cv2.imshow("Arrows",right)
+				pyautogui.moveRel(10, 0, duration=0.025)
 			else:
-				if actionsE == 0:
-					cv2.imshow("Arrows",up)
-				elif actionsE == 1:
-					cv2.imshow("Arrows",down)
-				elif actionsE == 2:
-					cv2.imshow("Arrows",left)
-				elif actionsE == 3:
-					cv2.imshow("Arrows",right)
-				else:
-					cv2.imshow("Arrows",middle)
+				cv2.imshow("Arrows",middle)
+
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				break
