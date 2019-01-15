@@ -156,7 +156,7 @@ class framePredict:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				mouth = cv2.cvtColor(mouth.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
-				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 2)
+				#actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 2)
 				self.ImgSandP2(eye,mouth)
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
