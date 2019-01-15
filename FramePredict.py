@@ -155,8 +155,8 @@ class framePredict:
 			if Flag == 1:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				mouth = cv2.cvtColor(mouth.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 2)
+				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				self.ImgSandP2(eye,mouth)
 
 			print(len(eye),len(mouth),actionsE,actionsM)
