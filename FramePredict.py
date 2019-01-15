@@ -155,18 +155,21 @@ class framePredict:
 			if Flag == 1:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				mouth = cv2.cvtColor(mouth.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-				#actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
+				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 2)
 				self.ImgSandP2(eye,mouth)
 
+			print(len(eye),len(mouth),actionsE,actionsM)
+
+
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
-			if actionsM == 5:
-				cv2.imshow("Arrows", click)
-			elif actionsM == 6:
-				cv2.imshow("Arrows", FNoOp)
-			else:
-				cv2.imshow("Arrows", middle)
+			# if actionsM == 5:
+			# 	cv2.imshow("Arrows", click)
+			# elif actionsM == 6:
+			# 	cv2.imshow("Arrows", FNoOp)
+			# else:
+			# 	cv2.imshow("Arrows", middle)
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)
 			# 	pyautogui.moveRel(0, -10, duration=0.025)
@@ -205,5 +208,5 @@ def hisEqulColor(img):
 
 
 #Uncommand to direct start image capture process
-if __name__ == '__main__':h
+if __name__ == '__main__':
 	framePredict(0)
