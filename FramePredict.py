@@ -181,5 +181,5 @@ def hisEqulColor(img):
 
 
 #Uncommand to direct start image capture process
-if __name__ == '__main__':
+if __name__ == '__main__':h
 	framePredict(0)

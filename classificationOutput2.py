@@ -49,28 +49,80 @@ class classify:
       prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / num_of_classes
 
     if num_of_classes == 4:  # for eyes
-        if max(prob) < math.exp(-200):
-            idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
-        else:
-            idx = prob.index(max(prob))
+      #print(prob, math.exp(-200))
+      if max(prob) < math.exp(-200):
+        idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
+      else:
+        idx = prob.index(max(prob))
     else:  # for mouth
-        #print(max(prob), math.exp(-200))
-        if max(prob) < -2 * math.exp(-300):  # this threshold: to be decided later
-            idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
-        else:
-            idx = prob.index(max(prob)) + 5
+      #print(prob, math.exp(-200))
+      if max(prob) < math.exp(-600):  # this threshold: to be decided later
+        idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
+      else:
+        idx = prob.index(max(prob)) + 5
     print(className(prob.index(max(prob)), num_of_classes))
 
     return idx
 
 
 if __name__ == "__main__":
-  miu_list, theta = classify.classifyInit(0, 4)
-  img = cv2.imread("down1.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 4)
+  # miu_list, theta = classify.classifyInit(0, 4)
+  # img = cv2.imread("down1.jpg", 0)
+  # idx = classify.classifySingleImage2(0, img, miu_list, theta, 4)
+  # print(idx)
+
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0001.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
   miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("click1.jpg", 0)
+  img = cv2.imread("ForceNoOp0002.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0003.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0004.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0005.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0006.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0007.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0008.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0009.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0010.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("ForceNoOp0011.jpg", 0)
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
