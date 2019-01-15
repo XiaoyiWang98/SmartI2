@@ -11,6 +11,6 @@ o_y = height / 2
 pi = 3.1415926
 
 for i in range(10):
-    pyautogui.moveRel(0, 100, duration=0.25)
+    qpyautogui.moveRel(0, 100, duration=0.25)
     pyautogui.moveRel(-100, 0, duration=0.25)
     pyautogui.moveRel(0, -100, duration=0.25)

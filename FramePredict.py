@@ -6,13 +6,9 @@
 import cv2
 import numpy as np
 from threading import Thread
-import datetime
 import math
 from classificationOutput2 import classify
 import pyautogui
-from validate_model import className
-import csv
-from IndexMachine import GenerateDataSet
 
 class WebcamVideosStream:
 	def __init__(self,src):
@@ -42,75 +38,92 @@ class WebcamVideosStream:
 
 class frameGet:
 
-	def Getframe(self, fvs, face_cascade, close, further,eye_cascade):
+	def Getframe(self, fvs, close, further, eye_cascade,mouth_cascade, closeM, furtherM):
 		# make X,Y,H,W global
 		GXR = 0
 		GYR = 0
 		GXW = 0
 		GXH = 0
+		MXR = 0
+		MYR = 0
+		MXW = 0
+		MXH = 0
+
+
 
 		# Capture frame-by-frame
 		frame = fvs.read()
 		frame = hisEqulColor(frame)
-		cut = 0
+		eyecut = None
+		Mouthcut = None
+
+
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-		ref_x = 0
-		FXR = 0
-		for (x, y, w, h) in faces:
-			#cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-			roi_gray = gray[y:y + h, x:x + w]
-			roi_color = frame[y:y + h, x:x + w]
-			eyes = eye_cascade.detectMultiScale(roi_gray)
-			FXR = x
-			for (ex, ey, ew, eh) in eyes:
+		eyes = eye_cascade.detectMultiScale(gray)
+		mouth = mouth_cascade.detectMultiScale(gray, 1.7, 11)
 
-				rx = int((ex+0.5*ew)-0.5*close)
-				ry = int((ey+0.5*eh)-0.5*close)
-				rw = rh = close
-				#cv2.rectangle(roi_color, (rx, ry), (rx + rw, ry + rh), (0, 255, 0), 2)
-			#assign x,y,w,h to Global Valables
-				ref_x = ex
-				GXR = ex+x
-				GYR = ey+y
-				GXW = ew
-				GXH = eh
-				cv2.rectangle(roi_color, (GXR, GYR), (GXR + GXW, GYR + GXH), (0, 255, 0), 2)
-				break
+
+		for (ex, ey, ew, eh) in eyes:
+			GXR = ex
+			GYR = ey
+			GXW = ew
+			GXH = eh
+			break
+
+		for (mx, my, mw, mh) in mouth:
+			MXR = mx
+			MYR = my
+			MXW = mw
+			MXH = mh
+			break
 
 		cv2.imshow('frame', frame)
-		# if no face detected
+		# if no eye detected
 		Y = 0;
 		H = 0;
-		if FXR != 0 and GXR != ref_x:
+		Flag = 0
+		if GXR != 0 and MXR != 0:
 			# Face position is good
-			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
-				X = math.floor(GXR + (GXW / 2) - (close / 2))
-				Y = math.floor(GYR + (GXH / 2) - (close / 2))
-				H = close
-				W = close
-				cut = frame[Y:(Y + H), X:(X + W)]
-				cv2.imshow("cut", cut)
-				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
+			#if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
+			X = math.floor(GXR + (GXW / 2) - (close / 2))
+			Y = math.floor(GYR + (GXH / 2) - (close / 2))
+			H = close
+			W = close
+			eyecut = frame[Y:(Y + H), X:(X + W)]
+			cv2.imshow("Eycut", eyecut)
 
-		return frame, cut, GXR, Y, H
+			MX = math.floor(MXR + (MXW / 2) - (closeM / 2))
+			MY = math.floor(MYR + (MXH / 2) - (3 * closeM / 5))
+			MH = closeM
+			MW = closeM
+			Mouthcut = frame[MY:(MY + MH), MX:(MX + MW)]
+
+			cv2.imshow("Mouthcut", Mouthcut)
+			Flag = 1
+
+		return frame, eyecut, Mouthcut, Flag
 
 
 class framePredict:
 	def __init__(self, device):
 
-		actions = 4
+		actionsE = 4
+		actionsM = 6
 
 		# 0 for internal webcam, 1 for usb webcam
 		if device == 0:
 			src = 0
 			close = 30
 			further = 40
+			closeM = 50
+			furtherM = 50
 		elif device == 1:
 			src = 1
 			close = 30
 			further = 40
+			closeM = 50
+			furtherM = 50
 		fvs = WebcamVideosStream(src).start()
 
 		#for arrows (instruction)
@@ -120,45 +133,55 @@ class framePredict:
 		left = cv2.imread("Arrows/left.png")
 		right = cv2.imread("Arrows/Right.jpg")
 		click = cv2.imread("Arrows/click.png")
+		FNoOp = cv2.imread("Arrows/FNoOp.png")
 		cv2.namedWindow("Arrows")
 
-		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
+		Mouth_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
+
 		var = 1
 
 		#Read index
 
-		cv2.namedWindow("head")
+		cv2.namedWindow("EyeFrame")
+		cv2.namedWindow("MouthFrame")
 
-		miu_list, theta = classify.classifyInit(0,4)
-		print(miu_list)
+		miu_listE, thetaE = classify.classifyInit(0,4)
+		miu_listM, thetaM = classify.classifyInit(0,2)
 
 
 		while var == 1:
-			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
+			frame, eye, mouth, Flag = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade, closeM, furtherM)
+			if Flag == 1:
+				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
+				mouth = cv2.cvtColor(mouth.astype(np.uint8), cv2.COLOR_BGR2GRAY)
+				#actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
+				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 2)
+				self.ImgSandP2(eye,mouth)
 
-			if GXR != 0 and Y != 0 and H != 0:
-				head = cv2.cvtColor(head.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-				actions = classify.classifySingleImage2(0, head, miu_list, theta, 4)
-				self.ImgSandP2(head)
+			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
-			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> middle; 5 -> click
-			if actions == 0:
-				cv2.imshow("Arrows",up)
-				pyautogui.moveRel(0, -10, duration=0.025)
-			elif actions == 1:
-				cv2.imshow("Arrows",down)
-				pyautogui.moveRel(0, 10, duration=0.025)
-			elif actions == 2:
-				cv2.imshow("Arrows",left)
-				pyautogui.moveRel(-10, 0, duration=0.025)
-			elif actions == 3:
-				cv2.imshow("Arrows",right)
-				pyautogui.moveRel(10, 0, duration=0.025)
-			elif actions == 4:
-				cv2.imshow("Arrows",middle)
-			elif actions == 5:
-				cv2.imshow("Arrows",click)
+			if actionsM == 5:
+				cv2.imshow("Arrows", click)
+			elif actionsM == 6:
+				cv2.imshow("Arrows", FNoOp)
+			else:
+				cv2.imshow("Arrows", middle)
+			# if actionsE == 0:
+			# 	cv2.imshow("Arrows",up)
+			# 	pyautogui.moveRel(0, -10, duration=0.025)
+			# elif actionsE == 1:
+			# 	cv2.imshow("Arrows",down)
+			# 	pyautogui.moveRel(0, 10, duration=0.025)
+			# elif actionsE == 2:
+			# 	cv2.imshow("Arrows",left)
+			# 	pyautogui.moveRel(-10, 0, duration=0.025)
+			# elif actionsE == 3:
+			# 	cv2.imshow("Arrows",right)
+			# 	pyautogui.moveRel(10, 0, duration=0.025)
+			# else:
+			# 	cv2.imshow("Arrows",middle)
+
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				break
@@ -168,8 +191,9 @@ class framePredict:
 		fvs.stop()
 
 
-	def ImgSandP2(self,head):
-		cv2.imshow('head', head)
+	def ImgSandP2(self,eye,mouth):
+		cv2.imshow('EyeFrame', eye)
+		cv2.imshow("MouthFrame",mouth)
 
 def hisEqulColor(img):
 	ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
