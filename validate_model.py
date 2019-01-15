@@ -44,7 +44,7 @@ def validate_model(percent, info, num_of_classes):
     prediction_result, accuracy = [0] * num_of_classes, [0] * num_of_classes
 
     for k in range(0, num_of_classes):
-      print('validation file "', className(k, num_of_classes), '": ')
+      #print('validation file "', className(k, num_of_classes), '": ')
       error_case = 0  # count the number of incorrectly predicted cases
       for j in range(len(validation_data[k])):
         prob = [1] * num_of_classes
@@ -55,8 +55,8 @@ def validate_model(percent, info, num_of_classes):
           expo = (-1 / (2 * (int(theta) ** 2))) * expo
           prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / num_of_classes
         max_idx = prob.index(max(prob))  # max_idx is the prediction result
-        print('  ', className(max_idx, num_of_classes))
-        print(max(prob), math.exp(-300))
+        #print('  ', className(max_idx, num_of_classes))
+        #print(max(prob), math.exp(-300))
         if max_idx != k:
           error_case = error_case + 1
       prediction_result[k] = error_case
