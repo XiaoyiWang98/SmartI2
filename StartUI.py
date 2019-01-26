@@ -28,7 +28,7 @@ r1.pack()
 r1 = tk.Radiobutton(window,text='USB Camera', variable=var1,value=1)
 r1.pack()
 
-percent = 80  # percent = % of training data in the dataset
+percent = 90  # percent = % of training data in the dataset
 
 print(var1)
 
@@ -54,12 +54,12 @@ def SampleCollectionButton2():
     MD.frameRun2(var1.get())
 
 def TrainingButton():
-  #train_model(percent, 1, 4)  # for eyes
-  train_model(percent, 1, 2)  # for mouth
+  train_model(percent, 1, 4)  # for eyes
+  #train_model(percent, 1, 2)  # for mouth
 
 def TestButton():
-  #validate_model(percent, 0, 4)  # for eyes
-  validate_model(percent, 0, 2)  # for mouth
+  validate_model(percent, 0, 4)  # for eyes
+  #validate_model(percent, 0, 2)  # for mouth
 
 
 b = tk.Button(window, text='Eye Sample Collection', width=30,height=2,command=SampleCollectionButton)
