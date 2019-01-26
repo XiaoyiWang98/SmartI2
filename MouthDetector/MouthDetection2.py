@@ -103,6 +103,7 @@ class frameRun2:
 		click = cv2.imread("Arrows/click.png")
 		Nothing = cv2.imread("Arrows/Nothing.png")
 		RClick = cv2.imread("Arrows/Rclick.png")
+		stop = cv2.imread("Arrows/stop.png")
 		cv2.namedWindow("Arrows")
 
 		face_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
@@ -131,21 +132,21 @@ class frameRun2:
 
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
 					counter+=1
-					index[0] = index[7]%3
 
-			while (counter >= 1000):
+			while (counter >= 100):
+				cv2.imshow("Arrows",stop)
 				if cv2.waitKey(1) & 0xFF == ord('f'):
-					print("Next \n")
 					index[7] += 1
+					index[0] = index[7] % 2
 					counter = 0
 					break
+
 
 			if index[0] == 0:
 				cv2.imshow("Arrows",click)
 			elif index[0] == 1:
-				cv2.imshow("Arrows",Nothing)
-			elif index[0] == 2:
 				cv2.imshow("Arrows",RClick)
+
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]

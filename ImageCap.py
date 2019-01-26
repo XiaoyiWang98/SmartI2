@@ -130,7 +130,7 @@ class frameRun:
 		down = cv2.imread("Arrows/down.jpg")
 		left = cv2.imread("Arrows/left.png")
 		right = cv2.imread("Arrows/Right.jpg")
-		click = cv2.imread("Arrows/click.png")
+		stop = cv2.imread("Arrows/stop.png")
 		cv2.namedWindow("Arrows")
 
 
@@ -159,13 +159,15 @@ class frameRun:
 					pathi = path + action[index[0]]+ action[index[0]]
 
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
+					print(counter)
 					counter += 1
-					index[0] = index[7]%5 #change back to 6 later
+					 #change back to 6 later
 
-			while (counter >= 1000):
+			while (counter >= 100):
+				cv2.imshow("Arrows",stop)
 				if cv2.waitKey(1) & 0xFF == ord('f'):
-					print("Next \n")
 					index[7] += 1
+					index[0] = index[7] % 5
 					counter = 0
 					break
 
