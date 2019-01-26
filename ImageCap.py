@@ -50,6 +50,7 @@ class frameGet:
 		frame = fvs.read()
 		cut = 0
 		# Our operations on the frame come here
+		frame = self.hisEqulColor(frame)
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 		# for (x, y, w, h) in faces:
@@ -101,6 +102,14 @@ class frameGet:
 
 		return frame, cut, GXR, Y, H
 
+	def hisEqulColor(self, img):
+		ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
+		channels = cv2.split(ycrcb)
+		cv2.equalizeHist(channels[0], channels[0])
+		cv2.merge(channels, ycrcb)
+		cv2.cvtColor(ycrcb, cv2.COLOR_YCR_CB2BGR, img)
+		return img
+
 
 class frameRun:
 	def __init__(self, device):
@@ -140,6 +149,8 @@ class frameRun:
 
 		action = ['/middle','/up','/down','/left','/right','/click']
 
+		counter = 0;
+
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
@@ -148,9 +159,15 @@ class frameRun:
 					pathi = path + action[index[0]]+ action[index[0]]
 
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
-
-					index[7] += 1
+					counter += 1
 					index[0] = index[7]%5 #change back to 6 later
+
+			while (counter >= 1000):
+				if cv2.waitKey(1) & 0xFF == ord('f'):
+					print("Next \n")
+					index[7] += 1
+					counter = 0
+					break
 
 			if index[0] == 0:
 				cv2.imshow("Arrows",middle)
@@ -162,8 +179,7 @@ class frameRun:
 				cv2.imshow("Arrows",left)
 			elif index[0] == 4:
 				cv2.imshow("Arrows",right)
-			elif index[0] == 5:
-				cv2.imshow("Arrows",click)
+
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
@@ -184,6 +200,8 @@ class frameRun:
 		cv2.imshow('head', head)
 		index += 1
 		return index
+
+
 
 #Uncommand to direct start image capture process
 if __name__ == '__main__':

@@ -48,6 +48,7 @@ class frameGet2:
 
 		# Capture frame-by-frame
 		frame = fvs.read()
+		frame = self.hisEqulColor(frame)
 		cut = 0
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
@@ -75,6 +76,14 @@ class frameGet2:
 			cv2.imshow("cut", cut)
 
 		return frame, cut, GXR, Y, H
+
+	def hisEqulColor(self,img):
+		ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
+		channels = cv2.split(ycrcb)
+		cv2.equalizeHist(channels[0], channels[0])
+		cv2.merge(channels, ycrcb)
+		cv2.cvtColor(ycrcb, cv2.COLOR_YCR_CB2BGR, img)
+		return img
 
 
 class frameRun2:
@@ -111,6 +120,8 @@ class frameRun2:
 
 		action = ['/click','/Nothing','/ForceNoOp']
 
+		counter = 0
+
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
@@ -119,9 +130,15 @@ class frameRun2:
 					pathi = path + action[index[0]]+ action[index[0]]
 
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
-
-					index[7] += 1
+					counter+=1
 					index[0] = index[7]%3
+
+			while (counter >= 1000):
+				if cv2.waitKey(1) & 0xFF == ord('f'):
+					print("Next \n")
+					index[7] += 1
+					counter = 0
+					break
 
 			if index[0] == 0:
 				cv2.imshow("Arrows",click)
