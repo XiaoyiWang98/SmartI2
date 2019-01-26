@@ -73,71 +73,34 @@ if __name__ == "__main__":
 
 
   miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp0.jpg", 0)
+  img = cv2.imread("0.jpg", 0)
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
   miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp1.jpg", 0)
+  img = cv2.imread("1.jpg", 0)
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
   miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp3.jpg", 0)
+  img = cv2.imread("2.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("3.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("4.jpg", 0)
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
   miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp4.jpg", 0)
+  img = cv2.imread("5.jpg", 0)
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp5.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp6.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp7.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp8.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp9.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp10.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp11.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp12.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp13.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
-
-  miu_list, theta = classify.classifyInit(0, 2)
-  img = cv2.imread("ForceNoOp14.jpg", 0)
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-  print(idx)
