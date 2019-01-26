@@ -48,6 +48,7 @@ class frameGet2:
 
 		# Capture frame-by-frame
 		frame = fvs.read()
+		frame = self.hisEqulColor(frame)
 		cut = 0
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
@@ -76,6 +77,14 @@ class frameGet2:
 
 		return frame, cut, GXR, Y, H
 
+	def hisEqulColor(self,img):
+		ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
+		channels = cv2.split(ycrcb)
+		cv2.equalizeHist(channels[0], channels[0])
+		cv2.merge(channels, ycrcb)
+		cv2.cvtColor(ycrcb, cv2.COLOR_YCR_CB2BGR, img)
+		return img
+
 
 class frameRun2:
 	def __init__(self, device):
@@ -94,6 +103,7 @@ class frameRun2:
 		click = cv2.imread("Arrows/click.png")
 		Nothing = cv2.imread("Arrows/Nothing.png")
 		RClick = cv2.imread("Arrows/Rclick.png")
+		stop = cv2.imread("Arrows/stop.png")
 		cv2.namedWindow("Arrows")
 
 		face_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
@@ -111,6 +121,8 @@ class frameRun2:
 
 		action = ['/click','/Nothing','/ForceNoOp']
 
+		counter = 0
+
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
@@ -119,16 +131,22 @@ class frameRun2:
 					pathi = path + action[index[0]]+ action[index[0]]
 
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
+					counter+=1
 
+			while (counter >= 100):
+				cv2.imshow("Arrows",stop)
+				if cv2.waitKey(1) & 0xFF == ord('f'):
 					index[7] += 1
-					index[0] = index[7]%3
+					index[0] = index[7] % 2
+					counter = 0
+					break
+
 
 			if index[0] == 0:
 				cv2.imshow("Arrows",click)
 			elif index[0] == 1:
-				cv2.imshow("Arrows",Nothing)
-			elif index[0] == 2:
 				cv2.imshow("Arrows",RClick)
+
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
