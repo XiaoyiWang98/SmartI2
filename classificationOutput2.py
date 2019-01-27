@@ -3,7 +3,7 @@
 # Siqi Dai (modified by Sean)
 # Jan 8, 2019
 
-from train_model import accessImgPixelVal, train_model
+
 from validate_model import className
 import math
 import os
@@ -31,12 +31,17 @@ class classify:
   # this function will return an index, where:
   # 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
   def classifySingleImage2(self, img, miu_list, theta, num_of_classes):
-    img = cv2.equalizeHist(img)  # histogram equalization
+    if num_of_classes == 4:
+      img = cv2.equalizeHist(img)  # histogram equalization
+
     row, col = img.shape[0], img.shape[1]
     pixel_vals = []
     for i in range(row):
       for j in range(col):
-        pixel_vals.append(img[i, j])
+        if(num_of_classes == 4):
+          pixel_vals.append(img[i, j])
+        else:
+          pixel_vals.append(img[i, j, 0])
 
     num_of_attribute = len(pixel_vals)
     prob = [1] * num_of_classes
@@ -81,11 +86,11 @@ if __name__ == "__main__":
   miu_list, theta = classify.classifyInit(0, 2)
 
 
-  img = cv2.imread("click32.jpg", 0)
+  img = cv2.imread("Nothing4.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
-  img = cv2.imread("Nothing12.jpg", 0)
+  img = cv2.imread("click993.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
-  img = cv2.imread("Nothing13.jpg", 0)
+  img = cv2.imread("click47.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)

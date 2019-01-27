@@ -34,7 +34,7 @@ def validate_model(percent, info, num_of_classes):
   flag = 1
   validation_data = []
   for validation in valid_set:
-    pixels = accessImgPixelVal(validation)
+    pixels = accessImgPixelVal(validation, num_of_classes)
     validation_data.append(pixels)
     if len(validation) == 0:
       flag = 0
@@ -60,7 +60,7 @@ def validate_model(percent, info, num_of_classes):
         if max_idx != k:
           error_case = error_case + 1
       prediction_result[k] = error_case
-      #print('===================')
+      print('===================')
 
     for i in range(num_of_classes):
         accuracy[i] = (1 - prediction_result[i] / len(valid_set[i])) * 100

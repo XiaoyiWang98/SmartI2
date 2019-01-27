@@ -20,7 +20,7 @@ def train_model(percent, info, num_of_classes):
   train_data = []
   flag = 1
   for train in train_set:
-    pixels = accessImgPixelVal(train)
+    pixels = accessImgPixelVal(train, num_of_classes)
     train_data.append(pixels)
     if len(train) == 0:
       flag = 0
@@ -43,18 +43,27 @@ def train_model(percent, info, num_of_classes):
   return miu_list, theta
 
 
-def accessImgPixelVal(imgset):
+def accessImgPixelVal(imgset, num_of_classes):
   list = []
   if len(imgset) != 0:
     for im in imgset:
-      img = cv2.imread(im, 0)
-      img = cv2.equalizeHist(img)  # histogram equalization
+
+      if num_of_classes == 4:  # for eyes
+        img = cv2.imread(im, 0)
+        img = cv2.equalizeHist(img)  # histogram equalization
+      else:  # for mouth
+        img = cv2.imread(im)
+
       row, col = img.shape[0], img.shape[1]
       pixel_vals = []
       for i in range(row):
         for j in range(col):
-          pixel_vals.append(img[i, j])
+          if num_of_classes == 4:  # for eyes
+            pixel_vals.append(img[i, j])
+          else:  # for mouth
+            pixel_vals.append(img[i, j, 0])
       list.append(pixel_vals)
+
   return list
 
 
