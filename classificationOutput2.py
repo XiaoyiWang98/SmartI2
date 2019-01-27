@@ -56,10 +56,13 @@ class classify:
         idx = prob.index(max(prob))
     else:  # for mouth
       #print(prob, math.exp(-200))
+      idx = prob.index(max(prob)) + 5
+
       if max(prob) < math.exp(-1000):  # this threshold: to be decided later
         idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
       else:
-        idx = prob.index(max(prob)) + 5
+        idx = 4
+
     print(className(prob.index(max(prob)), num_of_classes))
 
     return idx
