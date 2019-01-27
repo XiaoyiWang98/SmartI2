@@ -10,6 +10,8 @@ import MouthDetection2 as MD
 import train_model
 from train_model import train_model
 from validate_model import validate_model
+import time
+
 
 window = tk.Tk()
 window.title('my window')
@@ -54,13 +56,22 @@ def SampleCollectionButton2():
     MD.frameRun2(var1.get())
 
 def TrainingButton():
+  start = time.time()
+
   #train_model(percent, 1, 4)  # for eyes
   train_model(percent, 1, 2)  # for mouth
 
+  end = time.time()
+  #print(end - start)
+
 def TestButton():
+  start = time.time()
+
   #validate_model(percent, 0, 4)  # for eyes
   validate_model(percent, 0, 2)  # for mouth
 
+  end = time.time()
+  #print(end - start)
 
 b = tk.Button(window, text='Eye Sample Collection', width=30,height=2,command=SampleCollectionButton)
 b.pack()

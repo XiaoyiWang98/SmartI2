@@ -7,6 +7,7 @@ import glob
 import cv2
 import math
 import csv
+from multiprocessing.pool import ThreadPool
 
 
 def train_model(percent, info, num_of_classes):
@@ -19,6 +20,9 @@ def train_model(percent, info, num_of_classes):
   # access pixel values of the images in the respective folders
   train_data = []
   flag = 1
+
+  #train_data = [accessImgPixelVal(train, num_of_classes) for train in train_set]
+
   for train in train_set:
     pixels = accessImgPixelVal(train, num_of_classes)
     train_data.append(pixels)
@@ -47,7 +51,6 @@ def accessImgPixelVal(imgset, num_of_classes):
   list = []
   if len(imgset) != 0:
     for im in imgset:
-
       if num_of_classes == 4:  # for eyes
         img = cv2.imread(im, 0)
         img = cv2.equalizeHist(img)  # histogram equalization
@@ -55,13 +58,10 @@ def accessImgPixelVal(imgset, num_of_classes):
         img = cv2.imread(im)
 
       row, col = img.shape[0], img.shape[1]
-      pixel_vals = []
-      for i in range(row):
-        for j in range(col):
-          if num_of_classes == 4:  # for eyes
-            pixel_vals.append(img[i, j])
-          else:  # for mouth
-            pixel_vals.append(img[i, j, 0])
+      if num_of_classes == 4:  # for eyes
+        pixel_vals = [img[i, j] for i in range(row) for j in range(col)]
+      else:  # for mouth
+        pixel_vals = [img[i, j, 0] for i in range(row) for j in range(col)]
       list.append(pixel_vals)
 
   return list
@@ -96,12 +96,9 @@ def computeTheta(train_data, miu_list, num_of_classes):
 
 
 def split(list, percent):  # split a list into two sub-lists
-  sublist1, sublist2 = [], []
   length = int(len(list) * percent / 100)
-  for i in range(length):
-    sublist1.append(list[i])
-  for i in range(length, len(list)):
-    sublist2.append(list[i])
+  sublist1 = [list[i] for i in range(length)]
+  sublist2 = [list[i] for i in range(length, len(list))]
   return sublist1, sublist2
 
 
@@ -119,14 +116,10 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     up, down, left, right = [], [], [], []
     for file in folders:
       img_path = data_path + file + '/'
-      for f in glob.glob(img_path + 'up/' + '*.jpg'):
-        up.append(f)
-      for f in glob.glob(img_path + 'down/' + '*.jpg'):
-        down.append(f)
-      for f in glob.glob(img_path + 'left/' + '*.jpg'):
-        left.append(f)
-      for f in glob.glob(img_path + 'right/' + '*.jpg'):
-        right.append(f)
+      up = up + [f for f in glob.glob(img_path + 'up/' + '*.jpg')]
+      down = down + [f for f in glob.glob(img_path + 'down/' + '*.jpg')]
+      left = left + [f for f in glob.glob(img_path + 'left/' + '*.jpg')]
+      right = right + [f for f in glob.glob(img_path + 'right/' + '*.jpg')]
     train_up, valid_up = split(up, percent)
     train_down, valid_down = split(down, percent)
     train_left, valid_left = split(left, percent)
@@ -147,10 +140,8 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     mouth_open, mouth_line = [], []
     for file in folders:
       img_path = data_path + file + '/'
-      for f in glob.glob(img_path + 'click/' + '*.jpg'):
-        mouth_open.append(f)  # left click
-      for f in glob.glob(img_path + 'ForceNoOp/' + '*.jpg'):
-        mouth_line.append(f)  # force_no_op
+      mouth_open = mouth_open + [f for f in glob.glob(img_path + 'click/' + '*.jpg')]
+      mouth_line = mouth_line + [f for f in glob.glob(img_path + 'ForceNoOp/' + '*.jpg')]
     train_mouth_open, valid_mouth_open = split(mouth_open, percent)
     train_mouth_line, valid_mouth_line = split(mouth_line, percent)
 

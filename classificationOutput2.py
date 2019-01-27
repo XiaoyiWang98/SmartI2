@@ -88,10 +88,11 @@ if __name__ == "__main__":
   img = cv2.imread("Nothing0.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
-  img = cv2.imread("Nothing2.jpg")
+  img = cv2.imread("Nothing1.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
-  img = cv2.imread("Nothing1.jpg")
+
+  img = cv2.imread("Nothing2.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
   img = cv2.imread("Nothing3.jpg")
