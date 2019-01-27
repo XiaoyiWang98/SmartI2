@@ -85,12 +85,29 @@ if __name__ == "__main__":
 
   miu_list, theta = classify.classifyInit(0, 2)
 
+  img = cv2.imread("Nothing0.jpg")
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+
+  img = cv2.imread("Nothing2.jpg")
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+
+  img = cv2.imread("Nothing1.jpg")
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+
+  img = cv2.imread("Nothing3.jpg")
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
   img = cv2.imread("Nothing4.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
-  img = cv2.imread("click993.jpg")
+  img = cv2.imread("Nothing5.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
 
-  img = cv2.imread("click47.jpg")
+  img = cv2.imread("Nothing6.jpg")
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+
+  img = cv2.imread("Nothing7.jpg")
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+
+  img = cv2.imread("Nothing8.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
