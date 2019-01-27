@@ -55,8 +55,10 @@ def classifySingleImage(img_path, num_of_classes):
   else:  # for mouth
     if max(prob) < math.exp(-200):  # this threshold: to be decided later
       idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
+      print("Nothing")
     else:
       idx = prob.index(max(prob)) + 5
+      print("")
   print(img_path, ': ', className(prob.index(max(prob)), num_of_classes))
 
   return idx

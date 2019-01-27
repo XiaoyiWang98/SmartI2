@@ -54,8 +54,10 @@ class classify:
         idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
       else:
         idx = prob.index(max(prob))
+      print(className(prob.index(max(prob)), num_of_classes))
     else:  # for mouth
       #print(prob, math.exp(-200))
+<<<<<<< HEAD
       idx = prob.index(max(prob)) + 5
 
       if max(prob) < math.exp(-1000):  # this threshold: to be decided later
@@ -64,6 +66,17 @@ class classify:
         idx = 4
 
     print(className(prob.index(max(prob)), num_of_classes))
+=======
+      if prob.index(max(prob)) + 5 == 5:
+        idx = 5
+        print("Click")
+      else:
+        idx = 4
+        print("Nothing")
+
+   #print(prob[0], prob[1])
+    print(idx)
+>>>>>>> dbaa512e2c460c6499f0e924d5f000ad52e87f30
 
     return idx
 
@@ -76,16 +89,72 @@ if __name__ == "__main__":
 
 
   miu_list, theta = classify.classifyInit(0, 2)
+<<<<<<< HEAD
+  img = cv2.imread("click40.jpg", 0)
+=======
   img = cv2.imread("0.jpg", 0)
+>>>>>>> afa7e0c27b209259e16c05c35f49a95f47f357a9
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
   miu_list, theta = classify.classifyInit(0, 2)
+<<<<<<< HEAD
+  img = cv2.imread("click41.jpg", 0)
+=======
   img = cv2.imread("1.jpg", 0)
+>>>>>>> afa7e0c27b209259e16c05c35f49a95f47f357a9
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
   miu_list, theta = classify.classifyInit(0, 2)
+<<<<<<< HEAD
+  img = cv2.imread("click42.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("click43.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("click44.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("click45.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("click46.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("Nothing8.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("Nothing9.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("Nothing10.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("Nothing11.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("Nothing12.jpg", 0)
+=======
   img = cv2.imread("2.jpg", 0)
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
@@ -99,11 +168,23 @@ if __name__ == "__main__":
 
   miu_list, theta = classify.classifyInit(0, 2)
   img = cv2.imread("4.jpg", 0)
+>>>>>>> afa7e0c27b209259e16c05c35f49a95f47f357a9
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
   miu_list, theta = classify.classifyInit(0, 2)
+<<<<<<< HEAD
+  img = cv2.imread("Nothing13.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+
+  miu_list, theta = classify.classifyInit(0, 2)
+  img = cv2.imread("Nothing14.jpg", 0)
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  print(idx)
+=======
   img = cv2.imread("5.jpg", 0)
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
   print(idx)
 
+>>>>>>> afa7e0c27b209259e16c05c35f49a95f47f357a9

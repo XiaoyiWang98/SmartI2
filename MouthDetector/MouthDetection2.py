@@ -133,7 +133,7 @@ class frameRun2:
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
 					counter+=1
 
-			while (counter >= 100):
+			while (counter >= 1000):
 				cv2.imshow("Arrows",stop)
 				if cv2.waitKey(1) & 0xFF == ord('f'):
 					index[7] += 1

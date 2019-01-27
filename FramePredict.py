@@ -159,8 +159,6 @@ class framePredict:
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				self.ImgSandP2(eye,mouth)
 
-			print(len(eye),len(mouth),actionsE,actionsM)
-
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
@@ -209,4 +207,4 @@ def hisEqulColor(img):
 
 #Uncommand to direct start image capture process
 if __name__ == '__main__':
-	framePredict(0)
+	framePredict(1)
