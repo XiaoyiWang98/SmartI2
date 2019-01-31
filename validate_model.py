@@ -17,6 +17,7 @@ def validate_model(percent, info, num_of_classes):
   # get model parameters
   miu_list, theta = [], 0
   fn = 'model_param_eyes.csv' if num_of_classes == 4 else 'model_param_mouth.csv'
+  avg = 0
 
   if os.path.isfile(fn):
     i = True
@@ -65,6 +66,8 @@ def validate_model(percent, info, num_of_classes):
     for i in range(num_of_classes):
         accuracy[i] = (1 - prediction_result[i] / len(valid_set[i])) * 100
 
+    avg = sum(accuracy)/len(accuracy)
+
     formated_accuracy = [float('%.2f' % elem) for elem in accuracy]
     if num_of_classes == 4:  # for eyes
       print('Number of error cases for up, down, left, right:\n   ', prediction_result, '\n')
@@ -75,6 +78,10 @@ def validate_model(percent, info, num_of_classes):
 
   else:
     print('There are no test images for at least one class!\n')
+
+  return avg
+
+
 
 
 def className(m, num_of_classes):  # print class names

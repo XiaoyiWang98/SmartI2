@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 from threading import Thread
 import datetime
+import time
 import math
 import csv
 from IndexMachineM import GenerateDataSet2
@@ -122,16 +123,41 @@ class frameRun2:
 		action = ['/click','/Nothing','/ForceNoOp']
 
 		counter = 0
+		ind = 0
+		SampleEpisode = 50
+		roundcounter = 0
+		MaxRC = 4
+		relaxTime = 20
 
+		t1 = time.clock()
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			if GXR != 0 and Y != 0 and H != 0:
-				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
-					pathi = path + action[index[0]]+ action[index[0]]
-
-					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
-					counter+=1
+				t2 = time.clock()
+				#if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
+				if counter < SampleEpisode:
+					if (t2 - t1) >= 0.2:
+						pathi = path + action[index[0]]+ action[index[0]]
+						index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
+						counter+=1
+						t1 = time.clock()
+				elif counter == SampleEpisode:
+					t12 = time.clock()
+					counter += 1
+				else:
+					print(counter)
+					ind = 1
+					t22 = time.clock()
+					if t22 - t12 >= relaxTime:
+						index[7] += 1
+						index[0] = index[7] % 2
+						if index[0] == 0:
+							roundcounter += 1
+						counter = 0
+						ind = 0
+						if roundcounter == 2:
+							ind = 2
 
 			while (counter >= 1000):
 				cv2.imshow("Arrows",stop)
@@ -147,6 +173,17 @@ class frameRun2:
 			elif index[0] == 1:
 				cv2.imshow("Arrows",RClick)
 
+			if ind == 1:
+				cv2.imshow("Arrows", stop)
+
+			if ind == 2:
+				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
+				print(rows)
+				with open(path+'/index.csv',"w") as f:
+					f_csv = csv.writer(f)
+					f_csv.writerows(rows)
+				break
+
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
@@ -159,6 +196,7 @@ class frameRun2:
 
 		cv2.destroyAllWindows()
 		fvs.stop()
+		return
 
 	def ImgSandP(self,pathj,index,head,Y,H):
 		print(pathj)
