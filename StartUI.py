@@ -67,8 +67,8 @@ def TrainingButton():
 def TestButton():
   start = time.time()
 
-  print(validate_model(percent, 0, 4))  # for eyes
-  #validate_model(percent, 0, 2)  # for mouth
+  #validate_model(validate_model(percent, 0, 4))  # for eyes
+  validate_model(percent, 0, 2)  # for mouth
 
   end = time.time()
   #print(end - start)
