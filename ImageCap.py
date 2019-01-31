@@ -54,15 +54,6 @@ class frameGet:
 		frame = self.hisEqulColor(frame)
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-		# for (x, y, w, h) in faces:
-		# 	cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-		# 	roi_gray = gray[y:y + h, x:x + w]
-		# 	roi_color = img[y:y + h, x:x + w]
-		# 	eyes = eye_cascade.detectMultiScale(roi_gray)
-		# 	for (ex, ey, ew, eh) in eyes:
-		# 		cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
-		# print(len(faces))
-		# Display the resulting frame
 		ref_x = 0
 		FXR = 0
 		for (x, y, w, h) in faces:
@@ -76,8 +67,6 @@ class frameGet:
 				rx = int((ex+0.5*ew)-0.5*close)
 				ry = int((ey+0.5*eh)-0.5*close)
 				rw = rh = close
-				#cv2.rectangle(roi_color, (rx, ry), (rx + rw, ry + rh), (0, 255, 0), 2)
-			#assign x,y,w,h to Global Valables
 				ref_x = ex
 				GXR = ex+x
 				GYR = ey+y
@@ -153,34 +142,45 @@ class frameRun:
 
 		action = ['/middle','/up','/down','/left','/right','/click']
 
-		counter = 0;
+		counter = 0
+		ind = 0
+		SampleEpisode = 50
+		roundcounter = 0
+		MaxRC = 4
+		relaxTime = 20
 
 		t1 = time.clock()
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			if GXR != 0 and Y != 0 and H != 0:
-				t2 = time.clock();
+				t2 = time.clock()
 				#if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
 
-				if (t2 - t1) >= 0.2:
-					pathi = path + action[index[0]]+ action[index[0]]
-
-					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
-					print(counter)
+				if counter < SampleEpisode:
+					if (t2 - t1) >= 0.2:
+						pathi = path + action[index[0]] + action[index[0]]
+						index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
+						print(counter)
+						counter += 1
+						t1 = time.clock()
+				elif counter == SampleEpisode:
+					t12 = time.clock()
 					counter += 1
-					t1 = time.clock();
-					 #change back to 6 later
+				else:
+					print(counter)
+					ind = 1
+					t22 = time.clock()
+					if t22 - t12 >= relaxTime:
+						index[7] += 1
+						index[0] = index[7] % 5
+						if index[0] == 0:
+							roundcounter += 1
+						counter = 0
+						ind = 0
+						if roundcounter == 2:
+							ind = 2
 
-			while (counter >= 1):
-				cv2.imshow("Arrows",stop)
-				t2 = time.clock();
-				if t2-t1 >=10:
-					index[7] += 1
-					counter = 0
-					if index[0] == 4:
-						return
-					break
 
 			if index[0] == 0:
 				cv2.imshow("Arrows",middle)
@@ -193,7 +193,16 @@ class frameRun:
 			elif index[0] == 4:
 				cv2.imshow("Arrows",right)
 
+			if ind == 1:
+				cv2.imshow("Arrows", stop)
 
+			if ind == 2:
+				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
+				print(rows)
+				with open(path + '/index.csv', "w") as f:
+					f_csv = csv.writer(f)
+					f_csv.writerows(rows)
+				break
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
@@ -206,6 +215,7 @@ class frameRun:
 
 		cv2.destroyAllWindows()
 		fvs.stop()
+		return
 
 
 	def ImgSandP(self,pathj,index,head,Y,H):
@@ -214,9 +224,6 @@ class frameRun:
 		cv2.imshow('head', head)
 		index += 1
 		return index
-
-	def timerReturn(self,):
-		print("...............")
 
 
 
