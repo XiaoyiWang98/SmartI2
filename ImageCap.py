@@ -6,6 +6,7 @@
 import cv2
 import numpy as np
 from threading import Thread
+import time
 import datetime
 import math
 import csv
@@ -112,6 +113,9 @@ class frameGet:
 
 
 class frameRun:
+
+
+
 	def __init__(self, device):
 		# 0 for internal webcam, 1 for usb webcam
 		if device == 0:
@@ -151,24 +155,31 @@ class frameRun:
 
 		counter = 0;
 
+		t1 = time.clock()
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			if GXR != 0 and Y != 0 and H != 0:
-				if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
+				t2 = time.clock();
+				#if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
+
+				if (t2 - t1) >= 0.2:
 					pathi = path + action[index[0]]+ action[index[0]]
 
 					index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
 					print(counter)
 					counter += 1
+					t1 = time.clock();
 					 #change back to 6 later
 
-			while (counter >= 100):
+			while (counter >= 1):
 				cv2.imshow("Arrows",stop)
-				if cv2.waitKey(1) & 0xFF == ord('f'):
+				t2 = time.clock();
+				if t2-t1 >=10:
 					index[7] += 1
-					index[0] = index[7] % 5
 					counter = 0
+					if index[0] == 4:
+						return
 					break
 
 			if index[0] == 0:
@@ -181,6 +192,7 @@ class frameRun:
 				cv2.imshow("Arrows",left)
 			elif index[0] == 4:
 				cv2.imshow("Arrows",right)
+
 
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
@@ -202,6 +214,9 @@ class frameRun:
 		cv2.imshow('head', head)
 		index += 1
 		return index
+
+	def timerReturn(self,):
+		print("...............")
 
 
 
