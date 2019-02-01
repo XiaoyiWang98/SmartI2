@@ -99,7 +99,7 @@ class TrainScreen(Screen):
         self.eyeAccuracy = validate_model(90, 0, 4)
         self.mouthAccuracy = validate_model(90, 0, 2)
 
-        if (self.eyeAccuracy < 80) or (self.mouthAccuracy < 80) :
+        if (self.eyeAccuracy < 0) or (self.mouthAccuracy < 0) :
             failLayout = FloatLayout(size=(500,300))
             self.countdown = Label(
                 id = 'countdown',

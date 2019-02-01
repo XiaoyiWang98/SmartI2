@@ -240,14 +240,17 @@ class seconds:
 		two = cv2.imread("numbers/two.png")
 		three = cv2.imread("numbers/three.png")
 		four = cv2.imread("numbers/four.png")
-		five = cv2.imread("numbers/five.jpg")
+		five = cv2.imread("numbers/five.png")
 		six = cv2.imread("numbers/six.png")
 		seven = cv2.imread("numbers/seven.png")
 		eight = cv2.imread("numbers/eight.png")
 		nine = cv2.imread("numbers/nine.png")
 		ten = cv2.imread("numbers/ten.png")
+		zero = cv2.imread("numbers/zero.png")
+		big = cv2.imread("Arrows/stop.png")
 		t1 = time.clock()
-		while counter > 0:
+		while counter >= 0:
+			cv2.namedWindow('Timer')
 			cv2.moveWindow('Timer', 800, 700)
 			t2 = time.clock()
 			if t2 - t1 > 0.5:
@@ -274,6 +277,10 @@ class seconds:
 				cv2.imshow('Timer', nine)
 			elif counter == 10:
 				cv2.imshow('Timer', ten)
+			elif counter == 0:
+				cv2.imshow('Timer',zero)
+			elif counter >= 10:
+				cv2.imshow('Timer',big)
 			if cv2.waitKey(1) == ord('q'):
 				break
 
