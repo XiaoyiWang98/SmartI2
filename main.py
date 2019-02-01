@@ -37,7 +37,7 @@ class EyeCollect(Screen):
         self.add_widget(layout)
 
         self.time = 10
-        Clock.schedule_interval(self.update, 1)
+        Clock.schedule_interval(self.update, 1)v
 
     def update(self, dt):
         if self.time == 0:

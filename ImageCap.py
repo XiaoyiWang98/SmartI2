@@ -72,10 +72,11 @@ class frameGet:
 				break
 
 		cv2.imshow('frame', frame)
-		cv2.moveWindow('frame', 1200, 400)
+		# cv2.moveWindow('frame', 1200, 400)  # windows
+		cv2.moveWindow('frame', 600, 100)  # mac
 		# if no face detected
-		Y = 0;
-		H = 0;
+		Y = 0
+		H = 0
 		if FXR != 0 and GXR != ref_x:
 			# Face position is good
 			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
@@ -85,7 +86,8 @@ class frameGet:
 				W = close
 				cut = frame[Y:(Y + H), X:(X + W)]
 				cv2.imshow("cut", cut)
-				cv2.moveWindow('cut', 1500, 20)
+				# cv2.moveWindow('frame', 1200, 400)  # windows
+				cv2.moveWindow('frame', 600, 100)  # mac
 				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
 
 		return frame, cut, GXR, Y, H
@@ -162,7 +164,8 @@ class frameRun:
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
-			cv2.moveWindow('Timer', 800, 700)
+			# cv2.moveWindow('frame', 800, 700)  # windows
+			cv2.moveWindow('frame', 200, 100)  # mac
 
 			if GXR != 0 and Y != 0 and H != 0:
 				t2 = time.clock()
@@ -188,7 +191,8 @@ class frameRun:
 					if roundcounter == MaxRC:
 						ind = 2
 
-			cv2.moveWindow('Arrows', 800, 200)
+			# cv2.moveWindow('frame', 800, 200)  # windows
+			cv2.moveWindow('frame', 600, 100)  # mac
 			if index[0] == 0:
 				cv2.imshow("Arrows",middle)
 			elif index[0] == 1:
@@ -229,7 +233,8 @@ class frameRun:
 		cv2.imwrite(pathj + str(index) + ".jpg", head)
 		print(Y, H)
 		cv2.imshow('head', head)
-		cv2.moveWindow('head', 1020, 20)
+		# cv2.moveWindow('frame', 1020, 400)  # windows
+		cv2.moveWindow('frame', 700, 100)  # mac
 		index += 1
 		return index
 
@@ -248,7 +253,8 @@ class seconds:
 		ten = cv2.imread("numbers/ten.png")
 		t1 = time.clock()
 		while counter > 0:
-			cv2.moveWindow('Timer', 800, 700)
+			# cv2.moveWindow('frame', 800, 700)  # windows
+			cv2.moveWindow('frame', 200, 100)  # mac
 			t2 = time.clock()
 			if t2 - t1 > 0.5:
 				t1 = time.clock()
