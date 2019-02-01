@@ -254,15 +254,15 @@ class seconds:
 		zero = cv2.imread("numbers/zero.png")
 		big = cv2.imread("Arrows/stop.png")
 		t1 = time.clock()
-<<<<<<< HEAD
+
 		while counter > 0:
 			# cv2.moveWindow('frame', 800, 700)  # windows
 			cv2.moveWindow('frame', 200, 100)  # mac
-=======
+
 		while counter >= 0:
 			cv2.namedWindow('Timer')
 			cv2.moveWindow('Timer', 800, 700)
->>>>>>> 1f247c96dd3aa557f7fda6741adbc441d2542282
+
 			t2 = time.clock()
 			if t2 - t1 > 0.5:
 				t1 = time.clock()
