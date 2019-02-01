@@ -63,10 +63,6 @@ class frameGet:
 			eyes = eye_cascade.detectMultiScale(roi_gray)
 			FXR = x
 			for (ex, ey, ew, eh) in eyes:
-
-				rx = int((ex+0.5*ew)-0.5*close)
-				ry = int((ey+0.5*eh)-0.5*close)
-				rw = rh = close
 				ref_x = ex
 				GXR = ex+x
 				GYR = ey+y
@@ -76,6 +72,7 @@ class frameGet:
 				break
 
 		cv2.imshow('frame', frame)
+		cv2.moveWindow('frame', 1200, 400)
 		# if no face detected
 		Y = 0;
 		H = 0;
@@ -88,6 +85,7 @@ class frameGet:
 				W = close
 				cut = frame[Y:(Y + H), X:(X + W)]
 				cv2.imshow("cut", cut)
+				cv2.moveWindow('cut', 1500, 20)
 				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
 
 		return frame, cut, GXR, Y, H
@@ -107,6 +105,7 @@ class frameRun:
 
 	def __init__(self, device):
 		# 0 for internal webcam, 1 for usb webcam
+
 		if device == 0:
 			src = 0
 			close = 30
@@ -127,6 +126,10 @@ class frameRun:
 		cv2.namedWindow("Arrows")
 
 
+
+
+
+
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		var = 1
@@ -138,24 +141,31 @@ class frameRun:
 		path = GenerateDataSet().mkdir()
 
 		index = [0,0,0,0,0,0,0,0]
-		#i,middlei,upi,downi,lefti,righti,clicki,Gi
+		print(path)
+		with open(path+'/index.csv') as f:
+			f_csv = csv.reader(f)
+			for row in f_csv:
+				print(int(row[1]))
+				for i in range(len(row)):
+					index[i] = int(row[i])
 
 		action = ['/middle','/up','/down','/left','/right','/click']
 
 		counter = 0
 		ind = 0
-		SampleEpisode = 50
+		SampleEpisode = 10
 		roundcounter = 0
-		MaxRC = 4
-		relaxTime = 20
+		MaxRC = 2
+		relaxTime = 10
 
 		t1 = time.clock()
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
+			cv2.moveWindow('Timer', 800, 700)
+
 			if GXR != 0 and Y != 0 and H != 0:
 				t2 = time.clock()
-				#if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
 
 				if counter < SampleEpisode:
 					if (t2 - t1) >= 0.2:
@@ -166,22 +176,19 @@ class frameRun:
 						t1 = time.clock()
 				elif counter == SampleEpisode:
 					t12 = time.clock()
+					index[7] += 1
+					index[0] = index[7] % 5
 					counter += 1
 				else:
-					print(counter)
-					ind = 1
-					t22 = time.clock()
-					if t22 - t12 >= relaxTime:
-						index[7] += 1
-						index[0] = index[7] % 5
-						if index[0] == 0:
-							roundcounter += 1
-						counter = 0
-						ind = 0
-						if roundcounter == 2:
-							ind = 2
+					seconds(relaxTime)
+					if index[0] == 0:
+						roundcounter += 1
+					counter = 0
+					ind = 0
+					if roundcounter == MaxRC:
+						ind = 2
 
-
+			cv2.moveWindow('Arrows', 800, 200)
 			if index[0] == 0:
 				cv2.imshow("Arrows",middle)
 			elif index[0] == 1:
@@ -193,8 +200,8 @@ class frameRun:
 			elif index[0] == 4:
 				cv2.imshow("Arrows",right)
 
-			if ind == 1:
-				cv2.imshow("Arrows", stop)
+
+			cv2.imshow("Timer", stop)
 
 			if ind == 2:
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
@@ -222,11 +229,55 @@ class frameRun:
 		cv2.imwrite(pathj + str(index) + ".jpg", head)
 		print(Y, H)
 		cv2.imshow('head', head)
+		cv2.moveWindow('head', 1020, 20)
 		index += 1
 		return index
 
 
+class seconds:
+	def __init__(self,counter):
+		one = cv2.imread("numbers/one.png")
+		two = cv2.imread("numbers/two.png")
+		three = cv2.imread("numbers/three.png")
+		four = cv2.imread("numbers/four.png")
+		five = cv2.imread("numbers/five.jpg")
+		six = cv2.imread("numbers/six.png")
+		seven = cv2.imread("numbers/seven.png")
+		eight = cv2.imread("numbers/eight.png")
+		nine = cv2.imread("numbers/nine.png")
+		ten = cv2.imread("numbers/ten.png")
+		t1 = time.clock()
+		while counter > 0:
+			cv2.moveWindow('Timer', 800, 700)
+			t2 = time.clock()
+			if t2 - t1 > 0.5:
+				t1 = time.clock()
+				counter -= 1
+			print(counter)
+			if counter == 1:
+				cv2.imshow('Timer', one)
+			elif counter == 2:
+				cv2.imshow('Timer', two)
+			elif counter == 3:
+				cv2.imshow('Timer', three)
+			elif counter == 4:
+				cv2.imshow('Timer', four)
+			elif counter == 5:
+				cv2.imshow('Timer', five)
+			elif counter == 6:
+				cv2.imshow('Timer', six)
+			elif counter == 7:
+				cv2.imshow('Timer', seven)
+			elif counter == 8:
+				cv2.imshow('Timer', eight)
+			elif counter == 9:
+				cv2.imshow('Timer', nine)
+			elif counter == 10:
+				cv2.imshow('Timer', ten)
+			if cv2.waitKey(1) == ord('q'):
+				break
 
 #Uncommand to direct start image capture process
 if __name__ == '__main__':
 	frameRun(0)
+	#seconds(5)

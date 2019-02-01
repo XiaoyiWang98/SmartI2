@@ -15,6 +15,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.utils import get_color_from_hex
 from train_model import train_model
 from validate_model import validate_model
+from kivy.config import Config
 
 class EyeCollect(Screen):
     def on_enter(self):
@@ -145,6 +146,9 @@ class SmartI(App):
         # Config Window
         Window.size = (500, 300)
         Window.clearcolor = get_color_from_hex('#2a3551')
+        Config.set('graphics','position','custom')
+        Config.set('graphics','left',1000)
+        Config.set('graphics','top', 1000)
         # Add Screens
         sm = ScreenManager()
         sm.add_widget(EyeCollect(name='eyecollect'))

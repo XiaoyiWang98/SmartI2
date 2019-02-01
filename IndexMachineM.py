@@ -44,16 +44,10 @@ class GenerateDataSet2:
 
 	def mkdir(self):
 
-		DataName = str(int(time.time()))
+		DataName = "1000";
 
 		path = "MouthDetector/CurrentData/" + DataName
 		folder = os.path.exists(path)
-
-		rows = [(DataName,)]
-		print(rows)
-		with open('MouthDetector/CurrentData/Dataset.csv', 'a') as f:
-			f_csv = csv.writer(f)
-			f_csv.writerows(rows)
 
 		if not folder:
 			os.makedirs(path)
@@ -61,14 +55,13 @@ class GenerateDataSet2:
 			for j in range(len(pathdir)):
 				pathi = path+pathdir[j]
 				os.makedirs(pathi)
+				with open(path + '/index.csv', 'w') as f:
+					f.write('0,0,0,0,0,0,0,0')
 			print("---  new folder...  ---")
 			print("---  OK  ---")
 
 		else:
 			print("---  There is this folder!  ---")
-
-		with open(path+'/index.csv','w') as f:
-			f.write('0, 0, 0, 0, 0, 0, 0, 0,')
 
 		return path
 

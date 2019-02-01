@@ -5,6 +5,7 @@
 import tkinter as tk
 import ImageCap as IC
 import sys
+import FramePredict as FP
 sys.path.insert(0, 'MouthDetector')
 import MouthDetection2 as MD
 import train_model
@@ -73,6 +74,9 @@ def TestButton():
   end = time.time()
   #print(end - start)
 
+def run():
+  FP.framePredict(var1.get())
+
 b = tk.Button(window, text='Eye Sample Collection', width=30,height=2,command=SampleCollectionButton)
 b.pack()
 
@@ -85,7 +89,7 @@ b1.pack()
 b2 = tk.Button(window, text='Testing', width=30,height=2,command=TestButton)
 b2.pack()
 
-b3 = tk.Button(window, text='Run', width=30,height=2,command=SampleCollectionButton)
+b3 = tk.Button(window, text='Run', width=30,height=2,command=run)
 b3.pack()
 
 

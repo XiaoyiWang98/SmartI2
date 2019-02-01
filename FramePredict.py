@@ -8,6 +8,8 @@ import numpy as np
 from threading import Thread
 import math
 from classificationOutput2 import classify
+import os
+import shutil
 import pyautogui
 
 class WebcamVideosStream:
@@ -79,30 +81,37 @@ class frameGet:
 			break
 
 		cv2.imshow('frame', frame)
+		cv2.moveWindow('frame', 100, 400)
 		# if no eye detected
 		Y = 0;
 		H = 0;
-		Flag = 0
-		if GXR != 0 and MXR != 0:
+		FlagM = 0
+		FlagE = 0
+		if GXR != 0 and MXR != 0 and GYR != 0 and MYR != 0:
 			# Face position is good
 			#if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
 			X = math.floor(GXR + (GXW / 2) - (close / 2))
 			Y = math.floor(GYR + (GXH / 2) - (close / 2))
 			H = close
 			W = close
-			eyecut = frame[Y:(Y + H), X:(X + W)]
-			cv2.imshow("Eycut", eyecut)
+			if X > 0 and Y > 0:
+				eyecut = frame[Y:(Y + H), X:(X + W)]
+				cv2.imshow("Eycut", eyecut)
+				cv2.moveWindow('Eycut', 500, 20)
+				FlagE = 1
 
 			MX = math.floor(MXR + (MXW / 2) - (closeM / 2))
-			MY = math.floor(MYR + (MXH / 2) - (3 * closeM / 5))
+			MY = math.floor(MYR + (MXH / 2) - ((3 * closeM )/ 5))
 			MH = closeM
 			MW = closeM
-			Mouthcut = frame[MY:(MY + MH), MX:(MX + MW)]
+			print(MX,MY,MH,MW)
+			if MX > 0 and MY >0:
+				Mouthcut = frame[MY:(MY + MH), MX:(MX + MW)]
+				cv2.imshow("Mouthcut", Mouthcut)
+				cv2.moveWindow('Mouthcut', 500, 200)
+				FlagM = 1
 
-			cv2.imshow("Mouthcut", Mouthcut)
-			Flag = 1
-
-		return frame, eyecut, Mouthcut, Flag
+		return frame, eyecut, Mouthcut, FlagE, FlagM
 
 
 class framePredict:
@@ -125,6 +134,12 @@ class framePredict:
 			closeM = 50
 			furtherM = 50
 		fvs = WebcamVideosStream(src).start()
+
+		if os.path.isdir("CurrentData/1000"):
+			shutil.rmtree('CurrentData/1000')
+
+		if os.path.isdir("MouthDetector/CurrentData/1000"):
+			shutil.rmtree('MouthDetector/CurrentData/1000')
 
 		#for arrows (instruction)
 		middle = cv2.imread("Arrows/mid.jpg")
@@ -151,10 +166,9 @@ class framePredict:
 
 
 		while var == 1:
-			frame, eye, mouth, Flag = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade, closeM, furtherM)
-			if Flag == 1:
+			frame, eye, mouth, FlagE, FlagM = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade, closeM, furtherM)
+			if FlagE == 1 and FlagM:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-				mouth = cv2.cvtColor(mouth.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 2)
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				self.ImgSandP2(eye,mouth)
@@ -183,6 +197,7 @@ class framePredict:
 			# else:
 			# 	cv2.imshow("Arrows",middle)
 
+			cv2.moveWindow('Arrows', 1000, 500)
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				break
@@ -194,7 +209,9 @@ class framePredict:
 
 	def ImgSandP2(self,eye,mouth):
 		cv2.imshow('EyeFrame', eye)
+		cv2.moveWindow('EyeFrame',20,20)
 		cv2.imshow("MouthFrame",mouth)
+		cv2.moveWindow('MouthFrame', 20, 200)
 
 def hisEqulColor(img):
 	ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
@@ -207,4 +224,4 @@ def hisEqulColor(img):
 
 #Uncommand to direct start image capture process
 if __name__ == '__main__':
-	framePredict(1)
+	framePredict(0)
