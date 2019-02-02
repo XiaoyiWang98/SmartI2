@@ -180,20 +180,14 @@ class framePredict:
 				if flag == 1:
 					pyautogui.click()
 					flag = 0
-			# if actionsE == 0:
-			# 	cv2.imshow("Arrows",up)
-			# 	pyautogui.moveRel(0, -10, duration=0.025)
-			# elif actionsE == 1:
-			# 	cv2.imshow("Arrows",down)
-			# 	pyautogui.moveRel(0, 10, duration=0.025)
-			# elif actionsE == 2:
-			# 	cv2.imshow("Arrows",left)
-			# 	pyautogui.moveRel(-10, 0, duration=0.025)
-			# elif actionsE == 3:
-			# 	cv2.imshow("Arrows",right)
-			# 	pyautogui.moveRel(10, 0, duration=0.025)
-			# else:
-			# 	cv2.imshow("Arrows",middle)
+				if actionsE == 0:
+					pyautogui.moveRel(0, -10, duration=0.025)
+				elif actionsE == 1:
+					pyautogui.moveRel(0, 10, duration=0.025)
+				elif actionsE == 2:
+					pyautogui.moveRel(-10, 0, duration=0.025)
+				elif actionsE == 3:
+					pyautogui.moveRel(10, 0, duration=0.025)
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				break
