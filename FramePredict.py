@@ -177,10 +177,25 @@ class framePredict:
 					flag = 0
 			elif actionsM == 6:
 				print(str(actionsM) + " Mouth Normal    Nothing")
+<<<<<<< HEAD
 				if flag == 1:
 					pyautogui.click()
 					flag = 0
 
+=======
+
+				if flag == 1:
+					pyautogui.click()
+					flag = 0
+				if actionsE == 0:
+					pyautogui.moveRel(0, -10, duration=0.025)
+				elif actionsE == 1:
+					pyautogui.moveRel(0, 10, duration=0.025)
+				elif actionsE == 2:
+					pyautogui.moveRel(-10, 0, duration=0.025)
+				elif actionsE == 3:
+					pyautogui.moveRel(10, 0, duration=0.025)
+>>>>>>> e260d86b751997e37dbe7d0af555f14a10b7d1a1
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)
 			# 	pyautogui.moveRel(0, -10, duration=0.025)
