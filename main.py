@@ -144,17 +144,17 @@ class SmartControl(Screen):
 
 class SmartI(App):
     def build(self):
-        dir = "./CurrentData/1000/"
-        if not os.path.exists(dir):
-            os.makedirs(dir)
-        with open(dir + '/index.csv', 'w') as f:
-            f.write('0,0,0,0,0,0,0,0')
-
-        dir = "./MouthDetector/CurrentData/1000/"
-        if not os.path.exists(dir):
-            os.makedirs(dir)
-        with open(dir + '/index.csv', 'w') as f:
-            f.write('0,0,0,0,0,0,0,0')
+        # dir = "./CurrentData/1000/"
+        # if not os.path.exists(dir):
+        #     os.makedirs(dir)
+        # with open(dir + '/index.csv', 'w') as f:
+        #     f.write('0,0,0,0,0,0,0,0')
+        #
+        # dir = "./MouthDetector/CurrentData/1000/"
+        # if not os.path.exists(dir):
+        #     os.makedirs(dir)
+        # with open(dir + '/index.csv', 'w') as f:
+        #     f.write('0,0,0,0,0,0,0,0')
 
         # Config Window
         Window.size = (500, 300)
