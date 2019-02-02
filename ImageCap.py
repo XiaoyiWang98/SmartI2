@@ -149,7 +149,7 @@ class frameRun:
 
 		action = ['/middle','/up','/down','/left','/right','/click']
 
-		counter = 0
+		counter = -1
 		ind = 0
 		SampleEpisode = 10
 		roundcounter = 0
@@ -160,6 +160,9 @@ class frameRun:
 
 		cut = np.zeros((200, 200 ,3), np.uint8)
 		showcut = cv2.resize(cut, (200, 200))
+		showarr = np.zeros((200, 200 ,3), np.uint8)
+
+
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
@@ -167,20 +170,24 @@ class frameRun:
 			if GXR != 0 and Y != 0 and H != 0:
 				t2 = time.clock()
 
-				if counter < SampleEpisode:
+				if counter == -1:
+					counter = 0
+				elif counter == 0:
+					seconds(relaxTime,showarr,showframe,showcut)
+					counter += 1
+				elif counter < SampleEpisode+1:
 					if (t2 - t1) >= 0.2:
 						pathi = path + action[index[0]] + action[index[0]]
 						index[index[0]+1], cut = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
 						print(counter)
 						counter += 1
 						t1 = time.clock()
-				elif counter == SampleEpisode:
+				elif counter == SampleEpisode+1:
 					t12 = time.clock()
 					index[7] += 1
 					index[0] = index[7] % 5
 					counter += 1
 				else:
-					seconds(relaxTime,showarr,showframe,showcut)
 					if index[0] == 0:
 						roundcounter += 1
 					counter = 0
@@ -310,4 +317,3 @@ class seconds:
 #Uncommand to direct start image capture process
 if __name__ == '__main__':
 	frameRun(0)
-	#seconds(5)
