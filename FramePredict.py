@@ -162,7 +162,7 @@ class framePredict:
 		cv2.namedWindow("MouthFrame")
 
 		miu_listE, thetaE = classify.classifyInit(0,4)
-		miu_listM, thetaM = classify.classifyInit(0,2)
+		miu_listM, thetaM = classify.classifyInit(0,3)
 
 		while var == 1:
 			frame, eye, mouth, FlagE, FlagM = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade, closeM, furtherM)
@@ -175,26 +175,26 @@ class framePredict:
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
-			if actionsM == 5:
-				cv2.imshow("Arrows", click)
+			if actionsM == 4:
+				print(actionsM+" Mouth Open    Click")
+			elif actionsM == 5:
+				print(actionsM + " Pursing lips    ForceNoOp")
 			elif actionsM == 6:
-				cv2.imshow("Arrows", FNoOp)
-			else:
-				cv2.imshow("Arrows", middle)
-			if actionsE == 0:
-				cv2.imshow("Arrows",up)
-				pyautogui.moveRel(0, -10, duration=0.025)
-			elif actionsE == 1:
-				cv2.imshow("Arrows",down)
-				pyautogui.moveRel(0, 10, duration=0.025)
-			elif actionsE == 2:
-				cv2.imshow("Arrows",left)
-				pyautogui.moveRel(-10, 0, duration=0.025)
-			elif actionsE == 3:
-				cv2.imshow("Arrows",right)
-				pyautogui.moveRel(10, 0, duration=0.025)
-			else:
-				cv2.imshow("Arrows",middle)
+				print(actionsM + " Mouth Normal    ForceNoOp")
+			# if actionsE == 0:
+			# 	cv2.imshow("Arrows",up)
+			# 	pyautogui.moveRel(0, -10, duration=0.025)
+			# elif actionsE == 1:
+			# 	cv2.imshow("Arrows",down)
+			# 	pyautogui.moveRel(0, 10, duration=0.025)
+			# elif actionsE == 2:
+			# 	cv2.imshow("Arrows",left)
+			# 	pyautogui.moveRel(-10, 0, duration=0.025)
+			# elif actionsE == 3:
+			# 	cv2.imshow("Arrows",right)
+			# 	pyautogui.moveRel(10, 0, duration=0.025)
+			# else:
+			# 	cv2.imshow("Arrows",middle)
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				break
