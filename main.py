@@ -4,6 +4,7 @@ sys.path.insert(0, 'MouthDetector')
 import MouthDetection2 as md
 import train_model
 import FramePredict as fp
+import os
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -143,6 +144,18 @@ class SmartControl(Screen):
 
 class SmartI(App):
     def build(self):
+        dir = "./CurrentData/1000/"
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        with open(dir + '/index.csv', 'w') as f:
+            f.write('0,0,0,0,0,0,0,0')
+
+        dir = "./MouthDetector/CurrentData/1000/"
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        with open(dir + '/index.csv', 'w') as f:
+            f.write('0,0,0,0,0,0,0,0')
+
         # Config Window
         Window.size = (500, 300)
         Window.clearcolor = get_color_from_hex('#2a3551')
