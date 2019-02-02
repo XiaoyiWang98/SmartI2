@@ -176,11 +176,11 @@ class framePredict:
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
 			if actionsM == 4:
-				print(actionsM+" Mouth Open    Click")
+				print(str(actionsM)+" Mouth Open    Click")
 			elif actionsM == 5:
-				print(actionsM + " Pursing lips    ForceNoOp")
+				print(str(actionsM) + " Pursing lips    ForceNoOp")
 			elif actionsM == 6:
-				print(actionsM + " Mouth Normal    ForceNoOp")
+				print(str(actionsM) + " Mouth Normal    ForceNoOp")
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)
 			# 	pyautogui.moveRel(0, -10, duration=0.025)
