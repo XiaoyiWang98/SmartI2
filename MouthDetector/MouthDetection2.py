@@ -132,7 +132,7 @@ class frameRun2:
 				for i in range(len(row)):
 					index[i] = int(row[i])
 
-		action = ['/click','/ForceNoOp']
+		action = ['/click','/ForceNoOp','/nothing']
 
 		counter = -1
 		ind = 0
