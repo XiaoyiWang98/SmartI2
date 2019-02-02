@@ -51,7 +51,7 @@ class GenerateDataSet2:
 
 		if not folder:
 			os.makedirs(path)
-			pathdir = ['/click','/Nothing','/ForceNoOp']
+			pathdir = ['/click','/ForceNoOp']
 			for j in range(len(pathdir)):
 				pathi = path+pathdir[j]
 				os.makedirs(pathi)

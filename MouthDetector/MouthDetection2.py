@@ -63,8 +63,6 @@ class frameGet2:
 			GXH = eh
 			break
 
-		cv2.imshow('frame', frame)
-		cv2.moveWindow('frame', 1200, 400)
 		# if no face detected
 		Y = 0;
 		H = 0;
@@ -75,8 +73,6 @@ class frameGet2:
 			H = close
 			W = close
 			cut = frame[Y:(Y + H), X:(X + W)]
-			cv2.imshow("cut", cut)
-			cv2.moveWindow('cut', 1500, 20)
 
 		return frame, cut, GXR, Y, H
 
@@ -124,8 +120,6 @@ class frameRun2:
 
 		#Read index
 
-		cv2.namedWindow("head")
-
 		path = GenerateDataSet2().mkdir()
 
 		index = [0,0,0,0,0,0,0,0]
@@ -138,14 +132,14 @@ class frameRun2:
 				for i in range(len(row)):
 					index[i] = int(row[i])
 
-		action = ['/click','/Nothing','/ForceNoOp']
+		action = ['/click','/ForceNoOp']
 
 		counter = -1
 		ind = 0
 		SampleEpisode = 50
 		roundcounter = 0
 		MaxRC = 2
-		relaxTime = 10
+		relaxTime = 5
 
 		t1 = time.clock()
 

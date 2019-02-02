@@ -53,7 +53,7 @@ class GenerateDataSet:
 
 		if not folder:
 			os.makedirs(path)
-			pathdir = ['/middle', '/up', '/down', '/left', '/right']
+			pathdir = ['/up', '/down', '/left', '/right']
 			for j in range(len(pathdir)):
 				pathi = path+pathdir[j]
 				os.makedirs(pathi)
