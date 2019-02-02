@@ -64,7 +64,7 @@ class classify:
     else:  # for mouth
       idx = prob.index(max(prob)) + 4
 
-    print(idx, className(prob.index(max(prob)), num_of_classes))
+    # print(idx, className(prob.index(max(prob)), num_of_classes))
     # print(prob)
 
     return idx

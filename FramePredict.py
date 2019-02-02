@@ -180,7 +180,7 @@ class framePredict:
 			elif actionsM == 5:
 				print(str(actionsM) + " Pursing lips    ForceNoOp")
 			elif actionsM == 6:
-				print(str(actionsM) + " Mouth Normal    ForceNoOp")
+				print(str(actionsM) + " Mouth Normal    Nothing")
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)
 			# 	pyautogui.moveRel(0, -10, duration=0.025)
