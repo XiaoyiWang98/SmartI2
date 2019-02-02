@@ -110,6 +110,14 @@ class frameRun2:
 		cv2.namedWindow("Arrows")
 		cv2.moveWindow('Arrows', 800, 400)
 
+
+		a = cv2.imread("rotating/3.png")
+		b = cv2.imread("rotating/4.png")
+		c = cv2.imread("rotating/5.png")
+		d = cv2.imread("rotating/6.png")
+		e = cv2.imread("rotating/7.png")
+
+
 		face_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
 		eye_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
 		var = 1
@@ -132,14 +140,19 @@ class frameRun2:
 
 		action = ['/click','/Nothing','/ForceNoOp']
 
-		counter = 0
+		counter = -1
 		ind = 0
 		SampleEpisode = 50
 		roundcounter = 0
-		MaxRC = 4
+		MaxRC = 2
 		relaxTime = 10
 
 		t1 = time.clock()
+
+		cut = np.zeros((200, 200 ,3), np.uint8)
+		showcut = cv2.resize(cut, (200, 200))
+		showarr = np.zeros((200, 200 ,3), np.uint8)
+		showframe = np.zeros((200, 200 ,3), np.uint8)
 		while var == 1:
 			frame, head, GXR, Y, H = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
 			cv2.moveWindow('Timer', 800, 700)
@@ -147,19 +160,23 @@ class frameRun2:
 			if GXR != 0 and Y != 0 and H != 0:
 				t2 = time.clock()
 				#if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
-				if counter < SampleEpisode:
+				if counter == -1:
+					counter = 0
+				elif counter == 0:
+					seconds2(relaxTime,showarr,showframe,showcut)
+					counter += 1
+				elif counter < SampleEpisode:
 					if (t2 - t1) >= 0.2:
 						pathi = path + action[index[0]]+ action[index[0]]
-						index[index[0]+1] = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
+						index[index[0]+1], cut = self.ImgSandP(pathi,index[index[0]+1],head,Y,H)
 						counter+=1
 						t1 = time.clock()
 				elif counter == SampleEpisode:
 					t12 = time.clock()
 					index[7] += 1
-					index[0] = index[7] % 3
+					index[0] = index[7] % 2
 					counter += 1
 				else:
-					seconds2(relaxTime)
 					if index[0] == 0:
 						roundcounter += 1
 					counter = 0
@@ -168,12 +185,36 @@ class frameRun2:
 						ind = 2
 
 			cv2.moveWindow('Arrows', 800, 200)
-			if index[0] == 0:
-				cv2.imshow("Arrows",click)
-			elif index[0] == 1:
-				cv2.imshow("Arrows",RClick)
 
-			cv2.imshow("Timer", stop)
+
+			if index[0] == 0:
+				arr = click
+			elif index[0] == 1:
+				arr = RClick
+
+
+			indsap = counter%5
+			if indsap == 0:
+				sap = a
+			elif indsap == 1:
+				sap = b
+			elif indsap == 2:
+				sap = c
+			elif indsap == 3:
+				sap = d
+			elif indsap == 4:
+				sap = e
+
+
+			showarr = cv2.resize(arr, (200,200))
+			showframe = cv2.resize(frame, (200, 200))
+			showcut = cv2.resize(cut, (200,200))
+			showsap = cv2.resize(sap, (200,200))
+			numpy_horizontal = np.hstack((showarr,showsap))
+			numpy2 = np.hstack((showcut,showframe))
+			numpytotal = np.vstack((numpy_horizontal,numpy2))
+			cv2.imshow("Arrows",numpytotal)
+
 
 			if ind == 2:
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
@@ -198,54 +239,61 @@ class frameRun2:
 		return
 
 	def ImgSandP(self,pathj,index,head,Y,H):
-		print(pathj)
 		cv2.imwrite(pathj + str(index) + ".jpg", head)
-		print(Y, H)
-		cv2.imshow('head', head)
-		cv2.moveWindow('head', 1020, 20)
 		index += 1
-		return index
+		return index, head
 
 class seconds2:
-	def __init__(self,counter):
+	def __init__(self,counter, showarr, showframe, showcut):
 		one = cv2.imread("numbers/one.png")
 		two = cv2.imread("numbers/two.png")
 		three = cv2.imread("numbers/three.png")
 		four = cv2.imread("numbers/four.png")
-		five = cv2.imread("numbers/five.jpg")
+		five = cv2.imread("numbers/five.png")
 		six = cv2.imread("numbers/six.png")
 		seven = cv2.imread("numbers/seven.png")
 		eight = cv2.imread("numbers/eight.png")
 		nine = cv2.imread("numbers/nine.png")
 		ten = cv2.imread("numbers/ten.png")
+		zero = cv2.imread("numbers/zero.png")
+		big = cv2.imread("Arrows/stop.png")
 		t1 = time.clock()
-		while counter > 0:
-			cv2.moveWindow('Timer', 800, 700)
+		while counter >= 0:
 			t2 = time.clock()
 			if t2 - t1 > 0.5:
 				t1 = time.clock()
 				counter -= 1
 			print(counter)
 			if counter == 1:
-				cv2.imshow('Timer', one)
+				num = one
 			elif counter == 2:
-				cv2.imshow('Timer', two)
+				num = two
 			elif counter == 3:
-				cv2.imshow('Timer', three)
+				num = three
 			elif counter == 4:
-				cv2.imshow('Timer', four)
+				num = four
 			elif counter == 5:
-				cv2.imshow('Timer', five)
+				num = five
 			elif counter == 6:
-				cv2.imshow('Timer', six)
+				num = six
 			elif counter == 7:
-				cv2.imshow('Timer', seven)
+				num = seven
 			elif counter == 8:
-				cv2.imshow('Timer', eight)
+				num = eight
 			elif counter == 9:
-				cv2.imshow('Timer', nine)
+				num = nine
 			elif counter == 10:
-				cv2.imshow('Timer', ten)
+				num = ten
+			elif counter == 0:
+				num = zero
+			elif counter >= 10:
+				num = big
+
+			num = cv2.resize(num, (200,200))
+			numpy_horizontal = np.hstack((showarr,num))
+			numpy2 = np.hstack((showcut,showframe))
+			numpytotal = np.vstack((numpy_horizontal,numpy2))
+			cv2.imshow("Arrows",numpytotal)
 			if cv2.waitKey(1) == ord('q'):
 				break
 
