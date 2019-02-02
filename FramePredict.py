@@ -176,28 +176,26 @@ class framePredict:
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
-			# if actionsM == 5:
-			# 	cv2.imshow("Arrows", click)
-			# elif actionsM == 6:
-			# 	cv2.imshow("Arrows", FNoOp)
-			# else:
-			# 	cv2.imshow("Arrows", middle)
-			# if actionsE == 0:
-			# 	cv2.imshow("Arrows",up)
-			# 	pyautogui.moveRel(0, -10, duration=0.025)
-			# elif actionsE == 1:
-			# 	cv2.imshow("Arrows",down)
-			# 	pyautogui.moveRel(0, 10, duration=0.025)
-			# elif actionsE == 2:
-			# 	cv2.imshow("Arrows",left)
-			# 	pyautogui.moveRel(-10, 0, duration=0.025)
-			# elif actionsE == 3:
-			# 	cv2.imshow("Arrows",right)
-			# 	pyautogui.moveRel(10, 0, duration=0.025)
-			# else:
-			# 	cv2.imshow("Arrows",middle)
-
-			cv2.moveWindow('Arrows', 1000, 500)
+			if actionsM == 5:
+				cv2.imshow("Arrows", click)
+			elif actionsM == 6:
+				cv2.imshow("Arrows", FNoOp)
+			else:
+				cv2.imshow("Arrows", middle)
+			if actionsE == 0:
+				cv2.imshow("Arrows",up)
+				pyautogui.moveRel(0, -10, duration=0.025)
+			elif actionsE == 1:
+				cv2.imshow("Arrows",down)
+				pyautogui.moveRel(0, 10, duration=0.025)
+			elif actionsE == 2:
+				cv2.imshow("Arrows",left)
+				pyautogui.moveRel(-10, 0, duration=0.025)
+			elif actionsE == 3:
+				cv2.imshow("Arrows",right)
+				pyautogui.moveRel(10, 0, duration=0.025)
+			else:
+				cv2.imshow("Arrows",middle)
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
 				break

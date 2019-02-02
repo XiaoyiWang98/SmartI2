@@ -37,7 +37,7 @@ class EyeCollect(Screen):
         self.add_widget(layout)
 
         self.time = 10
-        Clock.schedule_interval(self.update, 1)v
+        Clock.schedule_interval(self.update, 1)
 
     def update(self, dt):
         if self.time == 0:
@@ -99,7 +99,7 @@ class TrainScreen(Screen):
         self.eyeAccuracy = validate_model(90, 0, 4)
         self.mouthAccuracy = validate_model(90, 0, 2)
 
-        if (self.eyeAccuracy < 0) or (self.mouthAccuracy < 0) :
+        if (self.eyeAccuracy < 90) or (self.mouthAccuracy < 90) :
             failLayout = FloatLayout(size=(500,300))
             self.countdown = Label(
                 id = 'countdown',

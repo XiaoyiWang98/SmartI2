@@ -147,14 +147,14 @@ class frameRun:
 				for i in range(len(row)):
 					index[i] = int(row[i])
 
-		action = ['/middle','/up','/down','/left','/right','/click']
+		action = ['/up','/down','/left','/right','/click']
 
 		counter = -1
 		ind = 0
 		SampleEpisode = 10
 		roundcounter = 0
 		MaxRC = 2
-		relaxTime = 10
+		relaxTime = 5
 
 		t1 = time.clock()
 
@@ -185,7 +185,7 @@ class frameRun:
 				elif counter == SampleEpisode+1:
 					t12 = time.clock()
 					index[7] += 1
-					index[0] = index[7] % 5
+					index[0] = index[7] % 4
 					counter += 1
 				else:
 					if index[0] == 0:
@@ -198,14 +198,12 @@ class frameRun:
 			cv2.moveWindow('Arrows', 800, 200)
 
 			if index[0] == 0:
-				arr = middle
-			elif index[0] == 1:
 				arr = up
-			elif index[0] == 2:
+			elif index[0] == 1:
 				arr = down
-			elif index[0] == 3:
+			elif index[0] == 2:
 				arr = left
-			elif index[0] == 4:
+			elif index[0] == 3:
 				arr = right
 
 			indsap = counter%5
