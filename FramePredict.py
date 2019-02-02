@@ -135,21 +135,13 @@ class framePredict:
 			furtherM = 50
 		fvs = WebcamVideosStream(src).start()
 
-		if os.path.isdir("CurrentData/1000"):
-			shutil.rmtree('CurrentData/1000')
+		# if os.path.isdir("CurrentData/1000"):
+		# 	shutil.rmtree('CurrentData/1000')
+		#
+		# if os.path.isdir("MouthDetector/CurrentData/1000"):
+		# 	shutil.rmtree('MouthDetector/CurrentData/1000')
 
-		if os.path.isdir("MouthDetector/CurrentData/1000"):
-			shutil.rmtree('MouthDetector/CurrentData/1000')
-
-		#for arrows (instruction)
-		middle = cv2.imread("Arrows/mid.jpg")
-		up = cv2.imread("Arrows/up.png")
-		down = cv2.imread("Arrows/down.jpg")
-		left = cv2.imread("Arrows/left.png")
-		right = cv2.imread("Arrows/Right.jpg")
-		click = cv2.imread("Arrows/click.png")
-		FNoOp = cv2.imread("Arrows/FNoOp.png")
-		cv2.namedWindow("Arrows")
+		flag = 0
 
 		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		Mouth_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
@@ -177,10 +169,21 @@ class framePredict:
 
 			if actionsM == 4:
 				print(str(actionsM)+" Mouth Open    Click")
+				if flag == 0:
+					flag = 1
 			elif actionsM == 5:
 				print(str(actionsM) + " Pursing lips    ForceNoOp")
+				if flag == 1:
+					flag = 0
 			elif actionsM == 6:
+<<<<<<< HEAD
 				print(str(actionsM) + " Mouth Normal    Nothing")
+=======
+				print(str(actionsM) + " Mouth Normal    nothing")
+				if flag == 1:
+					pyautogui.click()
+					flag = 0
+>>>>>>> 07eba3cb70bd4c62aeaa5e044c41bba26e4ea948
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)
 			# 	pyautogui.moveRel(0, -10, duration=0.025)
