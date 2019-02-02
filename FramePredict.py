@@ -187,13 +187,13 @@ class framePredict:
 					pyautogui.click()
 					flag = 0
 				if actionsE == 0:
-					pyautogui.moveRel(0, -10, duration=0.025)
+					pyautogui.moveRel(0, -15, duration=0.025)
 				elif actionsE == 1:
-					pyautogui.moveRel(0, 10, duration=0.025)
+					pyautogui.moveRel(0, 15, duration=0.025)
 				elif actionsE == 2:
-					pyautogui.moveRel(-10, 0, duration=0.025)
+					pyautogui.moveRel(-15, 0, duration=0.025)
 				elif actionsE == 3:
-					pyautogui.moveRel(10, 0, duration=0.025)
+					pyautogui.moveRel(15, 0, duration=0.025)
 
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)
