@@ -18,6 +18,7 @@ from train_model import train_model
 from validate_model import validate_model
 from kivy.config import Config
 
+
 class EyeCollect(Screen):
     def on_enter(self):
         self.clear_widgets()
@@ -96,9 +97,9 @@ class TrainScreen(Screen):
     def train(self, dt):
         Clock.unschedule(self.train)
         train_model(90, 1, 4) 
-        train_model(90, 1, 2) 
+        train_model(90, 1, 3)
         self.eyeAccuracy = validate_model(90, 0, 4)
-        self.mouthAccuracy = validate_model(90, 0, 2)
+        self.mouthAccuracy = validate_model(90, 0, 3)
 
         if (self.eyeAccuracy < 90) or (self.mouthAccuracy < 90) :
             failLayout = FloatLayout(size=(500,300))

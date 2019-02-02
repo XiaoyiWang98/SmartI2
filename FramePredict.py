@@ -164,12 +164,11 @@ class framePredict:
 		miu_listE, thetaE = classify.classifyInit(0,4)
 		miu_listM, thetaM = classify.classifyInit(0,2)
 
-
 		while var == 1:
 			frame, eye, mouth, FlagE, FlagM = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade, closeM, furtherM)
 			if FlagE == 1 and FlagM:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 2)
+				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				self.ImgSandP2(eye,mouth)
 

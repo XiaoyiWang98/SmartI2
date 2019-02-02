@@ -21,8 +21,6 @@ def train_model(percent, info, num_of_classes):
   train_data = []
   flag = 1
 
-  #train_data = [accessImgPixelVal(train, num_of_classes) for train in train_set]
-
   for train in train_set:
     pixels = accessImgPixelVal(train, num_of_classes)
     train_data.append(pixels)
@@ -137,23 +135,26 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     valid_set = [valid_up, valid_down, valid_left, valid_right]
 
   else:  # for mouth images
-    mouth_open, mouth_line = [], []
+    mouth_open, mouth_line, mouth_nothing = [], [], []
     for file in folders:
       img_path = data_path + file + '/'
       mouth_open = mouth_open + [f for f in glob.glob(img_path + 'click/' + '*.jpg')]
       mouth_line = mouth_line + [f for f in glob.glob(img_path + 'ForceNoOp/' + '*.jpg')]
+      mouth_nothing = mouth_nothing + [f for f in glob.glob(img_path + 'nothing/' + '*.jpg')]
     train_mouth_open, valid_mouth_open = split(mouth_open, percent)
     train_mouth_line, valid_mouth_line = split(mouth_line, percent)
+    train_mouth_nothing, valid_mouth_nothing = split(mouth_nothing, percent)
 
     if info == 1:  # print information
-      print('Total Number of Data: \n   mouth_open: ', len(mouth_open), '; mouth_force_no_op: ', len(mouth_line))
+      print('Total Number of Data: \n   mouth_open: ', len(mouth_open), '; mouth_force_no_op: ', len(mouth_line),
+            '; mouth_nothing: ', len(mouth_nothing))
       print('Number of Training Data: \n   mouth_open: ', len(train_mouth_open), '; mouth_force_no_op: ',
-            len(train_mouth_line))
+            len(train_mouth_line), '; mouth_nothing: ', len(train_mouth_nothing))
       print('Number of Test Data: \n   mouth_open: ', len(valid_mouth_open), '; mouth_force_no_op: ',
-            len(valid_mouth_line))
+            len(valid_mouth_line), '; mouth_nothing: ', len(valid_mouth_nothing))
 
-    train_set = [train_mouth_open, train_mouth_line]
-    valid_set = [valid_mouth_open, valid_mouth_line]
+    train_set = [train_mouth_open, train_mouth_line, train_mouth_nothing]
+    valid_set = [valid_mouth_open, valid_mouth_line, valid_mouth_nothing]
 
   return train_set, valid_set
 

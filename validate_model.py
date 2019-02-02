@@ -73,15 +73,13 @@ def validate_model(percent, info, num_of_classes):
       print('Number of error cases for up, down, left, right:\n   ', prediction_result, '\n')
       print('Prediction accuracy for up, down, left, right (%):\n   ', formated_accuracy, '\n')
     else:  # for mouth
-      print('Number of error cases for mouth_open, mouth_force_no_op:\n   ', prediction_result, '\n')
-      print('Prediction accuracy for mouth_open, mouth_force_no_op (%):\n   ', formated_accuracy, '\n')
+      print('Number of error cases for mouth_open, mouth_force_no_op, mouth_nothing:\n   ', prediction_result, '\n')
+      print('Prediction accuracy for mouth_open, mouth_force_no_op, mouth_nothing (%):\n   ', formated_accuracy, '\n')
 
   else:
     print('There are no test images for at least one class!\n')
 
   return avg
-
-
 
 
 def className(m, num_of_classes):  # print class names
@@ -97,5 +95,8 @@ def className(m, num_of_classes):  # print class names
   else:  # for mouth
     if m == 0:
       return 'mouth_open (click)'
-    else:
+    elif m == 1:
       return 'mouth_forceNoOp'
+    else:
+      return 'mouth_nothing'
+

@@ -9,6 +9,7 @@ import math
 import os
 import csv
 import cv2
+import glob
 
 
 class classify:
@@ -28,8 +29,9 @@ class classify:
       f.close()
     return miu_list, theta
 
+
   # this function will return an index, where:
-  # 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
+  # 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> click (mouth_open); 5 -> forceNoOp; 6 -> mouth_nothing
   def classifySingleImage2(self, img, miu_list, theta, num_of_classes):
     if num_of_classes == 4:
       img = cv2.equalizeHist(img)  # histogram equalization
@@ -54,61 +56,60 @@ class classify:
       prob[m] = math.pow(2 * math.pi * theta ** 2, -num_of_attribute / 200) * math.exp(expo) / num_of_classes
 
     if num_of_classes == 4:  # for eyes
-      #print(prob, math.exp(-200))
-      if max(prob) < math.exp(-200):
-        idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
-      else:
-        idx = prob.index(max(prob))
-      print(className(prob.index(max(prob)), num_of_classes))
+      #if max(prob) < threshold_eye:
+      #if max(prob) < math.exp(-300):
+      #  idx = 4  # if max(prob) < some threshold, output "noPredictionResult"
+      #else:
+      idx = prob.index(max(prob))
     else:  # for mouth
-      #print(prob, math.exp(-200))
-      if prob.index(max(prob)) + 5 == 5:
-        idx = 5
-      else:
-        idx = 4
+      idx = prob.index(max(prob)) + 4
 
-    print(className(prob.index(max(prob)), num_of_classes))
-
-   #print(prob[0], prob[1])
-    print(idx)
-
+    print(idx, className(prob.index(max(prob)), num_of_classes))
+    # print(prob)
 
     return idx
 
 
+  # returns the threshold for eye images
+  def tuneThreshold(self, miu_list, theta):
+    threshold_eye = 0
+    path_eye = "./TestThreshold/"
+
+    img_eye = [cv2.imread(f, 0) for f in glob.glob(path_eye + '*.jpg')]
+
+    classify_eye, probs = [], []
+    for img in img_eye:
+      idx, prob = classify.classifySingleImage2(0, img, miu_list, theta, 4, threshold_eye)
+      classify_eye.append(idx)
+      probs = probs + prob
+
+    count_error_eye = sum(1 for x in classify_eye if x != 4)
+    i = min(prob)/2  # learning rate
+
+    while count_error_eye != 0:
+      classify_eye = []
+      threshold_eye = threshold_eye + i
+      for img in img_eye:
+        idx, prob = classify.classifySingleImage2(0, img, miu_list, theta, 4, threshold_eye)
+        classify_eye.append(idx)
+      count_error_eye = sum(1 for x in classify_eye if x != 4)
+      #print(count_error_eye)
+
+    return threshold_eye
+
+
 if __name__ == "__main__":
-  # miu_list, theta = classify.classifyInit(0, 4)
-  # img = cv2.imread("down1.jpg", 0)
-  # idx = classify.classifySingleImage2(0, img, miu_list, theta, 4)
-  # print(idx)
+
+  # miu_listE, thetaE = classify.classifyInit(0, 4)
+  # threshold = classify.tuneThreshold(0, miu_listE, thetaE)
+  # print(threshold)
+  #
+  # img = cv2.imread("middle5.jpg", 0)
+  # idx = classify.classifySingleImage2(0, img, miu_listE, thetaE, 4)
 
 
-  miu_list, theta = classify.classifyInit(0, 2)
+  miu_list, theta = classify.classifyInit(0, 3)
 
-  img = cv2.imread("Nothing0.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
+  img = cv2.imread("click0.jpg")
+  idx = classify.classifySingleImage2(0, img, miu_list, theta, 3)
 
-  img = cv2.imread("Nothing1.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-
-
-  img = cv2.imread("Nothing2.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-
-  img = cv2.imread("Nothing3.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-
-  img = cv2.imread("Nothing4.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-
-  img = cv2.imread("Nothing5.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-
-  img = cv2.imread("Nothing6.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-
-  img = cv2.imread("Nothing7.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
-
-  img = cv2.imread("Nothing8.jpg")
-  idx = classify.classifySingleImage2(0, img, miu_list, theta, 2)
