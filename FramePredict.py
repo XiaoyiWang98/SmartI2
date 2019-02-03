@@ -164,8 +164,12 @@ class framePredict:
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				self.ImgSandP2(eye,mouth)
 
+<<<<<<< HEAD
+			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
+=======
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> click (mouth_open); 5 -> forceNoOp; 6 -> mouth_nothing
+>>>>>>> 2745fad1b1cd298773a73adedb5a95c2f9190c1d
 
 			if actionsM == 4:
 				print(str(actionsM)+" Mouth Open    Click")
@@ -230,6 +234,21 @@ def hisEqulColor(img):
 	cv2.merge(channels, ycrcb)
 	cv2.cvtColor(ycrcb, cv2.COLOR_YCR_CB2BGR, img)
 	return img
+
+def getImageIntensity(img):
+	grayscaleImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+	width = img.shape[0]
+	height = img.shape[1]
+
+	sumIntensity = 0
+	for i in range(width):
+		for j in range(height):
+			sumIntensity = sumIntensity + grayscaleImage[i,j]
+	
+	return (sumIntensity/grayscaleImage.size)
+			
+
+
 
 
 #Uncommand to direct start image capture process
