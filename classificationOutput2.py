@@ -107,9 +107,7 @@ if __name__ == "__main__":
   # img = cv2.imread("middle5.jpg", 0)
   # idx = classify.classifySingleImage2(0, img, miu_listE, thetaE, 4)
 
-
   miu_list, theta = classify.classifyInit(0, 3)
-
   img = cv2.imread("click0.jpg")
   idx = classify.classifySingleImage2(0, img, miu_list, theta, 3)
 
