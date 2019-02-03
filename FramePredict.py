@@ -165,7 +165,7 @@ class framePredict:
 				self.ImgSandP2(eye,mouth)
 
 
-			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
+			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> click (mouth_open); 5 -> forceNoOp; 6 -> mouth_nothing
 
 			if actionsM == 4:
 				print(str(actionsM)+" Mouth Open    Click")
@@ -181,7 +181,6 @@ class framePredict:
 				if flag == 1:
 					pyautogui.click()
 					flag = 0
-
 
 				if flag == 1:
 					pyautogui.click()
