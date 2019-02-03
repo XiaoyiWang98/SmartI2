@@ -45,7 +45,10 @@ class EyeCollect(Screen):
         if self.time == 0:
             ic.frameRun(0)
             Clock.unschedule(self.update)
-            self.manager.current = 'mouthcollect'
+            if (TrainScreen.mouthAccuracy > 90):
+                self.manager.current = 'trainscreen'
+            else:
+                self.manager.current = 'mouthcollect'
         self.time = self.time - 1
         self.countdown.text = str('Starting Eye Sample Collection in ' + str(self.time) + ' Seconds')
         
@@ -101,11 +104,11 @@ class TrainScreen(Screen):
         self.eyeAccuracy = validate_model(90, 0, 4)
         self.mouthAccuracy = validate_model(90, 0, 3)
 
-        if (self.eyeAccuracy < 90) or (self.mouthAccuracy < 90) :
+        if (self.eyeAccuracy < 90):
             failLayout = FloatLayout(size=(500,300))
             self.countdown = Label(
                 id = 'countdown',
-                text='Failed, Collecting New Samples in 5 Seconds',
+                text='Failed, Collecting New Eye Samples in 5 Seconds',
                 pos_hint={'x': 0, 'center_y': .5},
                 font_size='20sp'
             )
@@ -113,16 +116,36 @@ class TrainScreen(Screen):
             self.clear_widgets()
             self.add_widget(failLayout)
             self.time = 5
-            Clock.schedule_interval(self.update, 1)
+            Clock.schedule_interval(self.updateEye, 1)
+        elif (self.mouthAccuracy < 90):
+            failLayout = FloatLayout(size=(500,300))
+            self.countdown = Label(
+                id = 'countdown',
+                text='Failed, Collecting New Mouth Samples in 5 Seconds',
+                pos_hint={'x': 0, 'center_y': .5},
+                font_size='20sp'
+            )
+            failLayout.add_widget(self.countdown)
+            self.clear_widgets()
+            self.add_widget(failLayout)
+            self.time = 5
+            Clock.schedule_interval(self.updateMouth, 1)
         else:
             self.manager.current = 'smartcontrol'
 
-    def update(self, dt):
+    def updateEye(self, dt):
         if self.time == 0:
             Clock.unschedule(self.update)
             self.manager.current = 'eyecollect'
         self.time = self.time - 1
-        self.countdown.text = str('Failed, Collecting New Samples in ' + str(self.time) + ' Seconds')
+        self.countdown.text = str('Failed, Collecting New Eye Samples in ' + str(self.time) + ' Seconds')
+
+    def updateMouth(self, dt):
+        if self.time == 0:
+            Clock.unschedule(self.update)
+            self.manager.current = 'mouthcollect'
+        self.time = self.time - 1
+        self.countdown.text = str('Failed, Collecting New Mouth Samples in ' + str(self.time) + ' Seconds')
 
 class SmartControl(Screen):
 

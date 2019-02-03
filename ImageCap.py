@@ -173,15 +173,29 @@ class frameRun:
 		showcut = cv2.resize(cut, (200, 200))
 		showarr = np.zeros((200, 200 ,3), np.uint8)
 
+		FXMIN = 1000
+		FXMAX = 0
+
+		FYMIN = 1000
+		FYMAX = 0
+
+		FWMIN = 1000
+		FWMAX = 0
+
+		FHMIN = 1000
+		FHMAX = 0
 
 		while var == 1:
 			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
 			print(FX, FY, FW, FH)
 
-			if FX
-
 			if GXR != 0 and Y != 0 and H != 0:
+				FXMAX, FXMIN = self.compare(FX, FXMAX, FXMIN)
+				FYMAX, FYMIN = self.compare(FY, FYMAX, FYMIN)
+				FWMAX, FWMIN = self.compare(FW, FWMAX, FWMIN)
+				FHMAX, FHMIN = self.compare(FX, FHMAX, FHMIN)
+
 				t2 = time.clock()
 				if counter == -1:
 					counter = 0
@@ -247,6 +261,12 @@ class frameRun:
 				with open(path + '/index.csv', "w") as f:
 					f_csv = csv.writer(f)
 					f_csv.writerows(rows)
+
+				rows2 = [FXMAX,FXMIN,FYMAX,FYMAX,FWMAX,FWMIN,FHMAX,FHMIN]
+				with open(path + '/FacePos.csv', "w") as f2:
+					f_csv2 = csv.writer(f2)
+					f_csv2.writerows(rows2)
+
 				break
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
@@ -255,12 +275,24 @@ class frameRun:
 				with open(path+'/index.csv',"w") as f:
 					f_csv = csv.writer(f)
 					f_csv.writerows(rows)
+
+				rows2 = [(FXMAX,FXMIN,FYMAX,FYMIN,FWMAX,FWMIN,FHMAX,FHMIN)]
+				with open(path + '/FacePos.csv', "w") as f2:
+					f_csv2 = csv.writer(f2)
+					f_csv2.writerows(rows2)
 				break
 
 
 		cv2.destroyAllWindows()
 		fvs.stop()
 		return
+
+	def compare(self, value, Max, Min):
+		if value < Min:
+			Min = value
+		elif value > Max:
+			Max = value
+		return Max, Min
 
 
 	def ImgSandP(self,pathj,index,head,Y,H):
