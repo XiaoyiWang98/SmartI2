@@ -56,8 +56,18 @@ class frameGet:
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 		ref_x = 0
 		FXR = 0
+
+		FX = 0
+		FY = 0
+		FW = 0
+		FH = 0
+
+
 		for (x, y, w, h) in faces:
-			#cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+			FX = x
+			FY = y
+			FW = w
+			FH = h
 			roi_gray = gray[y:y + h, x:x + w]
 			roi_color = frame[y:y + h, x:x + w]
 			eyes = eye_cascade.detectMultiScale(roi_gray)
@@ -81,9 +91,10 @@ class frameGet:
 				H = close
 				W = close
 				cut = frame[Y:(Y + H), X:(X + W)]
+				cut = self.hisEqulColor(cut)
 				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
 
-		return frame, cut, GXR, Y, H
+		return frame, cut, GXR, Y, H, FX, FY, FW, FH
 
 	def hisEqulColor(self, img):
 		ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
@@ -164,12 +175,14 @@ class frameRun:
 
 
 		while var == 1:
-			frame, head, GXR, Y, H = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
+			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
+			print(FX, FY, FW, FH)
+
+			if FX
 
 			if GXR != 0 and Y != 0 and H != 0:
 				t2 = time.clock()
-
 				if counter == -1:
 					counter = 0
 				elif counter == 0:
@@ -183,7 +196,6 @@ class frameRun:
 						counter += 1
 						t1 = time.clock()
 				elif counter == SampleEpisode+1:
-					t12 = time.clock()
 					index[7] += 1
 					index[0] = index[7] % 4
 					counter += 1
