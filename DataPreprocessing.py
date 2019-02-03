@@ -34,6 +34,10 @@ def preprocessing(path, threshold):
 
     img_to_delete = [imgset[i] for i in img_idx_to_delete]
 
+    # delete files
+    # for i in img_to_delete:
+    #   os.remove(i)
+
   return img_to_delete
 
 
