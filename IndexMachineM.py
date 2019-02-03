@@ -57,6 +57,8 @@ class GenerateDataSet2:
 				os.makedirs(pathi)
 				with open(path + '/index.csv', 'w') as f:
 					f.write('0,0,0,0,0,0,0,0')
+				with open(path + '/FacePos.csv','w') as f:
+					f.write('0,0,0,0,0,0,0,0')
 			print("---  new folder...  ---")
 			print("---  OK  ---")
 
