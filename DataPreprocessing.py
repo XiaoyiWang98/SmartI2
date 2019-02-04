@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 
 
-def preprocessing(path, threshold):
+def preprocess(path, threshold):
   img_to_delete = []
   if os.path.exists(path):
     imgset = [f for f in glob.glob(path + '*.jpg')]
@@ -42,5 +42,5 @@ def preprocessing(path, threshold):
 
 
 if __name__ == '__main__':
-  set = preprocessing("./MouthDetector/CurrentData/1000/click/", 1.5)
+  set = preprocess("./MouthDetector/CurrentData/1000/click/", 1.5)
   print(set)

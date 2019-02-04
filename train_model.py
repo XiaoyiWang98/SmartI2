@@ -7,8 +7,7 @@ import glob
 import cv2
 import math
 import csv
-from multiprocessing.pool import ThreadPool
-
+from DataPreprocessing import preprocess
 
 def train_model(percent, info, num_of_classes):
   # percent = % of training data in the dataset;
@@ -101,6 +100,8 @@ def split(list, percent):  # split a list into two sub-lists
 
 
 def getImageSets(percent, info, num_of_classes):  # get train and validation image sets
+  thresh = 1.5  # threshold for outliers
+
   data_path = './CurrentData/' if num_of_classes == 4 else './MouthDetector/CurrentData/'
   # read csv
   file = open(data_path + 'Dataset.csv')
@@ -114,6 +115,12 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     up, down, left, right = [], [], [], []
     for file in folders:
       img_path = data_path + file + '/'
+
+      preprocess(img_path + 'up/', thresh)
+      preprocess(img_path + 'down/', thresh)
+      preprocess(img_path + 'left/', thresh)
+      preprocess(img_path + 'right/', thresh)
+
       up = up + [f for f in glob.glob(img_path + 'up/' + '*.jpg')]
       down = down + [f for f in glob.glob(img_path + 'down/' + '*.jpg')]
       left = left + [f for f in glob.glob(img_path + 'left/' + '*.jpg')]
@@ -138,6 +145,11 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     mouth_open, mouth_line, mouth_nothing = [], [], []
     for file in folders:
       img_path = data_path + file + '/'
+
+      preprocess(img_path + 'click/', thresh)
+      preprocess(img_path + 'ForceNoOp/', thresh)
+      preprocess(img_path + 'nothing/', thresh)
+
       mouth_open = mouth_open + [f for f in glob.glob(img_path + 'click/' + '*.jpg')]
       mouth_line = mouth_line + [f for f in glob.glob(img_path + 'ForceNoOp/' + '*.jpg')]
       mouth_nothing = mouth_nothing + [f for f in glob.glob(img_path + 'nothing/' + '*.jpg')]
