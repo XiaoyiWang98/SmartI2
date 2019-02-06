@@ -105,11 +105,13 @@ class frameGet:
 			MH = closeM
 			MW = closeM
 			print(MX,MY,MH,MW)
-			if MX > 0 and MY >0:
+			if MX > 0 and MY > 0:
 				Mouthcut = frame[MY:(MY + MH), MX:(MX + MW)]
 				cv2.imshow("Mouthcut", Mouthcut)
 				cv2.moveWindow('Mouthcut', 500, 200)
 				FlagM = 1
+
+
 
 		return frame, eyecut, Mouthcut, FlagE, FlagM
 
@@ -164,12 +166,6 @@ class framePredict:
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 				self.ImgSandP2(eye,mouth)
 
-<<<<<<< HEAD
-			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
-=======
-
-			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> click (mouth_open); 5 -> forceNoOp; 6 -> mouth_nothing
->>>>>>> 2745fad1b1cd298773a73adedb5a95c2f9190c1d
 
 			if actionsM == 4:
 				print(str(actionsM)+" Mouth Open    Click")

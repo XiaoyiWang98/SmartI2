@@ -45,36 +45,55 @@ class frameGet2:
 		GYR = 0
 		GXW = 0
 		GXH = 0
-		FXR = 0
 
 		# Capture frame-by-frame
 		frame = fvs.read()
-		frame = self.hisEqulColor(frame)
 		cut = 0
 		# Our operations on the frame come here
+		frame = self.hisEqulColor(frame)
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-		eyes = eye_cascade.detectMultiScale(gray, 1.7, 11)
-		# 	FXR = x
-		for (ex, ey, ew, eh) in eyes:
-			FXR = ex
-			GXR = ex
-			GYR = ey
-			GXW = ew
-			GXH = eh
-			break
+		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+		ref_x = 0
+		FXR = 0
 
+		FX = 0
+		FY = 0
+		FW = 0
+		FH = 0
+
+
+		for (x, y, w, h) in faces:
+			FX = x
+			FY = y
+			FW = w
+			FH = h
+			roi_gray = gray[y:y + h, x:x + w]
+			roi_color = frame[y:y + h, x:x + w]
+			eyes = eye_cascade.detectMultiScale(roi_gray)
+			FXR = x
+			for (ex, ey, ew, eh) in eyes:
+				ref_x = ex
+				GXR = ex+x
+				GYR = ey+y
+				GXW = ew
+				GXH = eh
+				cv2.rectangle(roi_color, (GXR, GYR), (GXR + GXW, GYR + GXH), (0, 255, 0), 2)
+				break
 		# if no face detected
 		Y = 0;
 		H = 0;
-		if FXR != 0:
+		if FXR != 0 and GXR != ref_x:
 			# Face position is good
-			X = math.floor(GXR + (GXW / 2) - (close / 2))
-			Y = math.floor(GYR + (GXH / 2) - (3*close / 5))
-			H = close
-			W = close
-			cut = frame[Y:(Y + H), X:(X + W)]
+			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
+				X = math.floor(GXR + (GXW / 2) - (close / 2))
+				Y = math.floor(GYR + (GXH / 2) - (close / 2))
+				H = close
+				W = close
+				cut = frame[Y:(Y + H), X:(X + W)]
+				cut = self.hisEqulColor(cut)
+				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
 
-		return frame, cut, GXR, Y, H
+		return frame, cut, GXR, Y, H, FX, FY, FW, FH
 
 	def hisEqulColor(self,img):
 		ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
@@ -106,15 +125,13 @@ class frameRun2:
 		cv2.namedWindow("Arrows")
 		cv2.moveWindow('Arrows', 800, 400)
 
-
 		a = cv2.imread("rotating/3.png")
 		b = cv2.imread("rotating/4.png")
 		c = cv2.imread("rotating/5.png")
 		d = cv2.imread("rotating/6.png")
 		e = cv2.imread("rotating/7.png")
 
-
-		face_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
+		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 		eye_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
 		var = 1
 
@@ -132,6 +149,21 @@ class frameRun2:
 				for i in range(len(row)):
 					index[i] = int(row[i])
 
+
+		FXAVG = 0
+
+		FYAVG = 0
+
+		FWAVG = 0
+
+		FHAVG = 0
+
+		AVGcounter = 0
+
+		with open('CurrentData/1000/FacePos.csv') as f2:
+			f_csv2 = csv.reader(f2)
+			for row2 in f_csv2:
+				FXAVG, FYAVG, FWAVG, FHAVG = int(row2[0]), int(row2[1]), int(row2[2]), int(row2[3])
 		action = ['/click','/ForceNoOp','/nothing']
 
 		counter = -1
@@ -141,15 +173,21 @@ class frameRun2:
 		MaxRC = 2
 		relaxTime = 5
 
+
 		t1 = time.clock()
 
 		cut = np.zeros((200, 200 ,3), np.uint8)
 		showcut = cv2.resize(cut, (200, 200))
 		showarr = np.zeros((200, 200 ,3), np.uint8)
 		showframe = np.zeros((200, 200 ,3), np.uint8)
+
+
 		while var == 1:
-			frame, head, GXR, Y, H = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
-			cv2.moveWindow('Timer', 800, 700)
+			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
+
+			disp = frame
+			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
+			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 
 			if GXR != 0 and Y != 0 and H != 0:
 				t2 = time.clock()
@@ -157,7 +195,7 @@ class frameRun2:
 				if counter == -1:
 					counter = 0
 				elif counter == 0:
-					seconds2(relaxTime,showarr,showframe,showcut)
+					seconds2.Run(0,relaxTime,showarr,showframe,showcut,fvs, face_cascade, close, further, eye_cascade, FXAVG, FYAVG, FWAVG, FHAVG,AVGcounter)
 					counter += 1
 				elif counter < SampleEpisode:
 					if (t2 - t1) >= 0.2:
@@ -239,8 +277,14 @@ class frameRun2:
 		index += 1
 		return index, head
 
+
+	def compare(self, value, AVG, counter):
+		NewAvg = (AVG*counter + value)/(counter + 1)
+		print(NewAvg)
+		return int(NewAvg)
+
 class seconds2:
-	def __init__(self,counter, showarr, showframe, showcut):
+	def Run(self,counter, showarr, showframe, showcut,fvs, face_cascade, close, further, eye_cascade, FXAVG, FYAVG, FWAVG, FHAVG,AVGcounter):
 		one = cv2.imread("numbers/one.png")
 		two = cv2.imread("numbers/two.png")
 		three = cv2.imread("numbers/three.png")
@@ -256,10 +300,10 @@ class seconds2:
 		t1 = time.clock()
 		while counter >= 0:
 			t2 = time.clock()
+
 			if t2 - t1 > 0.5:
 				t1 = time.clock()
 				counter -= 1
-			print(counter)
 			if counter == 1:
 				num = one
 			elif counter == 2:
@@ -284,6 +328,19 @@ class seconds2:
 				num = zero
 			elif counter >= 10:
 				num = big
+
+			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet2().Getframe(fvs, face_cascade, close, further,eye_cascade)
+
+			FXAVG = frameRun2.compare(0, FX, FXAVG, AVGcounter)
+			FYAVG = frameRun2.compare(0, FY, FYAVG, AVGcounter)
+			FWAVG = frameRun2.compare(0, FW, FWAVG, AVGcounter)
+			FHAVG = frameRun2.compare(0, FX, FHAVG, AVGcounter)
+			AVGcounter += 1
+			disp = frame
+			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
+			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+
+			showframe = cv2.resize(disp, (200, 200))
 
 			num = cv2.resize(num, (200,200))
 			numpy_horizontal = np.hstack((showarr,num))
