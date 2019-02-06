@@ -183,5 +183,6 @@ class SmartI(App):
         sm.add_widget(SmartControl(name='smartcontrol'))
         return sm
 
+
 if __name__ == '__main__':
     SmartI().run()
