@@ -182,6 +182,8 @@ class frameRun:
 		while var == 1:
 			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
+
+
 			if FX != 0:
 				FXAVG = self.compare(FX, FXAVG, AVGcounter)
 				FYAVG = self.compare(FY, FYAVG, AVGcounter)
