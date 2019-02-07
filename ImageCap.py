@@ -131,21 +131,17 @@ class frameRun:
 		stop = cv2.imread("Arrows/stop.png")
 		cv2.namedWindow("Arrows")
 
-
 		a = cv2.imread("rotating/3.png")
 		b = cv2.imread("rotating/4.png")
 		c = cv2.imread("rotating/5.png")
 		d = cv2.imread("rotating/6.png")
 		e = cv2.imread("rotating/7.png")
 
-
-
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		var = 1
 
 		#Read index
-
 
 		path = GenerateDataSet().mkdir()
 
@@ -173,34 +169,35 @@ class frameRun:
 		showcut = cv2.resize(cut, (200, 200))
 		showarr = np.zeros((200, 200 ,3), np.uint8)
 
-		FXMIN = 1000
-		FXMAX = 0
+		FXAVG = 0
 
-		FYMIN = 1000
-		FYMAX = 0
+		FYAVG = 0
 
-		FWMIN = 1000
-		FWMAX = 0
+		FWAVG = 0
 
-		FHMIN = 1000
-		FHMAX = 0
+		FHAVG = 0
+
+		AVGcounter = 0
 
 		while var == 1:
 			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
-			print(FX, FY, FW, FH)
+
+
+			if FX != 0:
+				FXAVG = self.compare(FX, FXAVG, AVGcounter)
+				FYAVG = self.compare(FY, FYAVG, AVGcounter)
+				FWAVG = self.compare(FW, FWAVG, AVGcounter)
+				FHAVG = self.compare(FH, FHAVG, AVGcounter)
+				AVGcounter += 1
 
 			if GXR != 0 and Y != 0 and H != 0:
-				FXMAX, FXMIN = self.compare(FX, FXMAX, FXMIN)
-				FYMAX, FYMIN = self.compare(FY, FYMAX, FYMIN)
-				FWMAX, FWMIN = self.compare(FW, FWMAX, FWMIN)
-				FHMAX, FHMIN = self.compare(FX, FHMAX, FHMIN)
 
 				t2 = time.clock()
 				if counter == -1:
 					counter = 0
 				elif counter == 0:
-					seconds(relaxTime,showarr,showframe,showcut)
+					FXAVG, FYAVG, FWAVG, FHAVG, AVGcounter = seconds.Run(0, relaxTime,showarr,showframe,showcut, fvs, face_cascade, close, further, eye_cascade, FXAVG, FYAVG, FWAVG, FHAVG, AVGcounter)
 					counter += 1
 				elif counter < SampleEpisode+1:
 					if (t2 - t1) >= 0.2:
@@ -222,6 +219,11 @@ class frameRun:
 						ind = 2
 
 			cv2.moveWindow('Arrows', 800, 200)
+
+			disp = frame
+
+			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
+			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 
 			if index[0] == 0:
 				arr = up
@@ -245,15 +247,13 @@ class frameRun:
 				sap = e
 
 			showarr = cv2.resize(arr, (200,200))
-			showframe = cv2.resize(frame, (200, 200))
+			showframe = cv2.resize(disp, (200, 200))
 			showcut = cv2.resize(cut, (200,200))
 			showsap = cv2.resize(sap, (200,200))
 			numpy_horizontal = np.hstack((showarr,showsap))
 			numpy2 = np.hstack((showcut,showframe))
 			numpytotal = np.vstack((numpy_horizontal,numpy2))
 			cv2.imshow("Arrows",numpytotal)
-
-
 
 			if ind == 2:
 				rows = [(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7])]
@@ -262,11 +262,10 @@ class frameRun:
 					f_csv = csv.writer(f)
 					f_csv.writerows(rows)
 
-				rows2 = [FXMAX,FXMIN,FYMAX,FYMAX,FWMAX,FWMIN,FHMAX,FHMIN]
+				rows2 = [(FXAVG,FYAVG,FWAVG,FHAVG,0,0,0,0)]
 				with open(path + '/FacePos.csv', "w") as f2:
 					f_csv2 = csv.writer(f2)
 					f_csv2.writerows(rows2)
-
 				break
 
 			if cv2.waitKey(1) & 0xFF == ord('q'):  # 16.666ms = 1/60hz
@@ -276,7 +275,7 @@ class frameRun:
 					f_csv = csv.writer(f)
 					f_csv.writerows(rows)
 
-				rows2 = [(FXMAX,FXMIN,FYMAX,FYMIN,FWMAX,FWMIN,FHMAX,FHMIN)]
+				rows2 = [(FXAVG,FYAVG,FWAVG,FHAVG,0,0,0,0)]
 				with open(path + '/FacePos.csv', "w") as f2:
 					f_csv2 = csv.writer(f2)
 					f_csv2.writerows(rows2)
@@ -287,12 +286,9 @@ class frameRun:
 		fvs.stop()
 		return
 
-	def compare(self, value, Max, Min):
-		if value < Min:
-			Min = value
-		elif value > Max:
-			Max = value
-		return Max, Min
+	def compare(self, value, AVG, counter):
+		NewAvg = (AVG*counter + value)/(counter + 1)
+		return int(NewAvg)
 
 
 	def ImgSandP(self,pathj,index,head,Y,H):
@@ -303,7 +299,7 @@ class frameRun:
 
 
 class seconds:
-	def __init__(self,counter, showarr, showframe, showcut):
+	def Run(self,counter, showarr, showframe, showcut, fvs, face_cascade, close, further, eye_cascade, FXAVG, FYAVG, FWAVG, FHAVG, AVGcounter):
 		one = cv2.imread("numbers/one.png")
 		two = cv2.imread("numbers/two.png")
 		three = cv2.imread("numbers/three.png")
@@ -317,6 +313,8 @@ class seconds:
 		zero = cv2.imread("numbers/zero.png")
 		big = cv2.imread("Arrows/stop.png")
 		t1 = time.clock()
+
+
 		while counter >= 0:
 			t2 = time.clock()
 			if t2 - t1 > 0.5:
@@ -348,6 +346,19 @@ class seconds:
 			elif counter >= 10:
 				num = big
 
+			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
+
+			FXAVG = frameRun.compare(0, FX, FXAVG, AVGcounter)
+			FYAVG = frameRun.compare(0, FY, FYAVG, AVGcounter)
+			FWAVG = frameRun.compare(0, FW, FWAVG, AVGcounter)
+			FHAVG = frameRun.compare(0, FX, FHAVG, AVGcounter)
+			AVGcounter += 1
+			disp = frame
+			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
+			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+
+			showframe = cv2.resize(disp, (200, 200))
+
 			num = cv2.resize(num, (200,200))
 			numpy_horizontal = np.hstack((showarr,num))
 			numpy2 = np.hstack((showcut,showframe))
@@ -355,6 +366,8 @@ class seconds:
 			cv2.imshow("Arrows",numpytotal)
 			if cv2.waitKey(1) == ord('q'):
 				break
+
+		return FXAVG, FYAVG, FWAVG, FHAVG, AVGcounter
 
 #Uncommand to direct start image capture process
 if __name__ == '__main__':

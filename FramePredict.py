@@ -11,6 +11,7 @@ from classificationOutput2 import classify
 import os
 import shutil
 import pyautogui
+import csv
 
 class WebcamVideosStream:
 	def __init__(self,src):
@@ -40,7 +41,7 @@ class WebcamVideosStream:
 
 class frameGet:
 
-	def Getframe(self, fvs, close, further, eye_cascade,mouth_cascade, closeM, furtherM):
+	def Getframe(self, fvs, close, face_cascade, eye_cascade,mouth_cascade, closeM, furtherM):
 		# make X,Y,H,W global
 		GXR = 0
 		GYR = 0
@@ -55,15 +56,25 @@ class frameGet:
 
 		# Capture frame-by-frame
 		frame = fvs.read()
-		frame = hisEqulColor(frame)
 		eyecut = None
 		Mouthcut = None
-
 
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		eyes = eye_cascade.detectMultiScale(gray)
 		mouth = mouth_cascade.detectMultiScale(gray, 1.7, 11)
+		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+		FX = 0
+		FY = 0
+		FW = 0
+		FH = 0
+
+		for (x, y, w, h) in faces:
+			FX = x
+			FY = y
+			FW = w
+			FH = h
 
 
 		for (ex, ey, ew, eh) in eyes:
@@ -79,9 +90,6 @@ class frameGet:
 			MXW = mw
 			MXH = mh
 			break
-
-		cv2.imshow('frame', frame)
-		cv2.moveWindow('frame', 100, 400)
 		# if no eye detected
 		Y = 0;
 		H = 0;
@@ -96,8 +104,6 @@ class frameGet:
 			W = close
 			if X > 0 and Y > 0:
 				eyecut = frame[Y:(Y + H), X:(X + W)]
-				cv2.imshow("Eycut", eyecut)
-				cv2.moveWindow('Eycut', 500, 20)
 				FlagE = 1
 
 			MX = math.floor(MXR + (MXW / 2) - (closeM / 2))
@@ -105,13 +111,11 @@ class frameGet:
 			MH = closeM
 			MW = closeM
 			print(MX,MY,MH,MW)
-			if MX > 0 and MY >0:
+			if MX > 0 and MY > 0:
 				Mouthcut = frame[MY:(MY + MH), MX:(MX + MW)]
-				cv2.imshow("Mouthcut", Mouthcut)
-				cv2.moveWindow('Mouthcut', 500, 200)
 				FlagM = 1
 
-		return frame, eyecut, Mouthcut, FlagE, FlagM
+		return frame, eyecut, Mouthcut, FlagE, FlagM, FX, FY, FW, FH
 
 
 class framePredict:
@@ -145,28 +149,44 @@ class framePredict:
 
 		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		Mouth_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
+		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
+
+		with open('CurrentData/1000/FacePos.csv') as f2:
+			f_csv2 = csv.reader(f2)
+			for row2 in f_csv2:
+				FXAVG, FYAVG, FWAVG, FHAVG = int(row2[0]), int(row2[1]), int(row2[2]), int(row2[3])
+
 
 		var = 1
 
 		#Read index
 
-		cv2.namedWindow("EyeFrame")
-		cv2.namedWindow("MouthFrame")
-
 		miu_listE, thetaE = classify.classifyInit(0,4)
 		miu_listM, thetaM = classify.classifyInit(0,3)
 
 		while var == 1:
-			frame, eye, mouth, FlagE, FlagM = frameGet().Getframe(fvs, close, further, eye_cascade, Mouth_cascade, closeM, furtherM)
+			frame, eye, mouth, FlagE, FlagM, FX, FY, FW, FH = frameGet().Getframe(fvs, close, face_cascade, eye_cascade, Mouth_cascade, closeM, furtherM)
+
+			disp = frame
+			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
+			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+
+
+			cv2.imshow("Arrow", disp)
+			cv2.moveWindow('Arrow', 500, 200)
+
 			if FlagE == 1 and FlagM:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
+<<<<<<< HEAD
 				self.ImgSandP2(eye,mouth)
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
 
 			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> click (mouth_open); 5 -> forceNoOp; 6 -> mouth_nothing
+=======
+>>>>>>> 3237dac6478a183fdf25567290903da4c3ee5891
 
 			if actionsM == 4:
 				print(str(actionsM)+" Mouth Open    Click")
@@ -217,12 +237,6 @@ class framePredict:
 		cv2.destroyAllWindows()
 		fvs.stop()
 
-
-	def ImgSandP2(self,eye,mouth):
-		cv2.imshow('EyeFrame', eye)
-		cv2.moveWindow('EyeFrame',20,20)
-		cv2.imshow("MouthFrame",mouth)
-		cv2.moveWindow('MouthFrame', 20, 200)
 
 def hisEqulColor(img):
 	ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
