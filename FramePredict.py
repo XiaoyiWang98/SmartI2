@@ -56,13 +56,15 @@ class frameGet:
 
 		# Capture frame-by-frame
 		frame = fvs.read()
+		frameHE = self.hisEqulColor(frame)
 		eyecut = None
 		Mouthcut = None
 
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
+		grayHE = cv2.cvtColor(frameHE.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		eyes = eye_cascade.detectMultiScale(gray)
-		mouth = mouth_cascade.detectMultiScale(gray, 1.7, 11)
+		mouth = mouth_cascade.detectMultiScale(grayHE, 1.7, 11)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
 		FX = 0
@@ -117,6 +119,13 @@ class frameGet:
 
 		return frame, eyecut, Mouthcut, FlagE, FlagM, FX, FY, FW, FH
 
+	def hisEqulColor(self, img):
+		ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
+		channels = cv2.split(ycrcb)
+		cv2.equalizeHist(channels[0], channels[0])
+		cv2.merge(channels, ycrcb)
+		cv2.cvtColor(ycrcb, cv2.COLOR_YCR_CB2BGR, img)
+		return img
 
 class framePredict:
 	def __init__(self, device):
@@ -167,21 +176,22 @@ class framePredict:
 		while var == 1:
 			frame, eye, mouth, FlagE, FlagM, FX, FY, FW, FH = frameGet().Getframe(fvs, close, face_cascade, eye_cascade, Mouth_cascade, closeM, furtherM)
 
-			disp = frame
+			disp = frame.copy()
 			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
 			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 
-
 			cv2.imshow("Arrow", disp)
 
-			if FlagE == 1 and FlagM:
+			if FlagE == 1 and FlagM == 1:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
+				cv2.imshow("mouth", mouth)
 				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 
+			actionsM = 6
 
 			if actionsM == 4:
-				print(str(actionsM)+" Mouth Open    Click")
+				print(str(actionsM) + " Mouth Open    Click")
 				if flag == 0:
 					flag = 1
 			elif actionsM == 5:
@@ -194,18 +204,18 @@ class framePredict:
 				if flag == 1:
 					pyautogui.click()
 					flag = 0
-
-				if flag == 1:
-					pyautogui.click()
-					flag = 0
 				if actionsE == 0:
 					pyautogui.moveRel(0, -15, duration=0.025)
+					print("up")
 				elif actionsE == 1:
 					pyautogui.moveRel(0, 15, duration=0.025)
+					print("down")
 				elif actionsE == 2:
 					pyautogui.moveRel(-15, 0, duration=0.025)
+					print("left")
 				elif actionsE == 3:
 					pyautogui.moveRel(15, 0, duration=0.025)
+					print("right")
 
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)

@@ -79,8 +79,8 @@ class frameGet:
 				GXH = eh
 				break
 		# if no face detected
-		Y = 0;
-		H = 0;
+		Y = 0
+		H = 0
 		if FXR != 0 and GXR != ref_x:
 			# Face position is good
 			if GXW >= close and GXH >= close and GXW <= further and GXH <= further:
