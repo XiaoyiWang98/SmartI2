@@ -147,7 +147,7 @@ class framePredict:
 
 		flag = 0
 
-		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
+		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_mcs_lefteye.xml')
 		Mouth_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
@@ -173,20 +173,12 @@ class framePredict:
 
 
 			cv2.imshow("Arrow", disp)
-			cv2.moveWindow('Arrow', 500, 200)
 
 			if FlagE == 1 and FlagM:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
-<<<<<<< HEAD
-				self.ImgSandP2(eye,mouth)
 
-			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> noPredictionResult; 5 -> click (mouth_open); 6 -> force_eye_noOp
-
-			# 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> click (mouth_open); 5 -> forceNoOp; 6 -> mouth_nothing
-=======
->>>>>>> 3237dac6478a183fdf25567290903da4c3ee5891
 
 			if actionsM == 4:
 				print(str(actionsM)+" Mouth Open    Click")

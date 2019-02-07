@@ -168,9 +168,9 @@ class frameRun2:
 
 		counter = -1
 		ind = 0
-		SampleEpisode = 50
+		SampleEpisode = 100
 		roundcounter = 0
-		MaxRC = 2
+		MaxRC = 4
 		relaxTime = 5
 
 
@@ -216,7 +216,6 @@ class frameRun2:
 					if roundcounter == MaxRC:
 						ind = 2
 
-			cv2.moveWindow('Arrows', 800, 200)
 
 
 			if index[0] == 0:

@@ -138,7 +138,7 @@ class frameRun:
 		e = cv2.imread("rotating/7.png")
 
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
-		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
+		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye_tree_eyeglasses.xml')
 		var = 1
 
 		#Read index
@@ -158,9 +158,9 @@ class frameRun:
 
 		counter = -1
 		ind = 0
-		SampleEpisode = 10
+		SampleEpisode = 100
 		roundcounter = 0
-		MaxRC = 2
+		MaxRC = 4
 		relaxTime = 5
 
 		t1 = time.clock()
@@ -181,8 +181,6 @@ class frameRun:
 
 		while var == 1:
 			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
-
-
 
 			if FX != 0:
 				FXAVG = self.compare(FX, FXAVG, AVGcounter)
@@ -218,7 +216,6 @@ class frameRun:
 					if roundcounter == MaxRC:
 						ind = 2
 
-			cv2.moveWindow('Arrows', 800, 200)
 
 			disp = frame
 
