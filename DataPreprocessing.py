@@ -42,5 +42,5 @@ def preprocess(path, threshold):
 
 
 if __name__ == '__main__':
-  set = preprocess("./MouthDetector/CurrentData/1000/click/", 1.5)
+  set = preprocess("./CurrentData/1000/up/", 1.5)
   print(set)
