@@ -42,5 +42,9 @@ def preprocess(path, threshold):
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
   set = preprocess("./CurrentData/1000/up/", 2)
+=======
+  set = preprocess("./CurrentData/1000/up/", 1.5)
+>>>>>>> 3f3c0c5c1e1eb39e9ea82ad61ff33b9ebaf76c03
   print(set)
