@@ -42,5 +42,5 @@ def preprocess(path, threshold):
 
 
 if __name__ == '__main__':
-  set = preprocess("./CurrentData/1000/up/", 2)
+  set = preprocess("./CurrentData/1000/left/", 1.5)
   print(set)
