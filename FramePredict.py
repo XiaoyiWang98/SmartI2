@@ -147,7 +147,7 @@ class framePredict:
 
 		flag = 0
 
-		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
+		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_mcs_lefteye.xml')
 		Mouth_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
@@ -173,7 +173,6 @@ class framePredict:
 
 
 			cv2.imshow("Arrow", disp)
-			cv2.moveWindow('Arrow', 500, 200)
 
 			if FlagE == 1 and FlagM:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
