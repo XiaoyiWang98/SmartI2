@@ -135,7 +135,7 @@ class frameRun:
 		e = cv2.imread("rotating/7.png")
 
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
-		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye_tree_eyeglasses.xml')
+		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		var = 1
 
 		#Read index
