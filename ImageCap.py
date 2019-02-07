@@ -51,7 +51,6 @@ class frameGet:
 		frame = fvs.read()
 		cut = 0
 		# Our operations on the frame come here
-		frame = self.hisEqulColor(frame)
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 		ref_x = 0
@@ -78,7 +77,6 @@ class frameGet:
 				GYR = ey+y
 				GXW = ew
 				GXH = eh
-				cv2.rectangle(roi_color, (GXR, GYR), (GXR + GXW, GYR + GXH), (0, 255, 0), 2)
 				break
 		# if no face detected
 		Y = 0;
@@ -92,7 +90,6 @@ class frameGet:
 				W = close
 				cut = frame[Y:(Y + H), X:(X + W)]
 				cut = self.hisEqulColor(cut)
-				cv2.rectangle(roi_color, (X, Y), (X+W, Y+H), (0, 255, 0), 2)
 
 		return frame, cut, GXR, Y, H, FX, FY, FW, FH
 
@@ -138,7 +135,7 @@ class frameRun:
 		e = cv2.imread("rotating/7.png")
 
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
-		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye_tree_eyeglasses.xml')
+		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		var = 1
 
 		#Read index
@@ -217,7 +214,7 @@ class frameRun:
 						ind = 2
 
 
-			disp = frame
+			disp = frame.copy()
 
 			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
 			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
@@ -348,9 +345,9 @@ class seconds:
 			FXAVG = frameRun.compare(0, FX, FXAVG, AVGcounter)
 			FYAVG = frameRun.compare(0, FY, FYAVG, AVGcounter)
 			FWAVG = frameRun.compare(0, FW, FWAVG, AVGcounter)
-			FHAVG = frameRun.compare(0, FX, FHAVG, AVGcounter)
+			FHAVG = frameRun.compare(0, FH, FHAVG, AVGcounter)
 			AVGcounter += 1
-			disp = frame
+			disp = frame.copy()
 			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
 			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 

@@ -50,7 +50,7 @@ class frameGet2:
 		frame = fvs.read()
 		cut = 0
 		# Our operations on the frame come here
-		frame = self.hisEqulColor(frame)
+		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 		ref_x = 0
@@ -185,11 +185,8 @@ class frameRun2:
 		while var == 1:
 			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet2().Getframe(fvs, face_cascade, close, further, eye_cascade)
 
-			disp = frame
-			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
-			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
-
 			if GXR != 0 and Y != 0 and H != 0:
+				print("print")
 				t2 = time.clock()
 				#if cv2.waitKey(1) & 0xFF == ord('d'):  # 16.666ms = 1/60hz
 				if counter == -1:
@@ -216,6 +213,9 @@ class frameRun2:
 					if roundcounter == MaxRC:
 						ind = 2
 
+			disp = frame.copy()
+			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
+			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 
 
 			if index[0] == 0:
@@ -335,7 +335,7 @@ class seconds2:
 			FWAVG = frameRun2.compare(0, FW, FWAVG, AVGcounter)
 			FHAVG = frameRun2.compare(0, FX, FHAVG, AVGcounter)
 			AVGcounter += 1
-			disp = frame
+			disp = frame.copy()
 			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
 			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 
