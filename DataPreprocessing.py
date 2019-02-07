@@ -35,12 +35,12 @@ def preprocess(path, threshold):
     img_to_delete = [imgset[i] for i in img_idx_to_delete]
 
     # delete files
-    # for i in img_to_delete:
-    #   os.remove(i)
+    for i in img_to_delete:
+      os.remove(i)
 
   return img_to_delete
 
 
 if __name__ == '__main__':
-  set = preprocess("./MouthDetector/CurrentData/1000/click/", 1.5)
+  set = preprocess("./CurrentData/1000/up/", 2)
   print(set)
