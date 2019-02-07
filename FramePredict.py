@@ -179,6 +179,7 @@ class framePredict:
 				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
 				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 
+
 			if actionsM == 4:
 				print(str(actionsM)+" Mouth Open    Click")
 				if flag == 0:
