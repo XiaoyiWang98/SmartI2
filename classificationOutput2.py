@@ -67,7 +67,7 @@ class classify:
     # print(idx, className(prob.index(max(prob)), num_of_classes))
     # print(prob)
 
-    return idx
+    return idx, max(prob)
 
 
   # returns the threshold for eye images
