@@ -56,7 +56,7 @@ class frameGet:
 
 		# Capture frame-by-frame
 		frame = fvs.read()
-		frameHE = self.hisEqulColor(frame)
+		frameHE = frame
 		eyecut = None
 		Mouthcut = None
 

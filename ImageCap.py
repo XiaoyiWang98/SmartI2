@@ -155,7 +155,7 @@ class frameRun:
 
 		counter = -1
 		ind = 0
-		SampleEpisode = 100
+		SampleEpisode = 250
 		roundcounter = 0
 		MaxRC = 4
 		relaxTime = 5

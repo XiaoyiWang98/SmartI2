@@ -57,6 +57,11 @@ class frameGet2:
 		eyes = eye_cascade.detectMultiScale(gray, 1.7, 11)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
+		FX = 0
+		FY = 0
+		FW = 0
+		FH = 0
+
 		# 	FXR = x
 		for (x, y, w, h) in faces:
 			FX = x
@@ -162,9 +167,9 @@ class frameRun2:
 
 		counter = -1
 		ind = 0
-		SampleEpisode = 200
+		SampleEpisode = 250
 		roundcounter = 0
-		MaxRC = 5
+		MaxRC = 4
 		relaxTime = 5
 
 		t1 = time.clock()
