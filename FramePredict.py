@@ -173,6 +173,13 @@ class framePredict:
 		miu_listE, thetaE = classify.classifyInit(0,4)
 		miu_listM, thetaM = classify.classifyInit(0,3)
 
+		Fcounter = 0
+
+		actionsMI = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+		actionsEI = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+		actionsMB = [0,0,0,0,0]
+		actionsEB = [0,0,0,0,0]
+
 		while var == 1:
 			frame, eye, mouth, FlagE, FlagM, FX, FY, FW, FH = frameGet().Getframe(fvs, close, face_cascade, eye_cascade, Mouth_cascade, closeM, furtherM)
 
@@ -185,37 +192,52 @@ class framePredict:
 			if FlagE == 1 and FlagM == 1:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 				cv2.imshow("mouth", mouth)
-				actionsM = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
-				actionsE = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
+				actionsM, actionsMA = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
+				actionsE, actionsEA = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 
 			actionsM = 6
 
-			if actionsM == 4:
-				print(str(actionsM) + " Mouth Open    Click")
-				if flag == 0:
-					flag = 1
-			elif actionsM == 5:
-				print(str(actionsM) + " Pursing lips    ForceNoOp")
-				if flag == 1:
-					flag = 0
-			elif actionsM == 6:
-				print(str(actionsM) + " Mouth Normal    Nothing")
+			Fcounter += 1
+			actionsMI[actionsM] += 1
+			actionsEI[actionsE] += 1
+			actionsMB[4] = actionsM
+			actionsEB[4] = actionsE
+			if Fcounter > 4:
+				actionsFM = actionsMI.index(max(actionsMI))
+				actionsFE = actionsEI.index(max(actionsEI))
+				actionsMI[actionsMB[0]] -= 1
+				actionsEI[actionsEB[0]] -= 1
+				actionsMB.remove(actionsMB[0])
+				actionsEB.remove(actionsEB[0])
+				actionsMB.append(0)
+				actionsEB.append(0)
 
-				if flag == 1:
-					pyautogui.click()
-					flag = 0
-				if actionsE == 0:
-					pyautogui.moveRel(0, -15, duration=0.025)
-					print("up")
-				elif actionsE == 1:
-					pyautogui.moveRel(0, 15, duration=0.025)
-					print("down")
-				elif actionsE == 2:
-					pyautogui.moveRel(-15, 0, duration=0.025)
-					print("left")
-				elif actionsE == 3:
-					pyautogui.moveRel(15, 0, duration=0.025)
-					print("right")
+				if actionsFM == 4:
+					print(str(actionsM) + " Mouth Open    Click")
+					if flag == 0:
+						flag = 1
+				elif actionsFM == 5:
+					print(str(actionsM) + " Pursing lips    ForceNoOp")
+					if flag == 1:
+						flag = 0
+				elif actionsFM == 6:
+					print(str(actionsM) + " Mouth Normal    Nothing")
+
+					if flag == 1:
+						pyautogui.click()
+						flag = 0
+					if actionsFE == 0:
+						pyautogui.moveRel(0, -15, duration=0.025)
+						print("up")
+					elif actionsFE == 1:
+						pyautogui.moveRel(0, 15, duration=0.025)
+						print("down")
+					elif actionsFE == 2:
+						pyautogui.moveRel(-15, 0, duration=0.025)
+						print("left")
+					elif actionsFE == 3:
+						pyautogui.moveRel(15, 0, duration=0.025)
+						print("right")
 
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)
