@@ -200,8 +200,6 @@ class framePredict:
 				actionsM, actionsMA = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
 				actionsE, actionsEA = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 
-			actionsM = 6
-
 
 			Fcounter += 1
 			actionsMI[actionsM] += 1
@@ -235,16 +233,12 @@ class framePredict:
 						flag = 0
 					if actionsFE == 0:
 						pyautogui.moveRel(0, -15, duration=0.025)
-						print("up")
 					elif actionsFE == 1:
 						pyautogui.moveRel(0, 15, duration=0.025)
-						print("down")
 					elif actionsFE == 2:
 						pyautogui.moveRel(-15, 0, duration=0.025)
-						print("left")
 					elif actionsFE == 3:
 						pyautogui.moveRel(15, 0, duration=0.025)
-						print("right")
 
 			# if actionsE == 0:
 			# 	cv2.imshow("Arrows",up)

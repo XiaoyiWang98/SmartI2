@@ -166,9 +166,9 @@ class frameRun2:
 
 		counter = -1
 		ind = 0
-		SampleEpisode = 50
+		SampleEpisode = 100
 		roundcounter = 0
-		MaxRC = 2
+		MaxRC = 4
 		relaxTime = 5
 
 		t1 = time.clock()

@@ -103,7 +103,7 @@ def split(list, percent):  # split a list into two sub-lists
 
 
 def processImagesBeforeTraining(num_of_classes):
-  thresh = 1.5  # threshold for outliers (delete bad samples)
+  thresh = 0.8  # threshold for outliers (delete bad samples)
   img_to_generate = 1000  # num of files to generate after data augmentation
 
   data_path = './CurrentData/' if num_of_classes == 4 else './MouthDetector/CurrentData/'
