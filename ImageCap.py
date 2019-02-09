@@ -155,9 +155,9 @@ class frameRun:
 
 		counter = -1
 		ind = 0
-		SampleEpisode = 250
+		SampleEpisode = 50
 		roundcounter = 0
-		MaxRC = 4
+		MaxRC = 2
 		relaxTime = 5
 
 		t1 = time.clock()
@@ -175,6 +175,12 @@ class frameRun:
 		FHAVG = 0
 
 		AVGcounter = 0
+
+		middleX = 310
+		middleY = 240
+		Width = 200
+		Length = 200
+
 
 		while var == 1:
 			frame, head, GXR, Y, H, FX, FY, FW, FH = frameGet().Getframe(fvs, face_cascade, close, further, eye_cascade)
@@ -216,8 +222,8 @@ class frameRun:
 
 			disp = frame.copy()
 
-			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
-			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+
+			cv2.rectangle(disp, (middleX - int(0.5*Width), middleY - int(0.5*Length)), (middleX + int(0.5*Width), middleY + int(0.5*Length)), (0, 255, 0), 3)
 
 			if index[0] == 0:
 				arr = up
@@ -242,7 +248,9 @@ class frameRun:
 
 			showarr = cv2.resize(arr, (200,200))
 			showframe = cv2.resize(disp, (200, 200))
+			showframe = cv2.flip(showframe, 1)
 			showcut = cv2.resize(cut, (200,200))
+			showcut = cv2.flip(showcut, 1)
 			showsap = cv2.resize(sap, (200,200))
 			numpy_horizontal = np.hstack((showarr,showsap))
 			numpy2 = np.hstack((showcut,showframe))
@@ -308,6 +316,10 @@ class seconds:
 		big = cv2.imread("Arrows/stop.png")
 		t1 = time.clock()
 
+		middleX = 310
+		middleY = 240
+		Width = 200
+		Length = 200
 
 		while counter >= 0:
 			t2 = time.clock()
@@ -348,10 +360,12 @@ class seconds:
 			FHAVG = frameRun.compare(0, FH, FHAVG, AVGcounter)
 			AVGcounter += 1
 			disp = frame.copy()
-			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
-			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+			# cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
+			# cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+			cv2.rectangle(disp, (middleX - int(0.5 * Width), middleY - int(0.5 * Length)),(middleX + int(0.5 * Width), middleY + int(0.5 * Length)), (0, 255, 0), 3)
 
 			showframe = cv2.resize(disp, (200, 200))
+			showframe = cv2.flip(showframe, 1)
 
 			num = cv2.resize(num, (200,200))
 			numpy_horizontal = np.hstack((showarr,num))

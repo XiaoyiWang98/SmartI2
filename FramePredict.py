@@ -191,6 +191,7 @@ class framePredict:
 			disp = frame.copy()
 			cv2.rectangle(disp, (middleX - int(0.5*Width), middleY - int(0.5*Length)), (middleX + int(0.5*Width), middleY + int(0.5*Length)), (0, 255, 0), 3)
 			#cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+			disp = cv2.flip(disp, 1)
 
 			cv2.imshow("Arrow", disp)
 
