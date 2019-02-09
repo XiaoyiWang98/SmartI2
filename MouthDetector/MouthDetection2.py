@@ -51,7 +51,6 @@ class frameGet2:
 
 		# Capture frame-by-frame
 		frame = fvs.read()
-		frame = self.hisEqulColor(frame)
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		eyes = eye_cascade.detectMultiScale(gray, 1.7, 11)

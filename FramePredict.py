@@ -62,9 +62,8 @@ class frameGet:
 
 		# Our operations on the frame come here
 		gray = cv2.cvtColor(frame.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-		grayHE = cv2.cvtColor(frameHE.astype(np.uint8), cv2.COLOR_BGR2GRAY)
 		eyes = eye_cascade.detectMultiScale(gray)
-		mouth = mouth_cascade.detectMultiScale(grayHE, 1.7, 11)
+		mouth = mouth_cascade.detectMultiScale(gray, 1.7, 11)
 		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
 		FX = 0
@@ -156,7 +155,7 @@ class framePredict:
 
 		flag = 0
 
-		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_mcs_lefteye.xml')
+		eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 		Mouth_cascade = cv2.CascadeClassifier('MouthDetector/cascades/haarcascade_mcs_mouth.xml')
 		face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 
@@ -193,11 +192,11 @@ class framePredict:
 			#cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 			disp = cv2.flip(disp, 1)
 
+
 			cv2.imshow("Arrow", disp)
 
 			if FlagE == 1 and FlagM == 1:
 				eye = cv2.cvtColor(eye.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-				cv2.imshow("mouth", mouth)
 				actionsM, actionsMA = classify.classifySingleImage2(0, mouth, miu_listM, thetaM, 3)
 				actionsE, actionsEA = classify.classifySingleImage2(0, eye, miu_listE, thetaE, 4)
 
@@ -229,7 +228,7 @@ class framePredict:
 					if flag == 1:
 						flag = 0
 				elif actionsFM == 6:
-					print(str(actionsM) + " Mouth Normal    Nothing")
+					#print(str(actionsM) + " Mouth Normal    Nothing")
 
 					if flag == 1:
 						pyautogui.click()
