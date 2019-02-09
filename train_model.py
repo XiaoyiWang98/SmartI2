@@ -7,13 +7,16 @@ import glob
 import cv2
 import math
 import csv
-from DataPreprocessing import preprocess
+from DataPreprocessing import preprocess, dataAugmentation
+from multiprocessing.pool import ThreadPool
+
 
 def train_model(percent, info, num_of_classes):
   # percent = % of training data in the dataset;
   # info: 1 -> print data info; 0 -> not print data info;
-  # num_of_classes (total number of classes for an object): 4 -> eye; 2 -> mouth
+  # num_of_classes (total number of classes for an object): 4 -> eye; 3 -> mouth
 
+  processImagesBeforeTraining(num_of_classes)
   train_set, valid_set = getImageSets(percent, info, num_of_classes)
 
   # access pixel values of the images in the respective folders
@@ -99,8 +102,9 @@ def split(list, percent):  # split a list into two sub-lists
   return sublist1, sublist2
 
 
-def getImageSets(percent, info, num_of_classes):  # get train and validation image sets
-  thresh = 1.5  # threshold for outliers
+def processImagesBeforeTraining(num_of_classes):
+  thresh = 1.5  # threshold for outliers (delete bad samples)
+  img_to_generate = 1000  # num of files to generate after data augmentation
 
   data_path = './CurrentData/' if num_of_classes == 4 else './MouthDetector/CurrentData/'
   # read csv
@@ -116,10 +120,86 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     for file in folders:
       img_path = data_path + file + '/'
 
-      preprocess(img_path + 'up/', thresh)
-      preprocess(img_path + 'down/', thresh)
-      preprocess(img_path + 'left/', thresh)
-      preprocess(img_path + 'right/', thresh)
+      # delete bad samples
+      print("Data preprocessing: deleting outliers ...\n")
+      pool = ThreadPool(processes=4)
+      async_1 = pool.apply_async(preprocess, (img_path + 'up/', thresh))
+      async_2 = pool.apply_async(preprocess, (img_path + 'down/', thresh))
+      async_3 = pool.apply_async(preprocess, (img_path + 'left/', thresh))
+      async_4 = pool.apply_async(preprocess, (img_path + 'right/', thresh))
+      val_1 = async_1.get()
+      print("1/4 completed ...")
+      val_2 = async_2.get()
+      print("2/4 completed ...")
+      val_3 = async_3.get()
+      print("3/4 completed ...")
+      val_4 = async_4.get()
+      print("Done.\n")
+
+      # data augmentation
+      print("Data augmentation:", img_to_generate, "new images will be generated ...\n")
+      pool = ThreadPool(processes=4)
+      async_1 = pool.apply_async(dataAugmentation, (img_path + 'up/', img_to_generate))
+      async_2 = pool.apply_async(dataAugmentation, (img_path + 'down/', img_to_generate))
+      async_3 = pool.apply_async(dataAugmentation, (img_path + 'left/', img_to_generate))
+      async_4 = pool.apply_async(dataAugmentation, (img_path + 'right/', img_to_generate))
+      val_1 = async_1.get()
+      print("1/4 completed ...")
+      val_2 = async_2.get()
+      print("2/4 completed ...")
+      val_3 = async_3.get()
+      print("3/4 completed ...")
+      val_4 = async_4.get()
+      print("Done.\n")
+
+  else:  # for mouth images
+    mouth_open, mouth_line, mouth_nothing = [], [], []
+    for file in folders:
+      img_path = data_path + file + '/'
+
+      # delete bad samples
+      print("Data preprocessing: deleting outliers ...\n")
+      pool = ThreadPool(processes=3)
+      async_1 = pool.apply_async(preprocess, (img_path + 'click/', thresh))
+      async_2 = pool.apply_async(preprocess, (img_path + 'ForceNoOp/', thresh))
+      async_3 = pool.apply_async(preprocess, (img_path + 'nothing/', thresh))
+      val_1 = async_1.get()
+      print("1/3 completed ...")
+      val_2 = async_2.get()
+      print("2/3 completed ...")
+      val_3 = async_3.get()
+      print("Done.\n")
+
+
+      # data augmentation
+      print("Data augmentation: ", img_to_generate, " new images will be generated ...\n")
+      pool = ThreadPool(processes=3)
+      async_1 = pool.apply_async(dataAugmentation, (img_path + 'click/', img_to_generate))
+      async_2 = pool.apply_async(dataAugmentation, (img_path + 'ForceNoOp/', img_to_generate))
+      async_3 = pool.apply_async(dataAugmentation, (img_path + 'nothing/', img_to_generate))
+      val_1 = async_1.get()
+      print("1/3 completed ...")
+      val_2 = async_2.get()
+      print("2/3 completed ...")
+      val_3 = async_3.get()
+      print("Done.\n")
+
+
+def getImageSets(percent, info, num_of_classes):  # get train and validation image sets
+
+  data_path = './CurrentData/' if num_of_classes == 4 else './MouthDetector/CurrentData/'
+  # read csv
+  file = open(data_path + 'Dataset.csv')
+  contents = file.readlines()
+  folders = []
+  for i in range(len(contents)):
+    if contents[i] != "\n":
+      folders.append(contents[i].rstrip("\n"))
+
+  if num_of_classes == 4:  # for eye images
+    up, down, left, right = [], [], [], []
+    for file in folders:
+      img_path = data_path + file + '/'
 
       up = up + [f for f in glob.glob(img_path + 'up/' + '*.jpg')]
       down = down + [f for f in glob.glob(img_path + 'down/' + '*.jpg')]
@@ -137,6 +217,7 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
             len(train_left), '; right: ', len(train_right))
       print('Number of Test Data: \n   up: ', len(valid_up), '; down: ', len(valid_down), '; left: ', len(valid_left),
             '; right: ', len(valid_right))
+      print("\nStart training ...\n")
 
     train_set = [train_up, train_down, train_left, train_right]
     valid_set = [valid_up, valid_down, valid_left, valid_right]
@@ -145,10 +226,6 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     mouth_open, mouth_line, mouth_nothing = [], [], []
     for file in folders:
       img_path = data_path + file + '/'
-
-      preprocess(img_path + 'click/', thresh)
-      preprocess(img_path + 'ForceNoOp/', thresh)
-      preprocess(img_path + 'nothing/', thresh)
 
       mouth_open = mouth_open + [f for f in glob.glob(img_path + 'click/' + '*.jpg')]
       mouth_line = mouth_line + [f for f in glob.glob(img_path + 'ForceNoOp/' + '*.jpg')]
@@ -164,6 +241,7 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
             len(train_mouth_line), '; mouth_nothing: ', len(train_mouth_nothing))
       print('Number of Test Data: \n   mouth_open: ', len(valid_mouth_open), '; mouth_force_no_op: ',
             len(valid_mouth_line), '; mouth_nothing: ', len(valid_mouth_nothing))
+      print("\nStart training ...\n")
 
     train_set = [train_mouth_open, train_mouth_line, train_mouth_nothing]
     valid_set = [valid_mouth_open, valid_mouth_line, valid_mouth_nothing]

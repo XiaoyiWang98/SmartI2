@@ -59,7 +59,7 @@ def SampleCollectionButton2():
 def TrainingButton():
   start = time.time()
 
-  train_model(percent, 1, 4)  # for eyes
+  #train_model(percent, 1, 4)  # for eyes
   train_model(percent, 1, 3)  # for mouth
 
   end = time.time()
@@ -68,7 +68,7 @@ def TrainingButton():
 def TestButton():
   start = time.time()
 
-  validate_model(percent, 0, 4)  # for eyes
+  #validate_model(percent, 0, 4)  # for eyes
   validate_model(percent, 0, 3)  # for mouth
 
   end = time.time()

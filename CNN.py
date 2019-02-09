@@ -3,15 +3,18 @@ import tensorflow as tf
 import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
-from DataPreprocessing import preprocess
 import glob
 import cv2
-from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 from keras.utils import to_categorical
+from DataPreprocessing import preprocess, dataAugmentation
+from multiprocessing.pool import ThreadPool
+from train_model import processImagesBeforeTraining
 
 
 # 0 -> up; 1 -> down; 2 -> left; 3 -> right; 4 -> click (mouth_open); 5 -> forceNoOp; 6 -> mouth_nothing
 def CNNModel(percent, info, num_of_classes, channels):
+
+  processImagesBeforeTraining(num_of_classes)
   train_img, valid_img, label_train, label_valid = getImageSets(percent, info, num_of_classes)
 
   train, width, height = imgToArray(train_img, 1)
@@ -53,8 +56,8 @@ def split(list, percent):  # split a list into two sub-lists
   return sublist1, sublist2
 
 
+
 def getImageSets(percent, info, num_of_classes):  # get train and validation image sets
-  thresh = 1.5  # threshold for outliers
 
   data_path = './CurrentData/' if num_of_classes == 4 else './MouthDetector/CurrentData/'
   # read csv
@@ -70,15 +73,11 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     for file in folders:
       img_path = data_path + file + '/'
 
-      preprocess(img_path + 'up/', thresh)
-      preprocess(img_path + 'down/', thresh)
-      preprocess(img_path + 'left/', thresh)
-      preprocess(img_path + 'right/', thresh)
-
       up = up + [f for f in glob.glob(img_path + 'up/' + '*.jpg')]
       down = down + [f for f in glob.glob(img_path + 'down/' + '*.jpg')]
       left = left + [f for f in glob.glob(img_path + 'left/' + '*.jpg')]
       right = right + [f for f in glob.glob(img_path + 'right/' + '*.jpg')]
+
     train_up, valid_up = split(up, percent)
     train_down, valid_down = split(down, percent)
     train_left, valid_left = split(left, percent)
@@ -93,8 +92,6 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
             '; right: ', len(valid_right))
 
 
-    # data augmentation
-    
     train_set = train_up + train_down + train_left + train_right
     label_train_set = [0]*len(train_up) + [1]*len(train_down) + [2]*len(train_left) + [3]*len(train_right)
     valid_set = valid_up + valid_down + valid_left + valid_right
@@ -105,13 +102,10 @@ def getImageSets(percent, info, num_of_classes):  # get train and validation ima
     for file in folders:
       img_path = data_path + file + '/'
 
-      preprocess(img_path + 'click/', thresh)
-      preprocess(img_path + 'ForceNoOp/', thresh)
-      preprocess(img_path + 'nothing/', thresh)
-
       mouth_open = mouth_open + [f for f in glob.glob(img_path + 'click/' + '*.jpg')]
       mouth_line = mouth_line + [f for f in glob.glob(img_path + 'ForceNoOp/' + '*.jpg')]
       mouth_nothing = mouth_nothing + [f for f in glob.glob(img_path + 'nothing/' + '*.jpg')]
+
     train_mouth_open, valid_mouth_open = split(mouth_open, percent)
     train_mouth_line, valid_mouth_line = split(mouth_line, percent)
     train_mouth_nothing, valid_mouth_nothing = split(mouth_nothing, percent)
