@@ -110,5 +110,4 @@ def dataAugmentation(folder_path, num_files_desired):
 
 if __name__ == '__main__':
   set = preprocess("./MouthDetector/CurrentData/1000/click/", 1.5)
-
-  #dataAugmentation("./MouthDetector/CurrentData/1000/click/", 10)
+  dataAugmentation("./MouthDetector/CurrentData/1000/click/", 10)
