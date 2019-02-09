@@ -197,9 +197,14 @@ class framePredict:
 
 			actionsM = 6
 
+
 			Fcounter += 1
 			actionsMI[actionsM] += 1
 			actionsEI[actionsE] += 1
+			actionsMB.remove(actionsMB[0])
+			actionsEB.remove(actionsEB[0])
+			actionsMB.append(0)
+			actionsEB.append(0)
 			actionsMB[4] = actionsM
 			actionsEB[4] = actionsE
 			if Fcounter > 4:
@@ -207,10 +212,7 @@ class framePredict:
 				actionsFE = actionsEI.index(max(actionsEI))
 				actionsMI[actionsMB[0]] -= 1
 				actionsEI[actionsEB[0]] -= 1
-				actionsMB.remove(actionsMB[0])
-				actionsEB.remove(actionsEB[0])
-				actionsMB.append(0)
-				actionsEB.append(0)
+
 
 				if actionsFM == 4:
 					print(str(actionsM) + " Mouth Open    Click")
