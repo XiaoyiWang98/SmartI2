@@ -168,6 +168,11 @@ class framePredict:
 
 		var = 1
 
+		middleX = 310
+		middleY = 240
+		Width = 200
+		Length = 200
+
 		#Read index
 
 		miu_listE, thetaE = classify.classifyInit(0,4)
@@ -184,8 +189,8 @@ class framePredict:
 			frame, eye, mouth, FlagE, FlagM, FX, FY, FW, FH = frameGet().Getframe(fvs, close, face_cascade, eye_cascade, Mouth_cascade, closeM, furtherM)
 
 			disp = frame.copy()
-			cv2.rectangle(disp, (FXAVG, FYAVG), (FXAVG + FWAVG, FYAVG + FHAVG), (0, 255, 0), 3)
-			cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
+			cv2.rectangle(disp, (middleX - int(0.5*Width), middleY - int(0.5*Length)), (middleX + int(0.5*Width), middleY + int(0.5*Length)), (0, 255, 0), 3)
+			#cv2.rectangle(disp, (FX, FY), (FX + FW, FY + FH), (255, 0, 0), 3)
 
 			cv2.imshow("Arrow", disp)
 
