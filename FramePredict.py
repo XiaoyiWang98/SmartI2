@@ -216,6 +216,7 @@ class framePredict:
 				actionsMI[actionsMB[0]] -= 1
 				actionsEI[actionsEB[0]] -= 1
 
+				actionsFM = 6
 
 				if actionsFM == 4:
 					print(str(actionsM) + " Mouth Open    Click")

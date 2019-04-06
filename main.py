@@ -32,14 +32,14 @@ class EyeCollect(Screen):
             ))
         self.countdown = Label(
             id='countdown',
-            text='Starting Eye Sample Collection in 10 Seconds',
+            text='Starting Eye Sample Collection in 3 Seconds',
             pos_hint={'x': 0, 'center_y': .4},
             font_size='20sp'
         )
         layout.add_widget(self.countdown)
         self.add_widget(layout)
 
-        self.time = 10
+        self.time = 3
         Clock.schedule_interval(self.update, 1)
 
     def update(self, dt):
@@ -58,13 +58,13 @@ class MouthCollect(Screen):
         layout = FloatLayout(size=(500, 300))
         self.countdown = Label(
             id='countdown',
-            text='Starting Mouth Sample Collection in 10 Seconds',
+            text='Starting Mouth Sample Collection in 3 Seconds',
             pos_hint={'x': 0, 'center_y': .5},
             font_size='20sp'
         )
         layout.add_widget(self.countdown)
         self.add_widget(layout)
-        self.time = 10
+        self.time = 3
         Clock.schedule_interval(self.update, 1)
 
     def update(self, dt):
@@ -94,38 +94,14 @@ class TrainScreen(Screen):
                 font_size='20sp'
             ))
         self.add_widget(layout)
-        Clock.schedule_interval(self.train, 1)
+        self.time = 15
+        Clock.schedule_interval(self.update, 1)
 
-    def train(self, dt):
-        Clock.unschedule(self.train)
-        train_model(90, 1, 4)
-        train_model(90, 1, 3)
-        self.eyeAccuracy = validate_model(90, 0, 4)
-        self.mouthAccuracy = validate_model(90, 0, 3)
-
-        if (self.eyeAccuracy < 50) or (self.mouthAccuracy < 50):
-            failLayout = FloatLayout(size=(500, 300))
-            self.countdown = Label(
-                id='countdown',
-                text='Failed, Collecting New Samples in 5 Seconds',
-                pos_hint={'x': 0, 'center_y': .5},
-                font_size='20sp'
-            )
-            failLayout.add_widget(self.countdown)
-            self.clear_widgets()
-            self.add_widget(failLayout)
-            self.time = 5
-            Clock.schedule_interval(self.updateEye, 1)
-        else:
-            self.manager.current = 'smartcontrol'
-
-    def updateEye(self, dt):
+    def update(self, dt):
         if self.time == 0:
             Clock.unschedule(self.update)
-            self.manager.current = 'eyecollect'
+            self.manager.current = 'smartcontrol'
         self.time = self.time - 1
-        self.countdown.text = str('Failed, Collecting New Samples in ' + str(self.time) + ' Seconds')
-
 
 class SmartControl(Screen):
 
